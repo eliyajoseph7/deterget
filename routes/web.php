@@ -1,9 +1,11 @@
 <?php
 
 use App\Livewire\Pages\Dashboard\Dashboard;
-use App\Livewire\Pages\Permission\Permissions;
-use App\Livewire\Pages\Role\Roles;
-use App\Livewire\Pages\User\Users;
+use App\Livewire\Pages\Setting\Permission\Permissions;
+use App\Livewire\Pages\Setting\Product\Products;
+use App\Livewire\Pages\Setting\ProductCategory\ProductCategories;
+use App\Livewire\Pages\Setting\Role\Roles;
+use App\Livewire\Pages\Setting\User\Users;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,15 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 Route::middleware('auth')->group(function() {
+    // product categories
+    Route::prefix('product-categories')->group(function() {
+        Route::get('', ProductCategories::class)->name('categories');
+    });
+    // products
+    Route::prefix('products')->group(function() {
+        Route::get('', Products::class)->name('products');
+    });
+
     // permissions
     Route::prefix('permissions')->group(function() {
         Route::get('', Permissions::class)->name('permissions');
