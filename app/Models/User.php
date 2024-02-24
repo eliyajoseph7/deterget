@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function scopeSearch($qs, $keyword) {
+        $qs->where('name', 'like', '%'.$keyword.'%')
+            ->orWhere('email', 'like', '%'.$keyword.'%')
+            ->orWhere('phone', 'like', '%'.$keyword.'%');
+    }
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
 }

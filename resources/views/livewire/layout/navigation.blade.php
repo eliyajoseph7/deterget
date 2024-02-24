@@ -109,7 +109,7 @@ new class extends Component
     </div>
 </nav> --}}
 <nav class="fixed top-0 z-50 w-full bg-white border-b-4 border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <div class="px-3 py-1 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
                 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
@@ -124,9 +124,7 @@ new class extends Component
                     </svg>
                 </button>
                 <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                    <x-application-logo class="h-8 me-3" alt="FlowBite Logo" />
-                    <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+                    <x-application-logo class="me-3" alt="FlowBite Logo" />
                 </a>
             </div>
             <div class="flex items-center">

@@ -38,9 +38,9 @@
 
 </head>
 
-<body class="font-sans antialiased ">
+<body class="font-sans antialiased w-screen overflow-x-hidden">
     <div
-        class="relative min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        class="relative min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden">
         <livewire:layout.navigation />
 
         @include('livewire.layout.sidenav')
@@ -72,6 +72,14 @@
         showConfirmButton: false,
         timer: 5000,
         timerProgressBar: true,
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        $('.select2').select2({
+            minimumResultsForSearch: 6,
+            placeholder: "select...",
+        });
+        // console.log('loaded')
     });
 </script>
 

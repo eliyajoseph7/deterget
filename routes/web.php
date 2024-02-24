@@ -4,6 +4,7 @@ use App\Livewire\Pages\Dashboard\Dashboard;
 use App\Livewire\Pages\Setting\Permission\Permissions;
 use App\Livewire\Pages\Setting\Product\Products;
 use App\Livewire\Pages\Setting\ProductCategory\ProductCategories;
+use App\Livewire\Pages\Setting\Role\RolePermissions;
 use App\Livewire\Pages\Setting\Role\Roles;
 use App\Livewire\Pages\Setting\User\Users;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function() {
     // roles
     Route::prefix('roles')->group(function() {
         Route::get('', Roles::class)->name('roles');
+        Route::get('role-permissions/{slug}', RolePermissions::class)->name('role_permissions');
     });
 
     // users

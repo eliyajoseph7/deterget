@@ -80,7 +80,6 @@ class ProductCategoryForm extends ModalComponent
 
     public function resetForm() {
         $this->reset();
-        $this->dispatch('reset_active');
     }
     public function render()
     {

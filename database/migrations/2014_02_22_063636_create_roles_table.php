@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role');
+            $table->string('name');
             $table->string('slug');
             $table->timestamps();
         });
@@ -23,23 +23,23 @@ return new class extends Migration
         DB::table('roles')->insert(
             [
                 [
-                    'role' => 'Super Admin',
+                    'name' => 'Super Admin',
                     'slug' => 'super-admin'
                 ],
                 [
-                    'role' => 'Raw Material Manager',
+                    'name' => 'Raw Material Manager',
                     'slug' => 'raw-material-manager'
                 ],
                 [
-                    'role' => 'Product Record Manager',
+                    'name' => 'Product Record Manager',
                     'slug' => 'product-record-manager'
                 ],
                 [
-                    'role' => 'Warehouse Manager',
+                    'name' => 'Warehouse Manager',
                     'slug' => 'warehouse-manager'
                 ],
                 [
-                    'role' => 'Product Distributor',
+                    'name' => 'Product Distributor',
                     'slug' => 'product-distributor'
                 ]
             ],

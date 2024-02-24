@@ -15,7 +15,7 @@ class ProductCategories extends Component
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
 
-    public $active;
+    // public $active;
 
 
 
