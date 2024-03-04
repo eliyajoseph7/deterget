@@ -23,9 +23,19 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+
+            <div
+            class="w-full flex space-x-2 sm:max-w-3xl min-h-[350px] border-2 border-t-blue-400 mt-6 px-1 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-2xl">
+
+            <div
+                class="md:w-1/2 bg-cover rounded-lg bg-[url('../images/factory.jpg')]">
+
             </div>
+            <div class="sm:w-full md:w-1/2 md:px-2">
+                {{ $slot }}
+
+            </div>
+        </div>
         </div>
     </body>
 </html>

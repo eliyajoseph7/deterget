@@ -35,12 +35,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body class="font-sans antialiased w-screen overflow-x-hidden">
     <div
-        class="relative min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden">
+        class="relative min-h-screen bg-dots-darker bg-center bg-gray-50 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden bg-blend-overlay">
         <livewire:layout.navigation />
 
         @include('livewire.layout.sidenav')
@@ -48,13 +49,13 @@
         <div class="p-4 sm:ml-64">
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow mt-16 rounded-lg border-l-4 border-red-400">
+                <header class="bg-white shadow mt-24 rounded-lg border-l-4 border-blue-400">
                     <div class="mx-auto px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endif
-            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-5">
+            <div class="p-4 border-2 border-gray-50 border-dashed rounded-lg dark:border-gray-700 mt-5">
                 {{ $slot }}
             </div>
         </div>

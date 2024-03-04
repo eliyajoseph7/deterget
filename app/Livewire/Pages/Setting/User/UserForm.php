@@ -34,7 +34,7 @@ class UserForm extends ModalComponent
 
     public static function modalMaxWidth(): string
     {
-        return '4xl';
+        return '2xl';
     }
 
     public function addUser()

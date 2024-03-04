@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('price');
+            $table->double('unit_price');
             $table->integer('quantity')->default(0);
+            $table->double('selling_price')->default(0);
+            $table->enum('status', ['active', 'in-active'])->default('active');
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

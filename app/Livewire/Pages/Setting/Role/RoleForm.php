@@ -20,6 +20,10 @@ class RoleForm extends ModalComponent
         'update_role' => 'editRole'
     ];
 
+    public static function modalMaxWidth(): string
+    {
+        return '2xl';
+    }
 
     public function updatingRole() {
         // $this->generateSlug();

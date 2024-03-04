@@ -43,8 +43,8 @@
                                                     'displayName' => 'Product',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'price',
-                                                    'displayName' => 'Price (Tsh.)',
+                                                    'name' => 'unit_price',
+                                                    'displayName' => 'Unit Price (Tsh.)',
                                                 ])
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'category_id',
@@ -70,7 +70,7 @@
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->name }}</td>
                                                         <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                            {{ $dt->price }}</td>
+                                                            {{ $dt->unit_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->category?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">

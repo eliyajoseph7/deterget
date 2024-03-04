@@ -15,7 +15,7 @@ class ProductForm extends ModalComponent
     #[Rule('required')]
     public $name;
     #[Rule('required')]
-    public $price;
+    public $unit_price;
 
     #[Rule('required', as: 'Category')]
     public $category_id;
@@ -31,7 +31,7 @@ class ProductForm extends ModalComponent
 
         $product = new Product;
         $product->name = $this->name;
-        $product->price = $this->price;
+        $product->unit_price = $this->unit_price;
         $product->category_id = $this->category_id;
         $product->user_id = auth()->user()->id;
         $product->save();
@@ -48,7 +48,7 @@ class ProductForm extends ModalComponent
         $qs = Product::find($id);
         $this->id = $id;
         $this->name = $qs->name;
-        $this->price = $qs->price;
+        $this->unit_price = $qs->unit_price;
         $this->category_id = $qs->category_id;
         // $this->dispatch('update_active_product_row', $id);
     }
@@ -59,7 +59,7 @@ class ProductForm extends ModalComponent
 
         $qs = Product::find($this->id);
         $qs->name = $this->name;
-        $qs->price = $this->price;
+        $qs->unit_price = $this->unit_price;
         $qs->category_id = $this->category_id;
 
         $qs->save();
