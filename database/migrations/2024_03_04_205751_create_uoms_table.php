@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('uoms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
 
@@ -21,9 +22,11 @@ return new class extends Migration
             array(
                 [
                     'name' => 'Kg',
+                    'user_id' => 1
                 ],
                 [
                     'name' => 'Litres',
+                    'user_id' => 1
                 ]
             )
         );

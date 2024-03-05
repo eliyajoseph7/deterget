@@ -75,4 +75,8 @@ Route::middleware('auth')->group(function() {
     Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
 });
 
+Route::get('register', function() {
+    return redirect()->route('login');
+});
+
 require __DIR__.'/auth.php';

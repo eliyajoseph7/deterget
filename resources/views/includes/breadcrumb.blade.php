@@ -15,7 +15,14 @@
         @else
             
         @endif
-        <div class="text-gray-600">{{ $menu }} Management</div>
+        <div class="text-gray-600 flex"><span class="pr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" data-slot="icon" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                </svg>
+
+            </span>{{ $menu }} Management</div>
     </div>
 </div>
 @endif
