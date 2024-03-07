@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('quantity')->default(1);
             $table->mediumText('purpose')->default(1);
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('material_tnx_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -39,6 +39,14 @@ return new class extends Migration
                     'category' => 'main'
                 ],
                 [
+                    'name' => 'Unit of Measures',
+                    'category' => 'settings'
+                ],
+                [
+                    'name' => 'Raw Materials',
+                    'category' => 'settings'
+                ],
+                [
                     'name' => 'Product Categories',
                     'category' => 'settings'
                 ],

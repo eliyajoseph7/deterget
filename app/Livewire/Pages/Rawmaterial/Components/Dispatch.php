@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
 use App\Models\DispatchMaterial;
+use App\Models\MaterialTnx;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -24,7 +25,7 @@ class Dispatch extends Component
         $this->resetPage();
     }
 
-    #[On('material_dispatch_saved')]
+    #[On('dispatch_material_saved')]
     public function reload()
     {
         $this->render();
@@ -33,10 +34,15 @@ class Dispatch extends Component
     #[On('delete_material_dispatch')]
     public function deleteDispatchMaterial($id)
     {
+        $qs = DispatchMaterial::find($id);
+        $tnx = MaterialTnx::find($qs->material_tnx_id);
+        if($tnx) {
+            $tnx->delete();
+        }
 
-        DispatchMaterial::find($id)->delete();
+        $qs->delete();
 
-        $this->dispatch('material_dispatch_deleted');
+        $this->dispatch('material_deleted');
     }
 
     public function sortColumn($name)

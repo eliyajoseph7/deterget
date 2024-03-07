@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
+use App\Models\MaterialTnx;
 use App\Models\ReceiveMaterial;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -24,17 +26,31 @@ class Receive extends Component
         $this->resetPage();
     }
 
-    #[On('material_saved')]
+    #[On('receive_material_saved')]
     public function reload()
     {
         $this->render();
     }
 
-    #[On('delete_material')]
+    #[On('delete_material_receive')]
     public function deleteReceiveMaterial($id)
     {
 
-        ReceiveMaterial::find($id)->delete();
+        $qs = ReceiveMaterial::find($id);
+        $tnx = MaterialTnx::find($qs->material_tnx_id);
+        if($tnx) {
+            $tnx->delete();
+        }
+
+        $invoice = $qs->invoice;
+        if ($invoice) {
+            $imgname = str_replace(substr($invoice, 0, 9), '', $invoice);
+            $check = Storage::disk('public')->exists($imgname);
+            if ($check) {
+                Storage::disk('public')->delete($imgname);
+            }
+        }
+        $qs->delete();
 
         $this->dispatch('material_deleted');
     }

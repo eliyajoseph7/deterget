@@ -21,6 +21,8 @@
     {{-- flowbite --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -82,6 +84,18 @@
         });
         // console.log('loaded')
     });
+
+    Livewire.on('initialize_scripts', () => {
+        $('.select2').select2({
+            minimumResultsForSearch: 6,
+            placeholder: "select...",
+        });
+
+        // const datepickerEl = document.getElementsByClassName('datepicker');
+        // new Datepicker(datepickerEl, {
+        //     // options
+        // });
+    })
 </script>
 
 </html>
