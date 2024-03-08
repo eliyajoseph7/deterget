@@ -1,11 +1,11 @@
 <aside id="logo-sidebar"
-    class="fixed top-[6.2rem] left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-gray-50 border-r-8 border-r-blue-50 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-[6.2rem] left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-gray-0/50 border-r-8 border-r-gray-100/50 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-inherit dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 font-normal {{ Route::is('dashboard') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 font-normal {{ Route::is('dashboard') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                         <path
@@ -18,7 +18,7 @@
             </li>
             <li>
                 <a href="{{ route('raw_materials') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('raw_materials') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('raw_materials') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -29,7 +29,7 @@
             </li>
             <li>
                 <a href="{{ route('products') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -39,26 +39,26 @@
                 </a>
             </li>
             <li>
-                <a href="#"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('jd') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                <a href="{{ route('warehouses') }}"
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('warehouses') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap text-md">Manage Products</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap text-md">Warehouse Products</span>
                 </a>
             </li>
             <li>
                 <a href="#"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('jd') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('jd') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                     </svg>
 
-                    <span class="flex-1 ms-3 whitespace-nowrap text-md">Dispatch Product</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap text-md">Product Distribution</span>
                 </a>
             </li>
         </ul>
@@ -66,7 +66,7 @@
             <p class="text-sm text-gray-400">SETTINGS</p>
             <li>
                 <a href="{{ route('uoms') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('uoms') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('uoms') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
@@ -77,7 +77,7 @@
             </li>
             <li>
                 <a href="{{ route('materials') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('materials') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('materials') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
@@ -88,7 +88,7 @@
             </li>
             <li>
                 <a href="{{ route('categories') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('categories') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('categories') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -100,7 +100,7 @@
             </li>
             <li>
                 <a href="{{ route('products_setup') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products_setup') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products_setup') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,7 +111,7 @@
             </li>
             <li>
                 <a href="{{ route('permissions') }}"
-                    class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ Route::is('permissions') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
+                    class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ Route::is('permissions') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
                         <path
@@ -122,7 +122,7 @@
             </li>
             <li>
                 <a href="{{ route('roles') }}"
-                    class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ (Route::is('roles') || Route::is('role_permissions')) ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
+                    class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ (Route::is('roles') || Route::is('role_permissions')) ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 17 20">
                         <path
@@ -133,7 +133,7 @@
             </li>
             <li>
                 <a href="{{ route('users') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('users') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('users') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path

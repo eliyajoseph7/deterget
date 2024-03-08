@@ -16,6 +16,8 @@ return new class extends Migration
             $table->date('date')->default(today());
             $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
+            $table->enum('warehouse_received', ['yes', 'no'])->default('no');
+            $table->string('comment')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('product_tnx_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();

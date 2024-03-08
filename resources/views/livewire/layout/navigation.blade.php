@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav class="fixed top-0 z-50 w-full bg-white border-b-4 border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+<nav class="fixed top-0 z-50 w-full bg-white border-b-0 border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-2 lg:px-5 lg:pl-3 bg-[url('{{ asset('assets/images/nav-bg.jpg') }}')] bg-cover bg-center bg-blend-multiply bg-gray-600">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">

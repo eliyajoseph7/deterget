@@ -11,6 +11,7 @@ use App\Livewire\Pages\Setting\Role\RolePermissions;
 use App\Livewire\Pages\Setting\Role\Roles;
 use App\Livewire\Pages\Setting\Uom\Uoms;
 use App\Livewire\Pages\Setting\User\Users;
+use App\Livewire\Pages\Warehouse\Warehouses;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,6 +76,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
     Route::get('products', Finishedproducts::class)->name('products');
+    Route::get('manage-warehouse', Warehouses::class)->name('warehouses');
 });
 
 Route::get('register', function() {
