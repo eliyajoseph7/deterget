@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-full">
+            {{-- <div class="col-span-full">
                 <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date <span
                         class="text-red-500">*</span></label>
                 <div class="mt-2">
@@ -53,7 +53,7 @@
                         @enderror
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-span-full">
                 <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity <span
                         class="text-red-500">*</span></label>

@@ -16,8 +16,8 @@ class ReceiveForm extends ModalComponent
 
     #[Rule('required')]
     public $quantity;
-    #[Rule('required')]
-    public $date;
+    // #[Rule('required')]
+    // public $date;
 
     #[Rule('required', as: 'Product')]
     public $product_id;
@@ -39,14 +39,14 @@ class ReceiveForm extends ModalComponent
 
         // save in product tnx table
         $tnx = new ProductTnx;
-        $tnx->date = $this->date;
+        // $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
         $tnx->product_id = $this->product_id;
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
 
         $receive_product = new ReceiveProduct;
-        $receive_product->date = $this->date;
+        // $receive_product->date = $this->date;
         $receive_product->quantity = $this->quantity;
         $receive_product->product_id = $this->product_id;
         $receive_product->product_tnx_id = $tnx->id;
@@ -66,7 +66,7 @@ class ReceiveForm extends ModalComponent
         $qs = ReceiveProduct::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
-        $this->date = $qs->date;
+        // $this->date = $qs->date;
         $this->product_id = $qs->product_id;
         $this->dispatch('update_product_id_field', $qs->product_id);
     }
@@ -78,18 +78,18 @@ class ReceiveForm extends ModalComponent
 
         $qs = ReceiveProduct::find($this->id);
         $qs->quantity = $this->quantity;
-        $qs->date = $this->date;
+        // $qs->date = $this->date;
         $qs->product_id = $this->product_id;
 
         $tnx = ProductTnx::find($qs->product_tnx_id);
         if ($tnx) {
-            $tnx->date = $this->date;
+            // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
             $tnx->product_id = $this->product_id;
             $tnx->save();
         } else { // if it is not there, create it
             $tnx = new ProductTnx;
-            $tnx->date = $this->date;
+            // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
             $tnx->product_id = $this->product_id;
             $tnx->user_id = auth()->user()->id;
