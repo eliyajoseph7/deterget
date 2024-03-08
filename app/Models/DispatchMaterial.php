@@ -14,10 +14,10 @@ class DispatchMaterial extends Model
         $qs->where('quantity', 'like', '%' . $keyword . '%')
         ->where('date', 'like', '%' . $keyword . '%')
             ->orWhereHas('item', function ($query) use ($keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%')
-                    ->orWhereHas('uom', function ($qs) use ($keyword) {
-                        $qs->orWhere('name', 'like', '%' . $keyword . '%');
-                    });
+                $query->where('name', 'like', '%' . $keyword . '%');
+                    // ->orWhereHas('uom', function ($qs) use ($keyword) {
+                    //     $qs->orWhere('name', 'like', '%' . $keyword . '%');
+                    // });
             });
     }
 

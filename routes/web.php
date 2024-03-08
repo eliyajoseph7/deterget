@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Pages\Dashboard\Dashboard;
+use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
 use App\Livewire\Pages\Setting\Permission\Permissions;
 use App\Livewire\Pages\Setting\Product\Products;
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function() {
         });
         // products
         Route::prefix('products')->group(function() {
-            Route::get('', Products::class)->name('products');
+            Route::get('', Products::class)->name('products_setup');
         });
     
         // permissions
@@ -73,6 +74,7 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
+    Route::get('products', Finishedproducts::class)->name('products');
 });
 
 Route::get('register', function() {
