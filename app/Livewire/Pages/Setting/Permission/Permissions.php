@@ -12,7 +12,7 @@ class Permissions extends Component
     use WithPagination;
     public $search = '';
     public $perPage = 10;
-    public $sortBy = 'created_at';
+    public $sortBy = 'classification_id';
     public $sortDir = 'DESC';
 
 

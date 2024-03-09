@@ -10,39 +10,44 @@
         <form class="w-full pb-0 bg-white rounded-lg border-t-gray-200 border-t-2"
             wire:submit.prevent="save(Object.fromEntries(new FormData($event.target)))">
             <div class="mb-0 w-full pb-4 bg-white shadow-sm rounded-t-lg">
-                <div class="bg-gray-50 rounded-t-lg text-lg py-4 px-2.5 mb-2 shadow-md text-center uppercase font-bold">Role: {{ $role->name }}</div>
+                <div class="bg-white rounded-t-lg text-lg py-4 px-2.5 mb-2 shadow-sm text-start uppercase font-bold text-blue-500">Role: {{ $role->name }}</div>
                 <div class="flex items-center my-4 px-2.5">
                     <input id="select_all" type="checkbox" value="" class="w-4 h-4 text-blue-600 cursor-pointer border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="select_all"  id="select_text" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select All</label>
                 </div>
-                <div class="items-center px-2.5 [&>*:nth-child(even)]:bg-[#F6F9FF] [&>*:nth-child(even)]:dark:bg-gray-600">
-                    @forelse($classes as $class)
-                        <h3 class="text-md font-semibold text-gray-600 hover:text-gray-700 uppercase pt-4">{{ $class->name }}</h3>
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-2.5 px-2" wire:ignore>
-                            @forelse($class->permissions as $permission)
-                                <div class="py-1">
-                                    <div class="flex space-x-2 items-center">
-                                        @if (count($role->permissions) > 0)
-                                            <input class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                {{ in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'checked="checked"' : '' }}
-                                                type="checkbox" name="{{ $permission->name }}"
-                                                value="{{ $permission->id }}" id="{{ $permission->id }}">
-                                        @else
-                                            <input name="{{ $permission->slug }}" class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                type="checkbox"
-                                                value="{{ $permission->id }}" id="{{ $permission->id }}">
-                                        @endif
-                                        <label class="form-check-label mt-0.5" for="{{ $permission->id }}">
-                                            {{ $permission->name }}
-                                        </label>
-
+                <div class="items-center px-2.5 ">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 rounded-xl [&>*:nth-child(even)]:bg-[#F6F9FF]/40 [&>*:nth-child(even)]:dark:bg-gray-600 [&>*:nth-child(odd)]:bg-gray-50/40 [&>*:nth-child(odd)]:dark:bg-gray-600">
+                        
+                        @forelse($classes as $class)
+                        <div class="">
+                            <h3 class="text-md font-semibold text-gray-600 hover:text-gray-700 uppercase pt-4">{{ $class->name }}</h3>
+                            <div class="grid grid-cols-1 lg:grid-cols-1 py-2.5 px-2" wire:ignore>
+                                @forelse($class->permissions as $permission)
+                                    <div class="py-1">
+                                        <div class="flex space-x-2 items-center">
+                                            @if (count($role->permissions) > 0)
+                                                <input class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                    {{ in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'checked="checked"' : '' }}
+                                                    type="checkbox" name="{{ $permission->name }}"
+                                                    value="{{ $permission->id }}" id="{{ $permission->id }}">
+                                            @else
+                                                <input name="{{ $permission->slug }}" class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                    type="checkbox"
+                                                    value="{{ $permission->id }}" id="{{ $permission->id }}">
+                                            @endif
+                                            <label class="form-check-label mt-0.5 text-sm" for="{{ $permission->id }}">
+                                                {{ $permission->name }}
+                                            </label>
+    
+                                        </div>
                                     </div>
-                                </div>
-                            @empty
-                            @endforelse
+                                @empty
+                                @endforelse
+                            </div>
                         </div>
-                    @empty
-                    @endforelse
+                        @empty
+                        @endforelse
+                    </div>
                     <div class="bg-gray-50 md:flex justify-end -mx-3 mr-3 -mb-5 mt-5">
                         <div class="md:flex justify-between space-x-0 md:space-x-3 space-y-2 md:space-y-0">
                             <a href="{{ route('roles') }}" type="button"

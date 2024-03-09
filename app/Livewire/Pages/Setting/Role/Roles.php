@@ -32,7 +32,10 @@ class Roles extends Component
     public function deleteRole($id)
     {
 
-        Role::find($id)->delete();
+        $role = Role::find($id);
+        $role->users()->detach();
+        $role->permissions()->detach();
+        $role->delete();
 
         $this->dispatch('role_deleted');
     }
@@ -48,7 +51,7 @@ class Roles extends Component
     }
     public function render()
     {
-        $data = Role::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
+        $data = Role::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('slug', '!=', 'super-admin')->paginate($this->perPage);
         return view('livewire.pages.setting.role.roles', compact('data'));
     }
 }

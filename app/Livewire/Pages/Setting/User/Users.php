@@ -32,7 +32,10 @@ class Users extends Component
     public function deleteUser($id)
     {
 
-        User::find($id)->delete();
+        $user = User::find($id);
+        $user->roles()->detach();
+        $user->permissions()->detach();
+        $user->delete();
 
         $this->dispatch('user_deleted');
     }
@@ -48,7 +51,7 @@ class Users extends Component
     }
     public function render()
     {
-        $data = User::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('role_id', '!=', 1)->paginate($this->perPage);
+        $data = User::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
         return view('livewire.pages.setting.user.users', compact('data'));
     }
 }

@@ -50,7 +50,11 @@ class User extends Authenticatable
             ->orWhere('phone', 'like', '%'.$keyword.'%');
     }
 
-    public function role() {
-        return $this->belongsTo(Role::class);
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    public function permissions() {
+        return $this->belongsToMany(Permission::class, 'user_permissions');
     }
 }

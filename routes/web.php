@@ -3,6 +3,7 @@
 use App\Livewire\Pages\Dashboard\Dashboard;
 use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
+use App\Livewire\Pages\Sale\Distributions;
 use App\Livewire\Pages\Setting\Permission\Permissions;
 use App\Livewire\Pages\Setting\Product\Products;
 use App\Livewire\Pages\Setting\ProductCategory\ProductCategories;
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function() {
     Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
     Route::get('products', Finishedproducts::class)->name('products');
     Route::get('manage-warehouse', Warehouses::class)->name('warehouses');
+    Route::get('product-distribution', Distributions::class)->name('distributions');
 });
 
 Route::get('register', function() {

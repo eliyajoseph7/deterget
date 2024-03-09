@@ -27,6 +27,10 @@ return new class extends Migration
                     'slug' => 'super-admin'
                 ],
                 [
+                    'name' => 'Super User',
+                    'slug' => 'super-user'
+                ],
+                [
                     'name' => 'Raw Material Manager',
                     'slug' => 'raw-material-manager'
                 ],

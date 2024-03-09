@@ -17,20 +17,20 @@
         <div class="p-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
 
             <div class="col-span-full">
-                <label for="role_id" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
+                <label for="roles" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
                 <div class="mt-2">
                     <div wire:ignore
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <select type="text" id="role" wire:model="role_id"
-                            class="block select2 w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                        <select type="text" id="roles" multiple
+                            class="block select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                             <option value="">Select..</option>
-                            @foreach ($roles as $role)
+                            @foreach ($user_roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="text-red-500 text-sm">
-                        @error('role_id')
+                        @error('roles')
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
@@ -133,26 +133,26 @@
             })
         </script>
     @endsection
-    <script>
-        document.addEventListener('livewire:init', () => {
+    {{-- <script>
+        // document.addEventListener('livewire:init', () => {
 
-            Livewire.on('reset_role', (e) => {
-                $('#role').val('').trigger('change')
-            });
+        //     Livewire.on('reset_role', (e) => {
+        //         $('#role').val('').trigger('change')
+        //     });
 
-            Livewire.on('update_role_field', (data) => {
-                $('#role').val(data[0].role_id).trigger('change')
-            });
+        //     Livewire.on('update_role_field', (data) => {
+        //         $('#role').val(data[0].roles).trigger('change')
+        //     });
 
-            // clear wire ignored select fields on form reset
-            Livewire.on('reset_role', () => {
-                $('#role_id').val('').trigger('change')
-            })
-        });
-        $(document).on('change', '#role_id', function(e) {
-            //when ever the value of changes this will update your PHP variable 
-            @this.set('role_id', e.target.value);
-        });
+        //     // clear wire ignored select fields on form reset
+        //     Livewire.on('reset_role', () => {
+        //         $('#roles').val('').trigger('change')
+        //     })
+        // });
+        // $(document).on('change', '#roles', function(e) {
+        //     console.log($(this).val());
+        //     @this.set('roles', $(this).val());
+        // });
 
-    </script>
+    </script> --}}
 </div>

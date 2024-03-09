@@ -151,6 +151,27 @@
                 //     Livewire.dispatch('update_user', {'id': id});
                 // })
 
+
+                $(document).on('change', '#roles', function(e) {
+                    // @this.set('roles', $(this).val());
+                    Livewire.dispatch('set_roles', {
+                        'roles': $(this).val()
+                    });
+                });
+
+                Livewire.on('reset_role', (e) => {
+                    $('#roles').val('').trigger('change')
+                });
+
+                Livewire.on('update_roles_field', (data) => {
+                    $('#roles').val(data).trigger('change')
+                });
+
+                // clear wire ignored select fields on form reset
+                Livewire.on('reset_role', () => {
+                    $('#roles').val('').trigger('change')
+                })
+
             })
         </script>
     </div>

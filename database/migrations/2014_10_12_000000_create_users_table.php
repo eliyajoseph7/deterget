@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->foreignId('role_id')->nullable()->constrained()->nullOnDelete();
+            // $table->foreignId('role_id')->nullable()->constrained()->nullOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,7 +31,6 @@ return new class extends Migration
                 'email' => 'admin@reven.com',
                 'phone' => '0684710914',
                 'password' => Hash::make('admin'),
-                'role_id' => 1,
             ]
         );
     }
