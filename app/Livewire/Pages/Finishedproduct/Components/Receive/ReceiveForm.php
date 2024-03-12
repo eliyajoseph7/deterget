@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Finishedproduct\Components\Receive;
 
 use App\Models\Product;
+use App\Models\ProductReport;
 use App\Models\ProductTnx;
 use App\Models\ReceiveProduct;
 use Livewire\Attributes\On;
@@ -42,6 +43,7 @@ class ReceiveForm extends ModalComponent
         // $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
         $tnx->product_id = $this->product_id;
+        $tnx->action = 'in';
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
 
@@ -53,6 +55,14 @@ class ReceiveForm extends ModalComponent
         $receive_product->user_id = auth()->user()->id;
 
         $receive_product->save();
+
+        // create report
+        $report = new ProductReport;
+        $report->received = $this->quantity;
+        $report->product_id = $this->product_id;
+        $report->product_tnx_id = $tnx->id;
+        $report->user_id = auth()->user()->id;
+        $report->save();
 
         $this->resetForm();
         $this->dispatch('receive_product_saved');
@@ -86,11 +96,13 @@ class ReceiveForm extends ModalComponent
             // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
             $tnx->product_id = $this->product_id;
+            $tnx->action = 'in';
             $tnx->save();
         } else { // if it is not there, create it
             $tnx = new ProductTnx;
             // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
+            $tnx->action = 'in';
             $tnx->product_id = $this->product_id;
             $tnx->user_id = auth()->user()->id;
             $tnx->save();
@@ -99,6 +111,15 @@ class ReceiveForm extends ModalComponent
 
         $qs->product_tnx_id = $tnx->id;
         $qs->save();
+
+        // update report
+        $report = ProductReport::where('product_tnx_id', $tnx->id)->first();
+        if($report) {
+            $report->received = $this->quantity;
+            $report->product_id = $this->product_id;
+            $report->product_tnx_id = $tnx->id;
+            $report->save();
+        }
 
         $this->resetForm();
         $this->dispatch('receive_product_saved');

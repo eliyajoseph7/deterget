@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Finishedproduct\Components\Dispatch;
 
 use App\Models\DispatchProduct;
+use App\Models\ProductReport;
 use App\Models\ProductTnx;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -38,6 +39,10 @@ class Dispatch extends Component
         $tnx = ProductTnx::find($qs->product_tnx_id);
         if($tnx) {
             $tnx->delete();
+        }
+        $report = ProductReport::where('product_tnx_id', $qs->product_tnx_id)->first();
+        if($report) {
+            $report->delete();
         }
 
         $qs->delete();

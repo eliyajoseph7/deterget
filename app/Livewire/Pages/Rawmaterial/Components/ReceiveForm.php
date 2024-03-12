@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
+use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
 use App\Models\RawMaterial;
 use App\Models\ReceiveMaterial;
@@ -54,6 +55,7 @@ class ReceiveForm extends ModalComponent
         $tnx = new MaterialTnx;
         // $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
+        $tnx->action = 'in';
         $tnx->raw_material_id = $this->raw_material_id;
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
@@ -81,6 +83,14 @@ class ReceiveForm extends ModalComponent
         $receive_material->invoice = $fileNameToSave;
 
         $receive_material->save();
+
+        // create report
+        $report = new MaterialReport;
+        $report->received = $this->quantity;
+        $report->raw_material_id = $this->raw_material_id;
+        $report->material_tnx_id = $tnx->id;
+        $report->user_id = auth()->user()->id;
+        $report->save();
 
         $this->resetForm();
         $this->dispatch('receive_material_saved');
@@ -119,12 +129,14 @@ class ReceiveForm extends ModalComponent
         if ($tnx) {
             // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
+            $tnx->action = 'in';
             $tnx->raw_material_id = $this->raw_material_id;
             $tnx->save();
         } else { // if it is not there, create it
             $tnx = new MaterialTnx;
             // $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
+            $tnx->action = 'in';
             $tnx->raw_material_id = $this->raw_material_id;
             $tnx->user_id = auth()->user()->id;
             $tnx->save();
@@ -158,6 +170,15 @@ class ReceiveForm extends ModalComponent
 
         $qs->material_tnx_id = $tnx->id;
         $qs->save();
+
+        // update report
+        $report = MaterialReport::where('material_tnx_id', $tnx->id)->first();
+        if($report) {
+            $report->received = $this->quantity;
+            $report->raw_material_id = $this->raw_material_id;
+            $report->material_tnx_id = $tnx->id;
+            $report->save();
+        }
 
         $this->resetForm();
         $this->dispatch('receive_material_saved');

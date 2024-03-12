@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Finishedproduct\Components\Dispatch;
 
 use App\Models\DispatchProduct;
 use App\Models\Product;
+use App\Models\ProductReport;
 use App\Models\ProductTnx;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
@@ -43,6 +44,7 @@ class DispatchForm extends ModalComponent
         $tnx = new ProductTnx;
         // $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
+        $tnx->action = 'out';
         $tnx->product_id = $this->product_id;
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
@@ -55,6 +57,14 @@ class DispatchForm extends ModalComponent
         $dispatch_product->user_id = auth()->user()->id;
 
         $dispatch_product->save();
+
+        // create report
+        $report = new ProductReport;
+        $report->dispatched = $this->quantity;
+        $report->product_id = $this->product_id;
+        $report->product_tnx_id = $tnx->id;
+        $report->user_id = auth()->user()->id;
+        $report->save();
 
         $this->resetForm();
         $this->dispatch('dispatch_product_saved');
@@ -88,11 +98,21 @@ class DispatchForm extends ModalComponent
             // $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
             $tnx->product_id = $this->product_id;
+            $tnx->action = 'out';
             $tnx->save();
         }
 
         $qs->product_tnx_id = $tnx->id;
         $qs->save();
+
+        // update report
+        $report = ProductReport::where('product_tnx_id', $tnx->id)->first();
+        if($report) {
+            $report->dispatched = $this->quantity;
+            $report->product_id = $this->product_id;
+            $report->product_tnx_id = $tnx->id;
+            $report->save();
+        }
 
         $this->resetForm();
         $this->dispatch('dispatch_product_saved');

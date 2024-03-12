@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Sale\Components\Remain;
 
 use App\Models\Remain;
+use App\Models\WarehouseReport;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,6 +32,10 @@ class Remains extends Component
     public function deleteRemain($id)
     {
         $qs = Remain::find($id);
+        $report = WarehouseReport::where('warehouse_tnx_id', $qs->warehouse_tnx_id)->first();
+        if($report) {
+            $report->delete();
+        }
         $qs->delete();
 
         $this->dispatch('distribution_deleted');

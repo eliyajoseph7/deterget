@@ -25,7 +25,7 @@
                         </svg>
                     @endunless
 
-                </span>{{ $menu }} Management</div>
+                </span>{{ $menu }} {{ $main != 'Reports' ? 'Management' : '' }}</div>
         </div>
     </div>
 @endif

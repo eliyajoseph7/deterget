@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Warehouse\Components\Dispatch;
 
 use App\Models\WarehouseDispatch;
+use App\Models\WarehouseReport;
 use App\Models\WarehouseTnx;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -38,6 +39,10 @@ class Dispatch extends Component
         $tnx = WarehouseTnx::find($qs->warehouse_tnx_id);
         if($tnx) {
             $tnx->delete();
+        }
+        $report = WarehouseReport::where('warehouse_tnx_id', $qs->warehouse_tnx_id)->first();
+        if($report) {
+            $report->delete();
         }
 
         $qs->delete();

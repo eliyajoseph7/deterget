@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
 use App\Models\DispatchMaterial;
+use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
 use App\Models\RawMaterial;
 use Livewire\Attributes\On;
@@ -46,6 +47,7 @@ class DispatchForm extends ModalComponent
         $tnx = new MaterialTnx;
         // $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
+        $tnx->action = 'out';
         $tnx->raw_material_id = $this->raw_material_id;
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
@@ -59,6 +61,15 @@ class DispatchForm extends ModalComponent
         $dispatch_material->user_id = auth()->user()->id;
 
         $dispatch_material->save();
+
+        // create report
+        $report = new MaterialReport;
+        $report->dispatched = $this->quantity;
+        $report->raw_material_id = $this->raw_material_id;
+        $report->material_tnx_id = $tnx->id;
+        $report->user_id = auth()->user()->id;
+        $report->save();
+
 
         $this->resetForm();
         $this->dispatch('dispatch_material_saved');
@@ -93,12 +104,22 @@ class DispatchForm extends ModalComponent
         if ($tnx) {
             // $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
+            $tnx->action = 'out';
             $tnx->raw_material_id = $this->raw_material_id;
             $tnx->save();
         }
 
         $qs->material_tnx_id = $tnx->id;
         $qs->save();
+
+        // update report
+        $report = MaterialReport::where('material_tnx_id', $tnx->id)->first();
+        if($report) {
+            $report->dispatched = $this->quantity;
+            $report->raw_material_id = $this->raw_material_id;
+            $report->material_tnx_id = $tnx->id;
+            $report->save();
+        }
 
         $this->resetForm();
         $this->dispatch('dispatch_material_saved');

@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
 use App\Models\DispatchMaterial;
+use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -38,6 +39,10 @@ class Dispatch extends Component
         $tnx = MaterialTnx::find($qs->material_tnx_id);
         if($tnx) {
             $tnx->delete();
+        }
+        $report = MaterialReport::where('material_tnx_id', $qs->material_tnx_id)->first();
+        if($report) {
+            $report->delete();
         }
 
         $qs->delete();

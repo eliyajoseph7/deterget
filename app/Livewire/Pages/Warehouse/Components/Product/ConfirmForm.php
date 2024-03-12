@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Warehouse\Components\Product;
 
 use App\Models\DispatchProduct;
+use App\Models\WarehouseReport;
 use App\Models\WarehouseTnx;
 use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
@@ -34,9 +35,18 @@ class ConfirmForm extends ModalComponent
         if($this->warehouse_received == 'yes') {
             $tnx = new WarehouseTnx;
             $tnx->quantity = $qs->quantity;
+            $tnx->action = 'in';
             $tnx->product_id = $qs->product_id;
             $tnx->user_id = auth()->user()->id;
             $tnx->save();
+    
+            // create report
+            $report = new WarehouseReport;
+            $report->received = $qs->quantity;
+            $report->product_id = $qs->product_id;
+            $report->warehouse_tnx_id = $tnx->id;
+            $report->user_id = auth()->user()->id;
+            $report->save();
         }
 
         $this->resetForm();

@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Sale\Components\Remain;
 
 use App\Models\Product;
 use App\Models\Remain;
+use App\Models\WarehouseReport;
 use App\Models\WarehouseTnx;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
@@ -42,6 +43,7 @@ class RemainsForm extends ModalComponent
         // $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
         $tnx->product_id = $this->product_id;
+        $tnx->action = 'in';
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
 
@@ -53,6 +55,14 @@ class RemainsForm extends ModalComponent
         $remain_distribution->user_id = auth()->user()->id;
 
         $remain_distribution->save();
+
+        // create report
+        $report = new WarehouseReport;
+        $report->received = $this->quantity;
+        $report->product_id = $this->product_id;
+        $report->warehouse_tnx_id = $tnx->id;
+        $report->user_id = auth()->user()->id;
+        $report->save();
 
         $this->resetForm();
         $this->dispatch('remain_distribution_saved');
@@ -87,6 +97,14 @@ class RemainsForm extends ModalComponent
             $tnx->quantity = $this->quantity;
             $tnx->product_id = $this->product_id;
             $tnx->save();
+
+
+            // update report
+            $report = WarehouseReport::where('warehouse_tnx_id', $tnx->id)->first();
+            if ($report) {
+                $report->received = $this->quantity;
+                $report->save();
+            }
         }
 
         $qs->warehouse_tnx_id = $tnx->id;

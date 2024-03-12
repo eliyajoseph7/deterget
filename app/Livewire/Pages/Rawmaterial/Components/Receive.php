@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
+use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
 use App\Models\ReceiveMaterial;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +41,10 @@ class Receive extends Component
         $tnx = MaterialTnx::find($qs->material_tnx_id);
         if($tnx) {
             $tnx->delete();
+        }
+        $report = MaterialReport::where('material_tnx_id', $qs->material_tnx_id)->first();
+        if($report) {
+            $report->delete();
         }
 
         $invoice = $qs->invoice;

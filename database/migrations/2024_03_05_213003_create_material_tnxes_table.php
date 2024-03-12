@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date')->default(today());
             $table->foreignId('raw_material_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
+            $table->string('action');
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
