@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_reports', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(today());
+            $table->date('date')->default(now());
             $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->double('received')->default(0);
             $table->double('dispatched')->default(0);

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Sale\Components\Sales;
 
+use App\Models\DispatchProduct;
 use App\Models\Product;
 use App\Models\Sale;
 use Livewire\Attributes\On;
@@ -39,15 +40,25 @@ class SalesForm extends ModalComponent
     {
         $this->validate();
 
+        $dispatch_product = new DispatchProduct;
+        // $dispatch_product->date = $this->date;
+        $dispatch_product->quantity = $this->quantity;
+        $dispatch_product->product_id = $this->product_id;
+        $dispatch_product->user_id = auth()->user()->id;
+
+        $dispatch_product->save();
+
         $sale_distribution = new Sale;
         // $sale_distribution->date = $this->date;
         $sale_distribution->quantity = $this->quantity;
         $sale_distribution->product_id = $this->product_id;
         $sale_distribution->client_name = $this->client_name;
         $sale_distribution->client_phone = $this->client_phone;
+        $sale_distribution->dispatch_product_id = $dispatch_product->id;
         $sale_distribution->user_id = auth()->user()->id;
 
         $sale_distribution->save();
+
 
         $this->resetForm();
         $this->dispatch('sale_distribution_saved');
@@ -80,6 +91,10 @@ class SalesForm extends ModalComponent
         $qs->client_phone = $this->client_phone;
 
         $qs->save();
+
+        $dispatch_product = DispatchProduct::find($qs->dispatch_product_id);
+        $dispatch_product->quantity = $this->quantity;
+        $dispatch_product->save();
 
         $this->resetForm();
         $this->dispatch('sale_distribution_saved');

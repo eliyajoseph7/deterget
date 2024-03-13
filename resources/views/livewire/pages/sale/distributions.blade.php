@@ -19,7 +19,7 @@
                     Sales
                 </a>
             </li>
-            <li class="me-2">
+            {{-- <li class="me-2">
                 <a wire:click="$dispatch('switch_distribution_tab', {'name':'remain'})" name="remain"
                     class="cursor-pointer myTab inline-flex items-center justify-center p-4 border-b-2 {{ $actvtab == 'remain' ? 'text-blue-600 border-blue-600 font-bold' : 'border-transparent hover:text-gray-600 hover:border-gray-300' }} rounded-t-lg group"
                     aria-current="page">
@@ -30,14 +30,14 @@
                     </svg>
                     Remains
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 
     @if ($actvtab == 'sales')
         @livewire('pages.sale.components.sales.sales')
     @else
-        @livewire('pages.sale.components.remain.remains')
+        {{-- @livewire('pages.sale.components.remain.remains') --}}
     @endif
 
     <script data-navigate-once>

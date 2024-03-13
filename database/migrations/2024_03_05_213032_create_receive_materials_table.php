@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('receive_materials', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(today());
+            $table->date('date')->default(now());
             $table->foreignId('raw_material_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
             $table->string('invoice')->nullable();

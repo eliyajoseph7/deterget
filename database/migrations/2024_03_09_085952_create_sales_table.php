@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(today());
+            $table->date('date')->default(now());
             $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
             $table->string('client_name')->nullable();
             $table->string('client_phone')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('dispatch_product_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
