@@ -42,7 +42,7 @@
                                                     'displayName' => 'Product',
                                                 ])
                                                 <th scope="col" class="px-4 py-3">Unit Price</th>
-                                                <th scope="col" class="px-4 py-3 hidden">Selling Price</th>
+                                                <th scope="col" class="px-4 py-3">Selling Price</th>
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'quantity',
                                                     'displayName' => 'Quantity',
@@ -78,7 +78,7 @@
                                                         {{ $dt->product?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap text-right">
                                                         {{ $dt->product?->unit_price }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-right hidden">
+                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
                                                         {{ $dt->product?->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->quantity }}</td>

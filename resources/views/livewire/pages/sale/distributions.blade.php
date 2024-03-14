@@ -121,7 +121,24 @@
             Livewire.on('update_sale_product_id_field', (data) => {
                 $('#sale_product_id').val(data).trigger('change')
             });
+
+
+            Livewire.on('reset_seller_id', (e) => {
+                $('#seller_id').val('').trigger('change')
+            });
+
+            Livewire.on('update_seller_id_field', (data) => {
+                $('#seller_id').val(data).trigger('change')
+            });
         })
+
+        $(document).on('change', '#seller_id', function(e) {
+            console.log(e.target.value);
+            @this.set('seller_id', e.target.value);
+            Livewire.dispatch('set_seller_id', {
+                'id': e.target.value
+            });
+        });
     </script>
 
     {{-- remain modal component --}}

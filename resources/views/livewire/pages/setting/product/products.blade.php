@@ -47,6 +47,10 @@
                                                     'displayName' => 'Unit Price (Tsh.)',
                                                 ])
                                                 @include('includes.table-header-sort', [
+                                                    'name' => 'selling_price',
+                                                    'displayName' => 'Selling Price (Tsh.)',
+                                                ])
+                                                @include('includes.table-header-sort', [
                                                     'name' => 'category_id',
                                                     'displayName' => 'Category',
                                                 ])
@@ -69,8 +73,10 @@
                                                         {{ $loop->iteration }}</th>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->name }}</td>
-                                                        <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                            {{ $dt->unit_price }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                        {{ $dt->unit_price }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                        {{ $dt->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->category?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">

@@ -38,6 +38,7 @@
                                                     'name' => 'product_id',
                                                     'displayName' => 'Product',
                                                 ])
+                                                <th scope="col" class="px-4 py-3 normal-case">Selling Price</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Category</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Sold</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Remained</th>
@@ -55,6 +56,8 @@
                                                             {{ $dt->date }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->name }}</td>
+                                                        <td class="px-4 py-3 whitespace-nowrap">
+                                                            {{ $dt->product?->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->category?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">

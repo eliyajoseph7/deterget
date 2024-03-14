@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('client_name')->nullable();
             $table->string('client_phone')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->String('seller_id')->nullable();
             $table->foreignId('dispatch_product_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });

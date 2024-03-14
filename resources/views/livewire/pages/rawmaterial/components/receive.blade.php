@@ -67,9 +67,9 @@
                                                         {{ $loop->iteration }}</th>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->date }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                    <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->item?->name }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                    <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->item?->uom?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap text-right">
                                                         {{ $dt->item?->price }}</td>
