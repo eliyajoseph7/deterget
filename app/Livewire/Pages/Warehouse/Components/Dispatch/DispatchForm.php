@@ -150,7 +150,10 @@ class DispatchForm extends ModalComponent
     public function render()
     {
         $products = Product::all();
-        $users = User::where('id', '!=', auth()->user()->id)->get();
+        // $users = User::where('id', '!=', auth()->user()->id)->get();
+        $users = User::whereHas('roles', function ($qs) {
+            $qs->where('slug', 'product-distributor');
+        })->get();
         return view('livewire.pages.warehouse.components.dispatch.dispatch-form', compact('products', 'users'));
     }
 }
