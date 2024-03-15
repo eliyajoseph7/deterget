@@ -77,47 +77,50 @@
                 </li>
             @endif
         </ul>
+        @if (Helper::has_role('super-user'))
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <p class="text-sm text-gray-400">REPORTS</p>
+                <li>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? 'bg-gray-200' : '' }}"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                        </svg>
 
-        <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-            <p class="text-sm text-gray-400">REPORTS</p>
-            <li>
-                <button type="button"
-                    class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? 'bg-gray-200' : '' }}"
-                    aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-                    </svg>
-
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Reports</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <ul id="dropdown-example" class="{{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? '' : 'hidden' }} py-2 space-y-2">
-                    <li>
-                        <a href="{{ route('rm_report') }}"
-                            class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('rm_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Raw Materials</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('fg_report') }}"
-                            class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('fg_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Finished Products</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('warehouse_report') }}"
-                            class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('warehouse_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Warehouse</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('sale_report') }}"
-                            class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('sale_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Sales</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Reports</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-example"
+                        class="{{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? '' : 'hidden' }} py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('rm_report') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('rm_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Raw
+                                Materials</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('fg_report') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('fg_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Finished
+                                Products</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('warehouse_report') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('warehouse_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Warehouse</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sale_report') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('sale_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Sales</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        @endif
         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <p class="text-sm text-gray-400">SETTINGS</p>
 
