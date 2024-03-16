@@ -59,9 +59,9 @@
                                                     'name' => 'user_id',
                                                     'displayName' => 'Created By',
                                                 ])
-                                                <th scope="col" class="px-4 py-3 w-[100px] float-end">
+                                                {{-- <th scope="col" class="px-4 py-3 w-[100px] float-end">
                                                     <span class="sr-only">Actions</span>
-                                                </th>
+                                                </th> --}}
                                             </tr>
                                         </thead>
                                         <tbody
@@ -88,7 +88,7 @@
                                                         {{ $dt->client_phone }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->user?->name }}</td>
-                                                    <td class="px-4 py-3 flex items-center justify-end space-x-1">
+                                                    {{-- <td class="px-4 py-3 flex items-center justify-end space-x-1">
                                                         <button title="Update"
                                                             wire:click="$dispatch('openModal', {component: 'pages.sale.components.sales.sales-form', arguments: {id: {{ $dt->id }}}})"
                                                             class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
@@ -98,7 +98,7 @@
                                                             wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
                                                             class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
 
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @empty
                                                 <tr class="bg-gray-50">

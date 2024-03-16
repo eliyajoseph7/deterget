@@ -53,6 +53,7 @@ class SalesForm extends ModalComponent
 
         $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
             ->where('date', now()->format('Y-m-d'))->sum('quantity');
+            
 
         if ($dispatched > 0) {
             if ($dispatched > $this->quantity) {
@@ -65,18 +66,18 @@ class SalesForm extends ModalComponent
                 $dispatch_product->save();
             }
 
-            $sale_distribution = new Sale;
-            // $sale_distribution->date = $this->date;
-            $sale_distribution->quantity = $this->quantity;
-            $sale_distribution->product_id = $this->product_id;
-            $sale_distribution->client_name = $this->client_name;
-            $sale_distribution->client_phone = $this->client_phone;
-            $sale_distribution->dispatch_product_id = $dispatch_product->id ?? null;
-            $sale_distribution->seller_id = $this->seller_id;
-            $sale_distribution->user_id = auth()->user()->id;
-
-            $sale_distribution->save();
         }
+        $sale_distribution = new Sale;
+        // $sale_distribution->date = $this->date;
+        $sale_distribution->quantity = $this->quantity;
+        $sale_distribution->product_id = $this->product_id;
+        $sale_distribution->client_name = $this->client_name;
+        $sale_distribution->client_phone = $this->client_phone;
+        $sale_distribution->dispatch_product_id = $dispatch_product->id ?? null;
+        $sale_distribution->seller_id = $this->seller_id;
+        $sale_distribution->user_id = auth()->user()->id;
+
+        $sale_distribution->save();
 
 
         $this->resetForm();
@@ -116,11 +117,13 @@ class SalesForm extends ModalComponent
         $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
             ->where('date', $qs->date)->sum('quantity');
 
-        if ($dispatched > 0) {
-            if ($dispatched > $this->quantity) {
-                $dispatch_product = DispatchProduct::find($qs->dispatch_product_id);
-                $dispatch_product->quantity = $dispatched - $this->quantity;
-                $dispatch_product->save();
+            if ($dispatched > 0) {
+                if ($dispatched > $this->quantity) {
+                    $dispatch_product = DispatchProduct::find($qs->dispatch_product_id);
+                if($dispatch_product) {
+                    $dispatch_product->quantity = $dispatched - $this->quantity;
+                    $dispatch_product->save();
+                }
             }
         }
 
