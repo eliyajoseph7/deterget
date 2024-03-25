@@ -18,23 +18,26 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-dots-darker bg-gray-100">
-        <div>
-            <a href="/" wire:navigate>
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </div>
-
-
-        <div
-            class="w-full flex space-x-2 sm:max-w-3xl min-h-[350px] border-2 border-t-blue-400 mt-6 px-1 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-2xl">
-
-            <div class="md:w-1/2 bg-cover rounded-lg bg-[url('../images/factory.jpg')]">
-
+    <div
+        class="relative min-h-screen bg-dots-darker bg-center bg-gray-200 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden bg-[url('{{ asset('assets/images/bg.jpg') }}')] bg-cover bg-blend-overlay">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-dots-darker bg-gray-100">
+            <div>
+                <a href="/" wire:navigate>
+                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                </a>
             </div>
-            <div class="sm:w-full md:w-1/2 md:px-2">
-                {{ $slot }}
 
+
+            <div
+                class="w-full flex space-x-2 sm:max-w-3xl min-h-[350px] border-2 border-t-blue-400 mt-6 px-1 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-2xl">
+
+                <div class="md:w-1/2 bg-cover rounded-lg bg-[url('../images/factory.jpg')]">
+
+                </div>
+                <div class="sm:w-full md:w-1/2 md:px-2">
+                    {{ $slot }}
+
+                </div>
             </div>
         </div>
     </div>

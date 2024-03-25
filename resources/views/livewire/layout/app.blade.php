@@ -43,7 +43,7 @@
 
 <body class="font-sans antialiased w-screen overflow-x-hidden">
     <div
-        class="relative min-h-screen bg-dots-darker bg-center bg-gray-50 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden bg-blend-overlay">
+        class="relative min-h-screen bg-dots-darker bg-center bg-gray-200 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white overflow-x-hidden bg-[url('{{ asset('assets/images/bg.jpg') }}')] bg-cover bg-blend-overlay">
         <livewire:layout.navigation />
 
         @include('livewire.layout.sidenav')

@@ -14,6 +14,9 @@ class Product extends Model
         $qs->where('name', 'like', '%' . $keyword . '%')
             ->orWhereHas('category', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
+            })
+            ->orWhereHas('uom', function ($query) use ($keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
             });
     }
 
@@ -25,5 +28,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function uom()
+    {
+        return $this->belongsTo(Uom::class);
     }
 }

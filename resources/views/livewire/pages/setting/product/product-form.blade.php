@@ -55,6 +55,24 @@
                 </div>
             </div>
             <div class="col-span-full">
+                <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity <span
+                        class="text-red-500">*</span></label>
+                <div class="mt-2">
+                    <div
+                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                        <input type="number" step="0.01" id="quantity" wire:model.live="quantity"
+                            class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            placeholder="Enter new product">
+                    </div>
+                    <div class="text-red-500 text-sm">
+                        @error('quantity')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-full">
                 <label for="unit_price" class="block text-sm font-medium leading-6 text-gray-900">Unit Price <span
                         class="text-red-500">*</span></label>
                 <div class="mt-2">
@@ -84,6 +102,26 @@
                     </div>
                     <div class="text-red-500 text-sm">
                         @error('selling_price')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-full">
+                <label for="uom_id" class="block text-sm font-medium leading-6 text-gray-900">Unit of Measure</label>
+                <div class="mt-2">
+                    <div wire:ignore
+                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                        <select type="text" id="uom" wire:model="uom_id"
+                            class="block select2 w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            <option value="">Select..</option>
+                            @foreach ($uoms as $uom)
+                                <option value="{{ $uom->id }}">{{ $uom->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="text-red-500 text-sm">
+                        @error('uom_id')
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>

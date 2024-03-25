@@ -5,8 +5,8 @@
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 font-normal {{ Route::is('dashboard') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                    <svg class="w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    class="flex items-center p-2 rounded-lg dark:text-white font-normal {{ Route::is('dashboard') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                    <svg class="w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -20,8 +20,8 @@
             @if (Helper::has_permission('view-rm'))
                 <li>
                     <a href="{{ route('raw_materials') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('raw_materials') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('raw_materials') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -35,8 +35,8 @@
             @if (Helper::has_permission('view-fg'))
                 <li>
                     <a href="{{ route('products') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('products') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -50,8 +50,8 @@
             @if (Helper::has_permission('view-product-in-warehouse'))
                 <li>
                     <a href="{{ route('warehouses') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('warehouses') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('warehouses') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -64,8 +64,8 @@
             @if (Helper::has_permission('view-product-distributions'))
                 <li>
                     <a href="{{ route('distributions') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('distributions') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('distributions') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -82,7 +82,7 @@
                 <p class="text-sm text-gray-400">REPORTS</p>
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? 'bg-gray-200' : '' }}"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
@@ -101,21 +101,21 @@
                         class="{{ in_array(Route::currentRouteName(), ['rm_report', 'fg_report', 'warehouse_report', 'sale_report']) ? '' : 'hidden' }} py-2 space-y-2">
                         <li>
                             <a href="{{ route('rm_report') }}"
-                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('rm_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Raw
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('rm_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Raw
                                 Materials</a>
                         </li>
                         <li>
                             <a href="{{ route('fg_report') }}"
-                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('fg_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Finished
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('fg_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Finished
                                 Products</a>
                         </li>
                         <li>
                             <a href="{{ route('warehouse_report') }}"
-                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('warehouse_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Warehouse</a>
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('warehouse_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Warehouse</a>
                         </li>
                         <li>
                             <a href="{{ route('sale_report') }}"
-                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Route::is('sale_report') ? 'bg-gray-100 text-blue-700 font-bold' : 'font-normal text-gray-900' }}">Sales</a>
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('sale_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Sales</a>
                         </li>
                     </ul>
                 </li>
@@ -127,8 +127,8 @@
             @if (Helper::has_permission('view-unit-of-measures'))
                 <li>
                     <a href="{{ route('uoms') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('uoms') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('uoms') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -143,8 +143,8 @@
             @if (Helper::has_permission('view-raw-materials'))
                 <li>
                     <a href="{{ route('materials') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('materials') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('materials') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -159,8 +159,8 @@
             @if (Helper::has_permission('view-product-categories'))
                 <li>
                     <a href="{{ route('categories') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('categories') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('categories') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -175,8 +175,8 @@
             @if (Helper::has_permission('view-products'))
                 <li>
                     <a href="{{ route('products_setup') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('products_setup') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('products_setup') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -189,8 +189,8 @@
             @if (Helper::is_super_admin())
                 <li>
                     <a href="{{ route('permissions') }}"
-                        class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ Route::is('permissions') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 transition duration-75 rounded-lg {{ Route::is('permissions') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 dark:text-white group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 16 20">
                             <path
@@ -203,8 +203,8 @@
             @if (Helper::has_permission('view-roles'))
                 <li>
                     <a href="{{ route('roles') }}"
-                        class="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-100 {{ Route::is('roles') || Route::is('role_permissions') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 dark:text-white group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 transition duration-75 rounded-lg {{ Route::is('roles') || Route::is('role_permissions') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 dark:text-white group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 17 20">
                             <path
@@ -218,8 +218,8 @@
             @if (Helper::has_permission('view-users'))
                 <li>
                     <a href="{{ route('users') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 {{ Route::is('users') ? 'bg-gray-200 text-blue-700 font-bold' : 'font-normal text-gray-900' }} dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-4 h-4 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('users') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 18">
                             <path

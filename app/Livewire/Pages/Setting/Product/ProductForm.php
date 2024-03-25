@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Setting\Product;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Uom;
 use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 
@@ -18,6 +19,10 @@ class ProductForm extends ModalComponent
     public $unit_price;
     #[Rule('required')]
     public $selling_price;
+    #[Rule('required', as: "Unit of measure")]
+    public $uom_id;
+    #[Rule('required')]
+    public $quantity;
 
     #[Rule('required', as: 'Category')]
     public $category_id;
@@ -33,9 +38,11 @@ class ProductForm extends ModalComponent
 
         $product = new Product;
         $product->name = $this->name;
+        $product->quantity = $this->quantity;
         $product->unit_price = $this->unit_price;
         $product->selling_price = $this->selling_price;
         $product->category_id = $this->category_id;
+        $product->uom_id = $this->uom_id;
         $product->user_id = auth()->user()->id;
         $product->save();
 
@@ -51,9 +58,11 @@ class ProductForm extends ModalComponent
         $qs = Product::find($id);
         $this->id = $id;
         $this->name = $qs->name;
+        $this->quantity = $qs->quantity;
         $this->unit_price = $qs->unit_price;
         $this->selling_price = $qs->selling_price;
         $this->category_id = $qs->category_id;
+        $this->uom_id = $qs->uom_id;
         // $this->dispatch('update_active_product_row', $id);
     }
 
@@ -63,9 +72,11 @@ class ProductForm extends ModalComponent
 
         $qs = Product::find($this->id);
         $qs->name = $this->name;
+        $qs->quantity = $this->quantity;
         $qs->unit_price = $this->unit_price;
         $qs->selling_price = $this->selling_price;
         $qs->category_id = $this->category_id;
+        $qs->uom_id = $this->uom_id;
 
         $qs->save();
 
@@ -89,6 +100,7 @@ class ProductForm extends ModalComponent
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.pages.setting.product.product-form', compact('categories'));
+        $uoms = Uom::all();
+        return view('livewire.pages.setting.product.product-form', compact('categories', 'uoms'));
     }
 }
