@@ -67,9 +67,11 @@ class SalesForm extends ModalComponent
             }
 
         }
+        $product = Product::find($this->product_id);
         $sale_distribution = new Sale;
         // $sale_distribution->date = $this->date;
         $sale_distribution->quantity = $this->quantity;
+        $sale_distribution->price = $this->quantity * $product->selling_price;
         $sale_distribution->product_id = $this->product_id;
         $sale_distribution->client_name = $this->client_name;
         $sale_distribution->client_phone = $this->client_phone;

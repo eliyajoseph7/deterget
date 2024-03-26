@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('remains', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(now());
+            $table->date('date')->default(DB::raw('CURRENT_DATE'));
             $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
             $table->foreignId('warehouse_tnx_id')->nullable()->constrained()->nullOnDelete();

@@ -48,3 +48,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(210, 208, 208);
 }
+
+
+.highcharts-background {
+  fill: transparent;
+}

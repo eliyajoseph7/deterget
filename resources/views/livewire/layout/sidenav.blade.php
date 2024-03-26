@@ -1,7 +1,7 @@
 <aside id="logo-sidebar"
-    class="fixed top-[6.2rem] left-0 z-40 w-64 h-screen pt-4 transition-transform -translate-x-full bg-gray-0/50 border-r-8 border-r-gray-100/50 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-[6.2rem] left-0 z-40 w-64 h-screen pt-4 transition-transform -translate-x-full bg-gray-50 border-r-8 border-r-gray-100/50 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-inherit dark:bg-gray-800">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-inherit dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="{{ route('dashboard') }}"

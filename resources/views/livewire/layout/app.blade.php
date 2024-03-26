@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
 
 <head>
     <meta charset="utf-8">
@@ -51,18 +51,23 @@
         <div class="p-4 sm:ml-64">
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white z-30 shadow mt-24 rounded-lg border-l-4 border-blue-400">
+                <header
+                    class="bg-white z-30 shadow mt-24 rounded-lg border-l-4 border-blue-400 md:fixed md:left-[18.5rem] md:right-8 -top-2 py-2">
                     <div class="mx-auto px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endif
-            <div class="p-4 border-2 border-gray-50 border-dashed rounded-lg dark:border-gray-700 mt-5">
+            <div class="p-4 border-2 border-gray-50 border-dashed rounded-lg dark:border-gray-700 mt-5 md:mt-40">
                 {{ $slot }}
             </div>
         </div>
     </div>
 </body>
+
+<script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+{{-- Highchart --}}
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
 <script data-navigate-once>
     const Toast = Swal.mixin({

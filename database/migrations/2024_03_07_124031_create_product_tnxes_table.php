@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_tnxes', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->default(now());
+            $table->date('date')->default(DB::raw('CURRENT_DATE'));
             $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->double('quantity')->default(1);
             $table->string('action');
