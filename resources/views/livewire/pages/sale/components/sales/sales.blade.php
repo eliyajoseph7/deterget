@@ -48,6 +48,14 @@
                                                     'displayName' => 'Quantity',
                                                 ])
                                                 @include('includes.table-header-sort', [
+                                                    'name' => 'selling_type',
+                                                    'displayName' => 'Type',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'credit_days',
+                                                    'displayName' => 'Credit Days',
+                                                ])
+                                                @include('includes.table-header-sort', [
                                                     'name' => 'client_name',
                                                     'displayName' => 'Client Name',
                                                 ])
@@ -82,6 +90,10 @@
                                                         {{ $dt->product?->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->quantity }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->selling_type }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->credit_days }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->client_name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">

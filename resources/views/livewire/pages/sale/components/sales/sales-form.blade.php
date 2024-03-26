@@ -93,34 +93,72 @@
                 </div>
             </div>
             <div class="col-span-full">
-                <label for="client_name" class="block text-sm font-medium leading-6 text-gray-900">Client Name</label>
+                <label for="selling_type" class="block text-sm font-medium leading-6 text-gray-900">Selling Type<span class="text-red-500">*</span></label></label>
                 <div class="mt-2">
                     <div
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <input type="text" id="client_name" wire:model.live="client_name"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Enter client name">
+                        <select type="text" id="selling_type" wire:model="selling_type"
+                            class="block w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            <option value="">Select..</option>
+                            <option value="cash">Cash</option>
+                            <option value="credit">Credit</option>
+                        </select>
                     </div>
                     <div class="text-red-500 text-sm">
-                        @error('client_name')
+                        @error('selling_type')
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
             </div>
-            <div class="col-span-full">
-                <label for="client_phone" class="block text-sm font-medium leading-6 text-gray-900">Client Phone</label>
-                <div class="mt-2">
-                    <div
-                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <input type="tel" id="client_phone" wire:model.live="client_phone"
-                            class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Enter client phone">
+                <div class="col-span-full {{ $selling_type == 'credit' ? '': 'hidden' }}" id="creditdays">
+                    <label for="credit_days" class="block text-sm font-medium leading-6 text-gray-900">Credit Days<span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="text" id="credit_days" wire:model="credit_days"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Enter days">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('credit_days')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="text-red-500 text-sm">
-                        @error('client_phone')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
+                </div>
+
+            <div class="grid gap-2 grid-cols-2 col-span-full">
+                <div class="col-span-1">
+                    <label for="client_name" class="block text-sm font-medium leading-6 text-gray-900">Client Name</label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="text" id="client_name" wire:model.live="client_name"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Enter client name">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('client_name')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-1">
+                    <label for="client_phone" class="block text-sm font-medium leading-6 text-gray-900">Client Phone</label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="client_phone" wire:model.live="client_phone"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="Enter client phone">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('client_phone')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>

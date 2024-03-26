@@ -26,9 +26,12 @@ class SalesForm extends ModalComponent
 
     #[Rule('required', as: 'Seller')]
     public $seller_id;
+    #[Rule('required', as: 'Selling type')]
+    public $selling_type;
 
     public $client_name;
     public $client_phone;
+    public $credit_days;
 
     protected $listeners = [
         'update_sale_distribution' => 'editSale'
@@ -50,6 +53,11 @@ class SalesForm extends ModalComponent
     public function addSale()
     {
         $this->validate();
+        if($this->selling_type == 'credit') {
+            $this->validate([
+                'credit_days' => 'required'
+            ]);
+        }
 
         $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
             ->where('date', now()->format('Y-m-d'))->sum('quantity');
@@ -73,6 +81,8 @@ class SalesForm extends ModalComponent
         $sale_distribution->quantity = $this->quantity;
         $sale_distribution->price = $this->quantity * $product->selling_price;
         $sale_distribution->product_id = $this->product_id;
+        $sale_distribution->selling_type = $this->selling_type;
+        $sale_distribution->credit_days = $this->credit_days;
         $sale_distribution->client_name = $this->client_name;
         $sale_distribution->client_phone = $this->client_phone;
         $sale_distribution->dispatch_product_id = $dispatch_product->id ?? null;
@@ -99,6 +109,8 @@ class SalesForm extends ModalComponent
         $this->seller_id = $qs->seller_id;
         $this->client_name = $qs->client_name;
         $this->client_phone = $qs->client_phone;
+        $this->selling_type = $this->selling_type;
+        $this->credit_days = $this->credit_days;
         $this->dispatch('update_sale_product_id_field', $qs->product_id);
         $this->dispatch('update_seller_id_field', $qs->seller_id);
     }
@@ -114,6 +126,8 @@ class SalesForm extends ModalComponent
         $qs->seller_id = $this->seller_id;
         $qs->client_name = $this->client_name;
         $qs->client_phone = $this->client_phone;
+        $qs->selling_type = $this->selling_type;
+        $qs->credit_days = $this->credit_days;
 
         $qs->save();
         $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)

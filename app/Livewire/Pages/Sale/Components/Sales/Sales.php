@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Sale\Components\Sales;
 
+use App\Helpers\Helper;
 use App\Models\Sale;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -51,7 +52,11 @@ class Sales extends Component
     }
     public function render()
     {
-        $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
+        if(Helper::has_role('credit-controller')) {
+            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
+        } else {
+            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
+        }
         return view('livewire.pages.sale.components.sales.sales', compact('data'));
     }
 }

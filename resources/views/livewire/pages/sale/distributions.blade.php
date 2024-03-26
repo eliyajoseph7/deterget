@@ -139,6 +139,16 @@
                 'id': e.target.value
             });
         });
+
+
+        $(document).on('change', '#selling_type', function(e) {
+            if($(this).val() == 'credit') {
+                $('#creditdays').removeClass('hidden');
+            } else {
+                $('#creditdays').addClass('hidden');
+                $('#credit_days').val('');
+            }
+        });
     </script>
 
     {{-- remain modal component --}}

@@ -63,7 +63,7 @@
                     </div>
                 @endif
             @empty
-                <div class="">Nothing</div>
+                <div class="">Nothing to show!</div>
             @endforelse
         </div>
     </div>
