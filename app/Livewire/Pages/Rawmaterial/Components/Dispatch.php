@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
+use App\Exports\Material\MaterialExport;
 use App\Models\DispatchMaterial;
 use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
@@ -59,6 +60,12 @@ class Dispatch extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new MaterialExport($this->search, $this->sortBy, $this->sortDir, 'dispatched'))->download('dispatched_materials.xlsx');
+    }
+
     public function render()
     {
         $data = DispatchMaterial::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);

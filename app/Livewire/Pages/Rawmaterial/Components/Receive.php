@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Rawmaterial\Components;
 
+use App\Exports\Material\MaterialExport;
 use App\Models\MaterialReport;
 use App\Models\MaterialTnx;
 use App\Models\ReceiveMaterial;
@@ -69,6 +70,13 @@ class Receive extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+
+    public function exportExcel()
+    {
+        return (new MaterialExport($this->search, $this->sortBy, $this->sortDir, 'received'))->download('received_materials.xlsx');
+    }
+
     public function render()
     {
         $data = ReceiveMaterial::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
