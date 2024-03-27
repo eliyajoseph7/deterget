@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav class="fixed top-0 z-30 w-full bg-white border-b-0 border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+<nav class="fixed top-0 w-full bg-white border-b-0 border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-2 lg:px-5 lg:pl-3 bg-[url('{{ asset('assets/images/banner.png') }}')] bg-cover bg-center bg-blend-multiply bg-white hover:bg-gray-50 cursor-pointer">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start rtl:justify-end">
@@ -35,7 +35,7 @@ new class extends Component
                     <x-application-logo class="me-3" alt="FlowBite Logo" />
                 </a>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center z-50">
                 <div class="flex items-center ms-3">
                     <div>
                         <button type="button"

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Dashboard;
 
+use App\Helpers\Helper;
 use App\Models\DispatchMaterial;
 use App\Models\DispatchProduct;
 use App\Models\ReceiveMaterial;
@@ -13,6 +14,21 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    public function mount() {
+        if(!Helper::has_role('super-user')) {
+            if(Helper::has_permission('view-rm')) {
+                return redirect()->route('raw_materials');
+            } else if(Helper::has_permission('view-fg')) {
+                return redirect()->route('products');
+            } else if(Helper::has_permission('view-product-in-warehouse')) {
+                return redirect()->route('warehouses');
+            } else if(Helper::has_permission('view-product-distributions')) {
+                return redirect()->route('distributions');
+            } else {
+                return redirect()->route('profile');
+            }
+        }
+    }
     public function render()
     {
         $totalSale = Sale::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), now()->format('Y-m-d'))->sum('price');
