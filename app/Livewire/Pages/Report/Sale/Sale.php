@@ -36,9 +36,11 @@ class Sale extends Component
     {
         $data = ModelsSale::searchReport($this->search)->
         leftjoin('remains', 'remains.product_id', 'sales.product_id')
-        ->select('sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'), DB::raw('SUM(remains.quantity) as remained'))
-        ->groupBy('sales.date', 'sales.product_id')
-        ->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
+        ->join('users', 'users.id', 'sales.seller_id')
+        ->select('users.name', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'), DB::raw('SUM(remains.quantity) as remained'))
+        ->groupBy('sales.date', 'sales.product_id', 'users.name')
+        ->orderBy($this->sortBy, $this->sortDir)->get()->groupBy('name');
+
         return view('livewire.pages.report.sale.sale', compact('data'));
     }
 }
