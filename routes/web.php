@@ -18,6 +18,7 @@ use App\Livewire\Pages\Setting\Uom\Uoms;
 use App\Livewire\Pages\Setting\User\Users;
 use App\Livewire\Pages\Warehouse\Warehouses;
 use App\Models\Sale as ModelsSale;
+use App\Models\WarehouseDispatch;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,14 +33,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    $data = ModelsSale::with('seller')
-            // ->join('users', 'users.id', 'sales.seller_id')
-            ->leftjoin('remains', 'remains.product_id', 'sales.product_id')
-            ->select('sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'), DB::raw('SUM(remains.quantity) as remained'))
-            ->groupBy('sales.date', 'sales.product_id')
-            ->get()->groupBy('seller.name');
+    // $dispatched = WarehouseDispatch::select('product_id', DB::raw('SUM(quantity) as quantity'))->groupBy('product_id')
+    //         ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), now()->format('Y-m-d'))->get();
 
-            return $data;
+    //         return $dispatched;
     return redirect('dashboard');
 });
 
