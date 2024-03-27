@@ -52,10 +52,10 @@ class Sales extends Component
     }
     public function render()
     {
-        if(Helper::has_role('credit-controller')) {
-            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
-        } else {
+        if(Helper::has_role('cashier')) {
             $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
+        } else {
+            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
         }
         return view('livewire.pages.sale.components.sales.sales', compact('data'));
     }

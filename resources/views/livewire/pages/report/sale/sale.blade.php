@@ -2,7 +2,7 @@
     <x-slot name="header">
         @include('includes.breadcrumb', [
             'main' => 'Reports',
-            'menu' => 'Sales Transactions',
+            'menu' => 'General Sales Transactions',
         ])
     </x-slot>
     <div>
@@ -34,14 +34,17 @@
                                                     'name' => 'date',
                                                     'displayName' => 'Date',
                                                 ])
-                                                @include('includes.table-header-sort', [
+                                                {{-- @include('includes.table-header-sort', [
                                                     'name' => 'product_id',
                                                     'displayName' => 'Product',
-                                                ])
-                                                <th scope="col" class="px-4 py-3 normal-case">Selling Price</th>
-                                                <th scope="col" class="px-4 py-3 normal-case">Category</th>
+                                                ]) --}}
+                                                {{-- <th scope="col" class="px-4 py-3 normal-case">Selling Price</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Category</th> --}}
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Sold</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Remained</th>
+                                                <th scope="col" class="px-4 py-3 w-[100px] float-end">
+                                                    <span class="sr-only">Actions</span>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody
@@ -52,18 +55,24 @@
                                                     <th scope="row"
                                                         class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                         {{ $loop->iteration }}</th>
-                                                        <td class="px-4 py-3 whitespace-nowrap">
-                                                            {{ $dt->date }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->date }}</td>
+                                                    {{-- <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->name }}</td>
-                                                        <td class="px-4 py-3 whitespace-nowrap">
-                                                            {{ $dt->product?->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->category?->name }}</td>
+                                                        {{ $dt->product?->selling_price }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->product?->category?->name }}</td> --}}
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->sold }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->remained }}</td>
+                                                    <td class="px-4 py-3 flex items-center justify-end space-x-1">
+                                                        <a href="{{ route('detailed_sale_report', $dt->date) }}" title="View Details"
+                                                            class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr class="bg-gray-50">
