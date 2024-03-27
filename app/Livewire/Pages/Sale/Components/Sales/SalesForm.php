@@ -59,22 +59,22 @@ class SalesForm extends ModalComponent
             ]);
         }
 
-        $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
-            ->where('date', now()->format('Y-m-d'))->sum('quantity');
+        // $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
+        //     ->where('date', now()->format('Y-m-d'))->sum('quantity');
             
 
-        if ($dispatched > 0) {
-            if ($dispatched > $this->quantity) {
-                $dispatch_product = new DispatchProduct;
-                // $dispatch_product->date = $this->date;
-                $dispatch_product->quantity = $dispatched - $this->quantity;
-                $dispatch_product->product_id = $this->product_id;
-                $dispatch_product->user_id = auth()->user()->id;
+        // if ($dispatched > 0) {
+        //     if ($dispatched > $this->quantity) {
+        //         $dispatch_product = new DispatchProduct;
+        //         // $dispatch_product->date = $this->date;
+        //         $dispatch_product->quantity = $dispatched - $this->quantity;
+        //         $dispatch_product->product_id = $this->product_id;
+        //         $dispatch_product->user_id = auth()->user()->id;
 
-                $dispatch_product->save();
-            }
+        //         $dispatch_product->save();
+        //     }
 
-        }
+        // }
         $product = Product::find($this->product_id);
         $sale_distribution = new Sale;
         // $sale_distribution->date = $this->date;
@@ -85,7 +85,7 @@ class SalesForm extends ModalComponent
         $sale_distribution->credit_days = $this->credit_days;
         $sale_distribution->client_name = $this->client_name;
         $sale_distribution->client_phone = $this->client_phone;
-        $sale_distribution->dispatch_product_id = $dispatch_product->id ?? null;
+        // $sale_distribution->dispatch_product_id = $dispatch_product->id ?? null;
         $sale_distribution->seller_id = $this->seller_id;
         $sale_distribution->user_id = auth()->user()->id;
 
@@ -109,8 +109,8 @@ class SalesForm extends ModalComponent
         $this->seller_id = $qs->seller_id;
         $this->client_name = $qs->client_name;
         $this->client_phone = $qs->client_phone;
-        $this->selling_type = $this->selling_type;
-        $this->credit_days = $this->credit_days;
+        $this->selling_type = $qs->selling_type;
+        $this->credit_days = $qs->credit_days;
         $this->dispatch('update_sale_product_id_field', $qs->product_id);
         $this->dispatch('update_seller_id_field', $qs->seller_id);
     }
@@ -118,6 +118,11 @@ class SalesForm extends ModalComponent
     public function updateSale()
     {
         $this->validate();
+        if($this->selling_type == 'credit') {
+            $this->validate([
+                'credit_days' => 'required'
+            ]);
+        }
 
         $qs = Sale::find($this->id);
         $qs->quantity = $this->quantity;
@@ -130,18 +135,18 @@ class SalesForm extends ModalComponent
         $qs->credit_days = $this->credit_days;
 
         $qs->save();
-        $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
-            ->where('date', $qs->date)->sum('quantity');
+        // $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
+        //     ->where('date', $qs->date)->sum('quantity');
 
-            if ($dispatched > 0) {
-                if ($dispatched > $this->quantity) {
-                    $dispatch_product = DispatchProduct::find($qs->dispatch_product_id);
-                if($dispatch_product) {
-                    $dispatch_product->quantity = $dispatched - $this->quantity;
-                    $dispatch_product->save();
-                }
-            }
-        }
+        //     if ($dispatched > 0) {
+        //         if ($dispatched > $this->quantity) {
+        //             $dispatch_product = DispatchProduct::find($qs->dispatch_product_id);
+        //         if($dispatch_product) {
+        //             $dispatch_product->quantity = $dispatched - $this->quantity;
+        //             $dispatch_product->save();
+        //         }
+        //     }
+        // }
 
         $this->resetForm();
         $this->dispatch('sale_distribution_saved');

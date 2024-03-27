@@ -4,6 +4,8 @@ namespace App\Livewire\Pages\Sale\Components\Sales;
 
 use App\Helpers\Helper;
 use App\Models\Sale;
+use DateTime;
+use DateTimeZone;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +19,7 @@ class Sales extends Component
     public $sortDir = 'DESC';
 
     // public $active;
+    public $today;
 
 
 
@@ -50,6 +53,11 @@ class Sales extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function mount() {
+        $this->today  = new DateTime("now", new DateTimeZone('Africa/Dar_es_Salaam'));
+    }
+
     public function render()
     {
         if(Helper::has_role('cashier')) {
