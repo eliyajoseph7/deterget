@@ -23,22 +23,22 @@
                 <td colspan="7" style="font-weight: bold;">{{ $key }}</td>
             </tr>
             @foreach ($dt as $dt)
-                <tr wire:key="{{ $dt->id }}" class="border-b border-gray-100 dark:border-gray-700">
+                <tr class="border-b border-gray-100 dark:border-gray-700">
                     <th scope="row"
                         class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $loop->iteration }}</th>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->date }}</td>
+                        {{ $dt['date'] }}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->product?->name }}</td>
+                        {{ $dt['product']?->name }}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->product?->selling_price }}</td>
+                        {{ $dt['product']?->selling_price }}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->product?->category?->name }}</td>
+                        {{ $dt['product']?->category?->name }}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->sold }}</td>
+                        {{ $dt['sold'] }}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        {{ $dt->remained }}</td>
+                        {{ $dt['remain'] }}</td>
                 </tr>
             @endforeach
         @empty
