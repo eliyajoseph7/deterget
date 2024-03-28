@@ -17,7 +17,9 @@ use App\Livewire\Pages\Setting\Role\Roles;
 use App\Livewire\Pages\Setting\Uom\Uoms;
 use App\Livewire\Pages\Setting\User\Users;
 use App\Livewire\Pages\Warehouse\Warehouses;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,5 +100,14 @@ Route::middleware('auth')->group(function () {
 Route::get('register', function () {
     return redirect()->route('login');
 });
+
+Route::get('logout', function () {
+    
+    Auth::guard('web')->logout();
+
+    Session::invalidate();
+    Session::regenerateToken();
+    return redirect()->route('login');
+})->name('logout');
 
 require __DIR__ . '/auth.php';
