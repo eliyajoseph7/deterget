@@ -51,7 +51,7 @@ class Users extends Component
     }
     public function render()
     {
-        $data = User::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
+        $data = User::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('id', '!=', 1)->paginate($this->perPage);
         return view('livewire.pages.setting.user.users', compact('data'));
     }
 }
