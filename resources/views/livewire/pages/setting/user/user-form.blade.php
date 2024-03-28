@@ -17,7 +17,8 @@
         <div class="p-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
 
             <div class="col-span-full">
-                <label for="roles" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
+                <label for="roles" class="block text-sm font-medium leading-6 text-gray-900">Role <span
+                    class="text-red-500">*</span></label>
                 <div class="mt-2">
                     <div wire:ignore
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">

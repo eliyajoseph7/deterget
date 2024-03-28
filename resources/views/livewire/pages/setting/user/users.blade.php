@@ -74,7 +74,7 @@
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->phone }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->role?->name }}</td>
+                                                        {{ implode(',', $dt->roles()->pluck('name')->toArray()) }}</td>
                                                     <td class="px-4 py-3 flex items-center justify-end space-x-1">
                                                         <button title="Update"
                                                             wire:click="$dispatch('openModal', {component: 'pages.setting.user.user-form', arguments: {id: {{ $dt->id }}}})"
