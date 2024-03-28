@@ -52,9 +52,64 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header
-                    class="bg-white z-40 shadow mt-24 rounded-lg border-l-4 border-blue-400 md:fixed md:left-[18.5rem] md:right-8 -top-2 py-6">
-                    <div class="mx-auto px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                    class="bg-white flex justify-between z-40 shadow mt-24 rounded-lg border-l-4 border-blue-400 md:fixed md:left-[18.5rem] md:right-8 -top-2 py-6">
+                    <div class="m yyyyx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                        <span class="pr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" data-slot="icon" class="w-5 h-5 text-gray-400">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+    
+                        </span> {{ $header }}
+                    </div>
+                    <div class="hidden items-center z-50 md:flex">
+                        <div class="flex items-center ms-3">
+                            <div>
+                                <button type="button"
+                                    class="flex text-sm bg-gray-100 p-2 w-18 h-18 items-center rounded-full focus:ring-0 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                    aria-expanded="false" data-dropdown-toggle="dropdown-user2">
+                                    <span class="sr-only">Open user menu</span>
+                                    <div class="flex items-center space-x-1 px-1 py-0.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 border-2 rounded-full">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                          </svg>
+                                          
+                                        <div class="hidden md:flex">{{ auth()->user()->name }}</div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                                id="dropdown-user2">
+                                <div class="px-4 py-3" role="none">
+                                    <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                        {{ auth()->user()->name }}
+                                    </p>
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                                        role="none">
+                                        {{ auth()->user()->email }}
+                                    </p>
+                                </div>
+                                <ul class="py-1" role="none">
+                                    <li>
+                                        <a href="{{ route('dashboard') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Dashboard</a>
+                                    </li>
+                                    <li>
+        
+                                        <a href="{{ route('profile') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a  wire:click="logout"
+                                            class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Sign out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </header>
             @endif

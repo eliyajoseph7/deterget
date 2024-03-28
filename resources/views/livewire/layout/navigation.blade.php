@@ -35,7 +35,7 @@ new class extends Component
                     <x-application-logo class="me-3" alt="FlowBite Logo" />
                 </a>
             </div>
-            <div class="flex items-center z-50">
+            <div class="flex items-center z-50 md:hidden">
                 <div class="flex items-center ms-3">
                     <div>
                         <button type="button"
