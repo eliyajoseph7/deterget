@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Finishedproduct\Components\Receive;
 
+use App\Exports\FinishedGood\FinishedGoodExport;
 use App\Models\ProductReport;
 use App\Models\ProductTnx;
 use App\Models\ReceiveProduct;
@@ -56,6 +57,12 @@ class Receive extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new FinishedGoodExport($this->search, $this->sortBy, $this->sortDir, 'received'))->download('received_products.xlsx');
+    }
+
     public function render()
     {
         $data = ReceiveProduct::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Finishedproduct\Components\Dispatch;
 
+use App\Exports\FinishedGood\FinishedGoodExport;
 use App\Models\DispatchProduct;
 use App\Models\ProductReport;
 use App\Models\ProductTnx;
@@ -59,6 +60,12 @@ class Dispatch extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new FinishedGoodExport($this->search, $this->sortBy, $this->sortDir, 'dispatched'))->download('dispatched_products.xlsx');
+    }
+
     public function render()
     {
         $data = DispatchProduct::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
