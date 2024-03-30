@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Warehouse\Components\Product;
 
+use App\Exports\WarehouseProduct\WarehouseProductExport;
 use App\Models\DispatchProduct;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -40,6 +41,12 @@ class ProductList extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new WarehouseProductExport($this->search, $this->sortBy, $this->sortDir, 'received'))->download('warehouse_pending_products.xlsx');
+    }
+
     public function render()
     {
         $data = DispatchProduct::search($this->search)

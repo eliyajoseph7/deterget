@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Sale\Components\Sales;
 
+use App\Exports\Sale\SoldProductExport;
 use App\Helpers\Helper;
 use App\Models\Sale;
 use DateTime;
@@ -53,6 +54,12 @@ class Sales extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new SoldProductExport($this->search, $this->sortBy, $this->sortDir))->download('sold_products.xlsx');
+    }
+
 
     public function mount() {
         $this->today  = new DateTime("now", new DateTimeZone('Africa/Dar_es_Salaam'));

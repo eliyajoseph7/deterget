@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Warehouse\Components\Dispatch;
 
+use App\Exports\WarehouseProduct\WarehouseProductExport;
 use App\Models\WarehouseDispatch;
 use App\Models\WarehouseReport;
 use App\Models\WarehouseTnx;
@@ -59,6 +60,12 @@ class Dispatch extends Component
         $this->sortBy = $name;
         $this->sortDir = 'DESC';
     }
+
+    public function exportExcel()
+    {
+        return (new WarehouseProductExport($this->search, $this->sortBy, $this->sortDir, 'dispatched'))->download('warehouse_dispatched_products.xlsx');
+    }
+
     public function render()
     {
         $data = WarehouseDispatch::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
