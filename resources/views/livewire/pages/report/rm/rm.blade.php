@@ -9,11 +9,41 @@
         <div class="py-0">
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
                 <div class="w-full">
+                    <div
+                        class="bg-white shadow-sm mb-2 min-h-10 px-2.5 py-2 rounded-t-lg grid md:grid-flow-col grid-cols-1 md:grid-cols-3">
+                        <div class="flex justify-center md:justify-start">
+                            <button wire:click.prevent="previous"
+                                class="w-full md:w-1/4 flex justify-center space-x-1 px-2 items-center hover:bg-red-50 bg-gray-100 py-0.5 rounded-lg hover:shadow-sm hover:text-gray-600 font-bold">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                                </svg>
+                                <span>Previous</span>
+                            </button>
+                        </div>
+                        <div class="text-center text-3xl font-bold text-gray-700">{{ $date->format('F Y') }}</div>
+                        <div class="flex justify-center md:justify-end">
+                            @if ($toNext)
+                                <button wire:click.prevent="next"
+                                    class="w-full md:w-1/4 flex justify-center space-x-1 px-2 items-center hover:bg-red-50 bg-gray-100 py-0.5 rounded-lg hover:shadow-sm hover:text-gray-600 font-bold">
+                                    <span>Next</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                    </svg>
+
+                                </button>
+                            @endif
+                        </div>
+
+                    </div>
                     <div class="flex flex-col-reverse md:flex-row md:space-x-3">
                         <div
                             class="min-h-[20vh] dark:bg-gray-800 overflow-hidden sm:rounded-lg items-center w-full float-right">
 
-                            <div class="bg-white shadow-lg border-t-2 border-gray-100 rounded-lg px-2 py-3">
+                            <div class="bg-white shadow-sm border-t-2 border-gray-100 rounded-lg px-2 py-3">
                                 <div class="flex items-center justify-between d p-4 dark:bg-gray-700">
                                     <div class="flex">
                                         <div class="relative w-full">
@@ -42,6 +72,9 @@
                                                 <th scope="col" class="px-4 py-3 normal-case">Received Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Dispatched Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Remained Amount</th>
+                                                <th scope="col" class="px-4 py-3 w-[100px] float-end">
+                                                    <span class="sr-only">Actions</span>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody
@@ -64,6 +97,16 @@
                                                         {{ $dt->dispatched }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->received - $dt->dispatched }}</td>
+                                                        <td>
+                                                            <div class="shadow-sm hover:shadow-lg bg-gray-50 px-2 w-10 rounded-lg" title="View Movement">
+
+                                                                <a href="{{ route('rm_detailed_report', [$dt->raw_material_id, $dt->date]) }}" class="">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-inherit">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                      </svg>                                                                  
+                                                                </a>
+                                                            </div>
+                                                        </td>
                                                 </tr>
                                             @empty
                                                 <tr class="bg-gray-50">
@@ -78,9 +121,9 @@
                                     </table>
                                 </div>
 
-                                @include('includes.table_pages', [
+                                {{-- @include('includes.table_pages', [
                                     'data' => $data,
-                                ])
+                                ]) --}}
                             </div>
                         </div>
                     </div>
