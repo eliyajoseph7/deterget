@@ -26,13 +26,13 @@ class RmMovement extends Component
 
         $dispatched = DispatchMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)->sum('quantity');
         $chart[] = [
-            'name' => 'Received',
+            'name' => 'Received' . ' ('. $received . ' ' . $this->material->uom->name . ')',
             'y' => $received,
             'sliced' => true,
             'selected' => true,
         ];
         $chart[] = [
-            'name' => 'Dispatched',
+            'name' => 'Dispatched' . ' ('. $dispatched . ' ' . $this->material->uom->name . ')',
             'y' => $dispatched
         ];
 
@@ -60,7 +60,7 @@ class RmMovement extends Component
             ->orderBy('created_at', 'ASC')->get();
 
         $this->totalReceived = $received->sum('quantity');
-        $this->totalDispatched = $received->sum('quantity');
+        $this->totalDispatched = $dispatched->sum('quantity');
         
         $this->getMovementChart();
         return view('livewire.pages.report.rm.rm-movement', compact('received', 'dispatched'));
