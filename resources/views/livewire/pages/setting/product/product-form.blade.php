@@ -55,14 +55,14 @@
                 </div>
             </div>
             <div class="col-span-full">
-                <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity <span
+                <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Sub Category <span
                         class="text-red-500">*</span></label>
                 <div class="mt-2">
                     <div
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
                         <input type="number" step="0.01" id="quantity" wire:model.live="quantity"
                             class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Enter new product">
+                            placeholder="">
                     </div>
                     <div class="text-red-500 text-sm">
                         @error('quantity')
@@ -80,7 +80,7 @@
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
                         <input type="number" step="0.01" id="unit_price" wire:model.live="unit_price"
                             class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Enter new product">
+                            placeholder="">
                     </div>
                     <div class="text-red-500 text-sm">
                         @error('unit_price')
@@ -98,7 +98,7 @@
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
                         <input type="number" step="0.01" id="selling_price" wire:model.live="selling_price"
                             class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Enter new product">
+                            placeholder="">
                     </div>
                     <div class="text-red-500 text-sm">
                         @error('selling_price')
