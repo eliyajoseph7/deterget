@@ -164,7 +164,7 @@
                 });
 
                 Livewire.on('update_roles_field', (data) => {
-                    $('#roles').val(data).trigger('change')
+                    $('#roles').val(data[0]).trigger('change')
                 });
 
                 // clear wire ignored select fields on form reset

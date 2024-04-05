@@ -97,11 +97,13 @@ class UserForm extends ModalComponent
         $user->roles()->detach();
         $user->permissions()->detach();
         foreach($this->roles as $role) {
-            $user->roles()->attach($role);
-            $permissions = Role::find($role)->permissions()->pluck('id');
-            foreach($permissions as $permission) {
-                $user->permissions()->attach($permission);
-            }
+            try {
+                $user->roles()->attach($role);
+                $permissions = Role::find($role)->permissions()->pluck('id');
+                foreach($permissions as $permission) {
+                    $user->permissions()->attach($permission);
+                }
+            } catch (\Throwable $e) {}
         }
 
         $this->resetForm();
