@@ -22,9 +22,9 @@ class RmMovement extends Component
     public function getMovementChart()
     {
 
-        $received = ReceiveMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)->sum('quantity');
+        $received = ReceiveMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)->where('raw_material_id', $this->materialId)->sum('quantity');
 
-        $dispatched = DispatchMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)->sum('quantity');
+        $dispatched = DispatchMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)->where('raw_material_id', $this->materialId)->sum('quantity');
         $chart[] = [
             'name' => 'Received' . ' ('. $received . ' ' . $this->material->uom->name . ')',
             'y' => $received,
@@ -54,10 +54,10 @@ class RmMovement extends Component
     public function render()
     {
         $received = ReceiveMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)
-            ->orderBy('created_at', 'ASC')->get();
+            ->where('raw_material_id', $this->materialId)->orderBy('created_at', 'ASC')->get();
 
         $dispatched = DispatchMaterial::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $this->date)
-            ->orderBy('created_at', 'ASC')->get();
+            ->where('raw_material_id', $this->materialId)->orderBy('created_at', 'ASC')->get();
 
         $this->totalReceived = $received->sum('quantity');
         $this->totalDispatched = $dispatched->sum('quantity');

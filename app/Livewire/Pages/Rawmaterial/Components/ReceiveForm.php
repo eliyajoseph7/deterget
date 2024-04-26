@@ -21,8 +21,8 @@ class ReceiveForm extends ModalComponent
 
     #[Rule('required')]
     public $quantity;
-    // #[Rule('required')]
-    // public $date;
+    #[Rule('required')]
+    public $date;
 
     public $invoice;
 
@@ -53,7 +53,7 @@ class ReceiveForm extends ModalComponent
 
         // save in material tnx table
         $tnx = new MaterialTnx;
-        // $tnx->date = $this->date;
+        $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
         $tnx->action = 'in';
         $tnx->raw_material_id = $this->raw_material_id;
@@ -61,7 +61,7 @@ class ReceiveForm extends ModalComponent
         $tnx->save();
 
         $receive_material = new ReceiveMaterial;
-        // $receive_material->date = $this->date;
+        $receive_material->date = $this->date;
         $receive_material->quantity = $this->quantity;
         $receive_material->raw_material_id = $this->raw_material_id;
         $receive_material->material_tnx_id = $tnx->id;
@@ -104,7 +104,7 @@ class ReceiveForm extends ModalComponent
         $qs = ReceiveMaterial::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
-        // $this->date = $qs->date;
+        $this->date = $qs->date;
         $this->invoice = $qs->invoice;
         $this->raw_material_id = $qs->raw_material_id;
         $this->dispatch('update_raw_material_id_field', $qs->raw_material_id);
@@ -122,19 +122,19 @@ class ReceiveForm extends ModalComponent
 
         $qs = ReceiveMaterial::find($this->id);
         $qs->quantity = $this->quantity;
-        // $qs->date = $this->date;
+        $qs->date = $this->date;
         $qs->raw_material_id = $this->raw_material_id;
 
         $tnx = MaterialTnx::find($qs->material_tnx_id);
         if ($tnx) {
-            // $tnx->date = $this->date;
+            $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
             $tnx->action = 'in';
             $tnx->raw_material_id = $this->raw_material_id;
             $tnx->save();
         } else { // if it is not there, create it
             $tnx = new MaterialTnx;
-            // $tnx->date = $this->date;
+            $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
             $tnx->action = 'in';
             $tnx->raw_material_id = $this->raw_material_id;
