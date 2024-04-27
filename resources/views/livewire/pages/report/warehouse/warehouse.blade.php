@@ -7,7 +7,7 @@
     </x-slot>
     <div>
         <div class="py-0 relative">
-            <a href="{{ route('fg_report') }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
+            <a href="{{ route('warehouse_report') }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
                 <div class="w-full">
                     <div class="bg-gray-50 rounded-t-2xl md:flex justify-start md:space-x-8 py-5 px-2">

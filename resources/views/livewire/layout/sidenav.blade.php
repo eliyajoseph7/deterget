@@ -84,7 +84,7 @@
                 <p class="text-sm text-gray-400">REPORTS</p>
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'sale_report', 'rm_detailed_report']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
@@ -100,7 +100,7 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example"
-                        class="{{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'sale_report', 'rm_detailed_report']) ? '' : 'hidden' }} py-2 space-y-2">
+                        class="{{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report']) ? '' : 'hidden' }} py-2 space-y-2">
                         <li>
                             <a href="{{ route('rm_report') }}"
                                 class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ (Route::is('rm_report') || Route::is('rm_report_by_date') || Route::is('rm_detailed_report')) ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Raw
@@ -113,7 +113,7 @@
                         </li>
                         <li>
                             <a href="{{ route('warehouse_report') }}"
-                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('warehouse_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Warehouse</a>
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ (Route::is('warehouse_report') || Route::is('warehouse_report_by_date')) ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Warehouse</a>
                         </li>
                         <li>
                             <a href="{{ route('sale_report') }}"
