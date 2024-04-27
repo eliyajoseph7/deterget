@@ -6,9 +6,44 @@
         ])
     </x-slot>
     <div>
-        <div class="py-0">
+        <div class="py-0 relative">
+            <a href="{{ route('fg_report') }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
                 <div class="w-full">
+                    <div class="bg-gray-50 rounded-t-2xl md:flex justify-start md:space-x-8 py-5 px-2">
+                        <div class="text-lg"><span class="font-bold text-blue-900 pr-2">Product:</span> {{ $product->name }}</div>
+                        <div class="text-lg"><span class="font-bold text-blue-900 pr-2">Category:</span> {{ $product->category?->name }}</div>
+                    </div>
+                    <div
+                        class="bg-white shadow-sm mb-2 min-h-10 px-2.5 py-2 rounded-t-lg grid md:grid-flow-col grid-cols-1 md:grid-cols-3">
+                        <div class="flex justify-center md:justify-start">
+                            <button wire:click.prevent="previous"
+                                class="w-full md:w-1/4 flex justify-center space-x-1 px-2 items-center hover:bg-red-50 bg-gray-100 py-0.5 rounded-lg hover:shadow-sm hover:text-gray-600 font-bold">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                                </svg>
+                                <span>Previous</span>
+                            </button>
+                        </div>
+                        <div class="text-center text-3xl font-bold text-gray-700">{{ $date->format('F Y') }}</div>
+                        <div class="flex justify-center md:justify-end">
+                            @if ($toNext)
+                                <button wire:click.prevent="next"
+                                    class="w-full md:w-1/4 flex justify-center space-x-1 px-2 items-center hover:bg-red-50 bg-gray-100 py-0.5 rounded-lg hover:shadow-sm hover:text-gray-600 font-bold">
+                                    <span>Next</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                    </svg>
+
+                                </button>
+                            @endif
+                        </div>
+
+                    </div>
                     <div class="flex flex-col-reverse md:flex-row md:space-x-3">
                         <div
                             class="min-h-[20vh] dark:bg-gray-800 overflow-hidden sm:rounded-lg items-center w-full float-right">
@@ -34,14 +69,14 @@
                                                     'name' => 'date',
                                                     'displayName' => 'Date',
                                                 ])
-                                                @include('includes.table-header-sort', [
+                                                {{-- @include('includes.table-header-sort', [
                                                     'name' => 'product_id',
                                                     'displayName' => 'Product',
                                                 ])
-                                                <th scope="col" class="px-4 py-3 normal-case">Category</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Category</th> --}}
                                                 <th scope="col" class="px-4 py-3 normal-case">Received Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Dispatched Amount</th>
-                                                <th scope="col" class="px-4 py-3 normal-case">Remained Amount</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Remained Balance</th>
                                             </tr>
                                         </thead>
                                         <tbody
@@ -54,10 +89,10 @@
                                                         {{ $loop->iteration }}</th>
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt->date }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                    {{-- <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->category?->name }}</td>
+                                                        {{ $dt->product?->category?->name }}</td> --}}
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->received }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
@@ -78,9 +113,9 @@
                                     </table>
                                 </div>
 
-                                @include('includes.table_pages', [
+                                {{-- @include('includes.table_pages', [
                                     'data' => $data,
-                                ])
+                                ]) --}}
                             </div>
                         </div>
                     </div>

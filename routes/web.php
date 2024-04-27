@@ -9,6 +9,7 @@ use App\Livewire\Pages\Report\Rm\General;
 use App\Livewire\Pages\Report\Rm\Rm;
 use App\Livewire\Pages\Report\Rm\RmMovement;
 use App\Livewire\Pages\Report\Sale\Sale;
+use App\Livewire\Pages\Report\Warehouse\General as WarehouseGeneral;
 use App\Livewire\Pages\Report\Warehouse\Warehouse;
 use App\Livewire\Pages\Sale\Distributions;
 use App\Livewire\Pages\Setting\Permission\Permissions;
@@ -100,7 +101,10 @@ Route::middleware('auth')->group(function () {
             Route::get('general', FgGeneral::class)->name('fg_report');
             Route::get('general_by_date/{productId}', Fg::class)->name('fg_report_by_date');
         });
-        Route::get('warehouse-transactions', Warehouse::class)->name('warehouse_report');
+        Route::prefix('warehouse-transactions')->group(function() {
+            Route::get('general', WarehouseGeneral::class)->name('warehouse_report');
+            Route::get('general_by_date/{productId}', Warehouse::class)->name('warehouse_report_by_date');
+        });
         Route::prefix('sales')->group(function () {
             Route::get('general', Sale::class)->name('sale_report');
         });
