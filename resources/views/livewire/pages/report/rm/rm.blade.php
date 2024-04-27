@@ -69,11 +69,11 @@
                                                     'name' => 'date',
                                                     'displayName' => 'Date',
                                                 ])
-                                                @include('includes.table-header-sort', [
+                                                {{-- @include('includes.table-header-sort', [
                                                     'name' => 'raw_material_id',
                                                     'displayName' => 'Material',
                                                 ])
-                                                <th scope="col" class="px-4 py-3 normal-case">Measure</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Measure</th> --}}
                                                 <th scope="col" class="px-4 py-3 normal-case">Received Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Dispatched Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Remained Balance</th>
@@ -92,10 +92,10 @@
                                                         {{ $loop->iteration }}</th>
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt->date }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                    {{-- <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->item?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->item?->uom?->name }}</td>
+                                                        {{ $dt->item?->uom?->name }}</td> --}}
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->received }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
