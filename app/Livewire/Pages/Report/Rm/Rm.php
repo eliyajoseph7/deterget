@@ -3,7 +3,7 @@
 namespace App\Livewire\Pages\Report\Rm;
 
 use App\Models\MaterialReport;
-use App\Models\MaterialTnx;
+use App\Models\RawMaterial;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +19,8 @@ class Rm extends Component
     public $sortDir = 'DESC';
 
     public $data = [];
+    public $materialId;
+    public $material;
     public $date;
     public $previousCount = 0;
     public $nextCount = 0;
@@ -61,9 +63,10 @@ class Rm extends Component
     }
 
     public function fetchReport() {
-        $data = MaterialReport::search($this->search)->select('raw_material_id', 'date', DB::raw('SUM(received) as received'), DB::raw('SUM(dispatched) as dispatched'))
+        $data = MaterialReport::search($this->search)->select('date', DB::raw('SUM(received) as received'), DB::raw('SUM(dispatched) as dispatched'))
         ->whereMonth('date', $this->date->format('m'))->whereYear('date', $this->date->format('Y'))
-        ->groupBy('date', 'raw_material_id')
+        ->where('raw_material_id', $this->materialId)
+        ->groupBy('date')
         ->orderBy($this->sortBy, $this->sortDir)->get();
 
         $this->data = $data;
@@ -77,10 +80,12 @@ class Rm extends Component
 
     }
 
-    public function mount()
+    public function mount($materialId)
     {
         $date = new DateTime("now", new DateTimeZone('Africa/Dar_es_Salaam'));
         $this->date = $date;
+        $this->materialId = $materialId;
+        $this->material = RawMaterial::find($materialId);
         $this->fetchReport();
     }
 

@@ -36,24 +36,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-span-full">
-                <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date <span
-                        class="text-red-500">*</span></label>
-                <div class="mt-2">
-                    <div
-                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <input datepicker datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd"
-                            type="date" id="date" wire:model.live="date"
-                            class="datepicker block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Select date">
-                    </div>
-                    <div class="text-red-500 text-sm">
-                        @error('date')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div> --}}
+            
             <div class="col-span-full">
                 <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity <span
                         class="text-red-500">*</span></label>
@@ -66,6 +49,24 @@
                     </div>
                     <div class="text-red-500 text-sm">
                         @error('quantity')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-full">
+                <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date <span
+                        class="text-red-500">*</span></label>
+                <div class="mt-2">
+                    <div
+                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                        <input datepicker datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd"
+                            type="date" id="date" wire:model.live="date"
+                            class="datepicker block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            placeholder="Select date">
+                    </div>
+                    <div class="text-red-500 text-sm">
+                        @error('date')
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>

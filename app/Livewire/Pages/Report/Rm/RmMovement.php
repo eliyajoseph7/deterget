@@ -35,6 +35,10 @@ class RmMovement extends Component
             'name' => 'Dispatched' . ' ('. $dispatched . ' ' . $this->material->uom->name . ')',
             'y' => $dispatched
         ];
+        $chart[] = [
+            'name' => 'Balance' . ' ('. $received - $dispatched . ' ' . $this->material->uom->name . ')',
+            'y' => $received - $dispatched
+        ];
 
         $series[] = [
             'name' => $this->material?->name,

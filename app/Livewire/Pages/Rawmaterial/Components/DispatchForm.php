@@ -17,8 +17,8 @@ class DispatchForm extends ModalComponent
 
     #[Rule('required')]
     public $quantity;
-    // #[Rule('required')]
-    // public $date;
+    #[Rule('required')]
+    public $date;
     
     #[Rule('required')]
     public $purpose;
@@ -45,7 +45,7 @@ class DispatchForm extends ModalComponent
 
         // save in material tnx table
         $tnx = new MaterialTnx;
-        // $tnx->date = $this->date;
+        $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
         $tnx->action = 'out';
         $tnx->raw_material_id = $this->raw_material_id;
@@ -53,7 +53,7 @@ class DispatchForm extends ModalComponent
         $tnx->save();
 
         $dispatch_material = new DispatchMaterial;
-        // $dispatch_material->date = $this->date;
+        $dispatch_material->date = $this->date;
         $dispatch_material->quantity = $this->quantity;
         $dispatch_material->raw_material_id = $this->raw_material_id;
         $dispatch_material->purpose = $this->purpose;
@@ -64,6 +64,7 @@ class DispatchForm extends ModalComponent
 
         // create report
         $report = new MaterialReport;
+        $report->date = $this->date;
         $report->dispatched = $this->quantity;
         $report->raw_material_id = $this->raw_material_id;
         $report->material_tnx_id = $tnx->id;
@@ -83,7 +84,7 @@ class DispatchForm extends ModalComponent
         $qs = DispatchMaterial::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
-        // $this->date = $qs->date;
+        $this->date = $qs->date;
         $this->purpose = $qs->purpose;
         $this->raw_material_id = $qs->raw_material_id;
         $this->dispatch('update_raw_material_id_field', $qs->raw_material_id);
@@ -96,13 +97,13 @@ class DispatchForm extends ModalComponent
 
         $qs = DispatchMaterial::find($this->id);
         $qs->quantity = $this->quantity;
-        // $qs->date = $this->date;
+        $qs->date = $this->date;
         $qs->purpose = $this->purpose;
         $qs->raw_material_id = $this->raw_material_id;
 
         $tnx = MaterialTnx::find($qs->material_tnx_id);
         if ($tnx) {
-            // $tnx->date = $this->date;
+            $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
             $tnx->action = 'out';
             $tnx->raw_material_id = $this->raw_material_id;
@@ -115,6 +116,7 @@ class DispatchForm extends ModalComponent
         // update report
         $report = MaterialReport::where('material_tnx_id', $tnx->id)->first();
         if($report) {
+            $report->date = $this->date;
             $report->dispatched = $this->quantity;
             $report->raw_material_id = $this->raw_material_id;
             $report->material_tnx_id = $tnx->id;

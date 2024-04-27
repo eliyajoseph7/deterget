@@ -18,8 +18,8 @@ class DispatchForm extends ModalComponent
 
     #[Rule('required')]
     public $quantity;
-    // #[Rule('required')]
-    // public $date;
+    #[Rule('required')]
+    public $date;
 
     #[Rule('required', as: 'Product')]
     public $product_id;
@@ -42,7 +42,7 @@ class DispatchForm extends ModalComponent
 
         // save in product tnx table
         $tnx = new ProductTnx;
-        // $tnx->date = $this->date;
+        $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
         $tnx->action = 'out';
         $tnx->product_id = $this->product_id;
@@ -50,7 +50,7 @@ class DispatchForm extends ModalComponent
         $tnx->save();
 
         $dispatch_product = new DispatchProduct;
-        // $dispatch_product->date = $this->date;
+        $dispatch_product->date = $this->date;
         $dispatch_product->quantity = $this->quantity;
         $dispatch_product->product_id = $this->product_id;
         $dispatch_product->product_tnx_id = $tnx->id;
@@ -60,6 +60,7 @@ class DispatchForm extends ModalComponent
 
         // create report
         $report = new ProductReport;
+        $report->date = $this->date;
         $report->dispatched = $this->quantity;
         $report->product_id = $this->product_id;
         $report->product_tnx_id = $tnx->id;
@@ -78,7 +79,7 @@ class DispatchForm extends ModalComponent
         $qs = DispatchProduct::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
-        // $this->date = $qs->date;
+        $this->date = $qs->date;
         $this->product_id = $qs->product_id;
         $this->dispatch('update_product_id_field', $qs->product_id);
     }
@@ -90,12 +91,12 @@ class DispatchForm extends ModalComponent
 
         $qs = DispatchProduct::find($this->id);
         $qs->quantity = $this->quantity;
-        // $qs->date = $this->date;
+        $qs->date = $this->date;
         $qs->product_id = $this->product_id;
 
         $tnx = ProductTnx::find($qs->product_tnx_id);
         if ($tnx) {
-            // $tnx->date = $this->date;
+            $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
             $tnx->product_id = $this->product_id;
             $tnx->action = 'out';
@@ -108,6 +109,7 @@ class DispatchForm extends ModalComponent
         // update report
         $report = ProductReport::where('product_tnx_id', $tnx->id)->first();
         if($report) {
+            $report->date = $this->date;
             $report->dispatched = $this->quantity;
             $report->product_id = $this->product_id;
             $report->product_tnx_id = $tnx->id;

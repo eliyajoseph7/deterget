@@ -17,7 +17,8 @@
         <div class="p-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
 
             <div class="col-span-full">
-                <label for="dispatch_product_id" class="block text-sm font-medium leading-6 text-gray-900">Product<span class="text-red-500">*</span></label></label>
+                <label for="dispatch_product_id" class="block text-sm font-medium leading-6 text-gray-900">Product<span
+                        class="text-red-500">*</span></label></label>
                 <div class="mt-2">
                     <div
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
@@ -25,7 +26,8 @@
                             class="block select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                             <option value="">Select..</option>
                             @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->name . ' ' . $product->quantity . ' ' . $product->uom->name }}</option>
+                                <option value="{{ $product->id }}">
+                                    {{ $product->name . ' ' . $product->quantity . ' ' . $product->uom->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -36,24 +38,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-span-full">
-                <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date <span
-                        class="text-red-500">*</span></label>
-                <div class="mt-2">
-                    <div
-                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <input datepicker datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd"
-                            type="date" id="date" wire:model.live="date"
-                            class="datepicker block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                            placeholder="Select date">
-                    </div>
-                    <div class="text-red-500 text-sm">
-                        @error('date')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div> --}}
+
             <div class="col-span-full">
                 <label for="quantity" class="block text-sm font-medium leading-6 text-gray-900">Quantity <span
                         class="text-red-500">*</span></label>
@@ -71,7 +56,24 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-span-full">
+                <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date <span
+                        class="text-red-500">*</span></label>
+                <div class="mt-2">
+                    <div
+                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                        <input datepicker datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd"
+                            type="date" id="date" wire:model.live="date"
+                            class="datepicker block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            placeholder="Select date">
+                    </div>
+                    <div class="text-red-500 text-sm">
+                        @error('date')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
 
             <button type="submit" class="bg-red-500 hover:bg-red-600 col-span-full p-2 rounded-lg text-white">
                 <div wire:loading>

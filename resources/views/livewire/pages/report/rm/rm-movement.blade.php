@@ -6,11 +6,11 @@
         ])
     </x-slot>
     <div class="relative">
-        <a href="{{ route('rm_report') }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
-        <div class="bg-gray-200/70 rounded-t-lg md:flex justify-start md:space-x-8 py-5 px-2">
-            <div class="text-lg"><strong class="mr-2">Material:</strong> {{ $material->name }}</div>
-            <div class="text-lg"><strong class="mr-2">Measure:</strong> {{ $material->uom?->name }}</div>
-            <div class="text-lg"><strong class="mr-2">Date:</strong> {{ $date }}</div>
+        <a href="{{ route('rm_report_by_date', $material->id) }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
+        <div class="bg-gray-50 rounded-t-2xl md:flex justify-start md:space-x-8 py-5 px-2">
+            <div class="text-lg"><strong class="mr-2 text-blue-900">Material:</strong> {{ $material->name }}</div>
+            <div class="text-lg"><strong class="mr-2 text-blue-900">Measure:</strong> {{ $material->uom?->name }}</div>
+            <div class="text-lg"><strong class="mr-2 text-blue-900">Date:</strong> {{ $date }}</div>
         </div>
         <div class="grid grid-flow-row md:grid-flow-col md:grid-cols-2 gap-4">
             <div class="">

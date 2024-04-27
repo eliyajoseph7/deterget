@@ -6,9 +6,14 @@
         ])
     </x-slot>
     <div>
-        <div class="py-0">
+        <div class="py-0 relative">
+            <a href="{{ route('rm_report') }}" class="absolute -top-2 right-2 px-2 bg-red-500 text-white rounded-full">x</a>
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
                 <div class="w-full">
+                    <div class="bg-gray-50 rounded-t-2xl md:flex justify-start md:space-x-8 py-5 px-2">
+                        <div class="text-lg"><span class="font-bold text-blue-900 pr-2">Material:</span> {{ $material->name }}</div>
+                        <div class="text-lg"><span class="font-bold text-blue-900 pr-2">Measure:</span> {{ $material->uom?->name }}</div>
+                    </div>
                     <div
                         class="bg-white shadow-sm mb-2 min-h-10 px-2.5 py-2 rounded-t-lg grid md:grid-flow-col grid-cols-1 md:grid-cols-3">
                         <div class="flex justify-center md:justify-start">
@@ -71,7 +76,7 @@
                                                 <th scope="col" class="px-4 py-3 normal-case">Measure</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Received Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Dispatched Amount</th>
-                                                <th scope="col" class="px-4 py-3 normal-case">Remained Amount</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Remained Balance</th>
                                                 <th scope="col" class="px-4 py-3 w-[100px] float-end">
                                                     <span class="sr-only">Actions</span>
                                                 </th>
@@ -100,7 +105,7 @@
                                                         <td>
                                                             <div class="shadow-sm hover:shadow-lg bg-gray-50 px-2 w-10 rounded-lg" title="View Movement">
 
-                                                                <a href="{{ route('rm_detailed_report', [$dt->raw_material_id, $dt->date]) }}" class="">
+                                                                <a href="{{ route('rm_detailed_report', [$materialId, $dt->date]) }}" class="">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 bg-inherit">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                                       </svg>                                                                  

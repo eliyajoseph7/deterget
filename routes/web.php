@@ -4,6 +4,7 @@ use App\Livewire\Pages\Dashboard\Dashboard;
 use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
 use App\Livewire\Pages\Report\Fg\Fg;
+use App\Livewire\Pages\Report\Rm\General;
 use App\Livewire\Pages\Report\Rm\Rm;
 use App\Livewire\Pages\Report\Rm\RmMovement;
 use App\Livewire\Pages\Report\Sale\Sale;
@@ -90,7 +91,8 @@ Route::middleware('auth')->group(function () {
     // reports
     Route::prefix('reports')->group(function () {
         Route::prefix('raw-material')->group(function() {
-            Route::get('general', Rm::class)->name('rm_report');
+            Route::get('general', General::class)->name('rm_report');
+            Route::get('general-by-date/{materialId}', Rm::class)->name('rm_report_by_date');
             Route::get('detailed/{material}/{date}', RmMovement::class)->name('rm_detailed_report');
         });
         Route::get('finished-goods', Fg::class)->name('fg_report');
