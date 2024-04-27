@@ -20,9 +20,9 @@
                 <label for="dispatch_product_id" class="block text-sm font-medium leading-6 text-gray-900">Product<span
                         class="text-red-500">*</span></label></label>
                 <div class="mt-2">
-                    <div
+                    <div wire:ignore
                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                        <select wire:model="selectedOption" id="dispatch_product_id" wire:ignore wire:keydown="search"
+                        <select id="dispatch_product_id"
                             class="block select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                             <option value="">Select..</option>
                             @foreach ($products as $product)
