@@ -26,6 +26,12 @@ class Sale extends Component
     // public $total_days;
     public $toNext = False;
 
+    public $filter = 'all';
+
+    public function updatedFilter() {
+        $this->fetchReport();
+    }
+
     public function previous()
     {
         $this->previousCount += 1;
@@ -72,12 +78,22 @@ class Sale extends Component
         //     ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
         //     ->orderBy($this->sortBy, $this->sortDir)->get()->groupBy('name')->all();
 
-        $data = ModelsSale::search($this->search)
-            ->join('users', 'users.id', 'sales.seller_id')
-            ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
-            ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
-            ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
-            ->orderBy($this->sortBy, $this->sortDir)->get();
+        if($this->filter == 'all') {
+            $data = ModelsSale::search($this->search)
+                ->join('users', 'users.id', 'sales.seller_id')
+                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+                ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+                ->orderBy($this->sortBy, $this->sortDir)->get();
+        } else {
+            $data = ModelsSale::search($this->search)
+                ->join('users', 'users.id', 'sales.seller_id')
+                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+                ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+                ->where('selling_type', $this->filter)
+                ->orderBy($this->sortBy, $this->sortDir)->get();
+        }
 
         $result = collect([]);
 
@@ -107,7 +123,7 @@ class Sale extends Component
     public function exportExcel()
     {
         $this->fetchReport();
-        return (new SaleReport($this->search, $this->sortBy, $this->sortDir, $this->date))->download('detailed_sales_report.xlsx');
+        return (new SaleReport($this->search, $this->sortBy, $this->sortDir, $this->date, $this->filter))->download('detailed_sales_report.xlsx');
     }
 
     public function mount()

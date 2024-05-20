@@ -18,25 +18,37 @@ class SaleReport implements FromView, WithTitle
     protected $sortBy;
     protected $sortDir;
     protected $date;
+    protected $filter;
 
-    public function __construct($search, $sortBy, $sortDir, $date)
+    public function __construct($search, $sortBy, $sortDir, $date, $filter)
     {
         $this->search = $search;
         $this->sortBy = $sortBy;
         $this->sortDir = $sortDir;
         $this->date = $date;
+        $this->filter = $filter;
     }
 
 
     public function view(): View
     {
 
-        $data = Sale::search($this->search)
-            ->join('users', 'users.id', 'sales.seller_id')
-            ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
-            ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
-            ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
-            ->orderBy($this->sortBy, $this->sortDir)->get();
+        if($this->filter == 'all') {
+            $data = Sale::search($this->search)
+                ->join('users', 'users.id', 'sales.seller_id')
+                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+                ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+                ->orderBy($this->sortBy, $this->sortDir)->get();
+        } else {
+            $data = Sale::search($this->search)
+                ->join('users', 'users.id', 'sales.seller_id')
+                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+                ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+                ->where('selling_type', $this->filter)
+                ->orderBy($this->sortBy, $this->sortDir)->get();
+        }
 
         $result = collect([]);
 

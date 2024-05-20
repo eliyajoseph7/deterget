@@ -53,7 +53,12 @@
                                                 placeholder="Search" required="">
                                         </div>
                                     </div>
-                                    <div class="">
+                                    <div class="flex">
+                                        <select wire:model.live="filter" class="block sele ct2 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                                            <option value="all">All</option>
+                                            <option value="cash">Cash</option>
+                                            <option value="credit">Credit</option>
+                                        </select>
                                         <button wire:click="exportExcel"
                                         class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
