@@ -4,9 +4,11 @@ namespace App\Livewire\Pages\Sale\Components\Sales;
 
 use App\Exports\Sale\SoldProductExport;
 use App\Helpers\Helper;
+use App\Http\Controllers\PaginateController;
 use App\Models\Sale;
 use DateTime;
 use DateTimeZone;
+use Illuminate\Http\Request;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,7 +21,6 @@ class Sales extends Component
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
 
-    // public $active;
     public $today;
 
 
@@ -55,26 +56,43 @@ class Sales extends Component
         $this->sortDir = 'DESC';
     }
 
+    public function getData() {
+        
+        if (Helper::has_role('cashier')) {
+            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->get()->groupBy(['client.name', function ($qs) {
+                return $qs->date;
+            }]);
+        } else if (Helper::has_role('credit-controller')) {
+            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->get()->groupBy(['client.name', function ($qs) {
+                return $qs->date;
+            }]);
+        } else {
+            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->get()->groupBy(['client.name', function ($qs) {
+                return $qs->date;
+            }]);
+        }
+
+
+        return (new PaginateController)->paginate($data, $this->perPage);
+        
+    }
+
     public function exportExcel()
     {
         return (new SoldProductExport($this->search, $this->sortBy, $this->sortDir))->download('sold_products.xlsx');
     }
 
 
-    public function mount()
+    public function mount(Request $request)
     {
         $this->today  = new DateTime("now", new DateTimeZone('Africa/Dar_es_Salaam'));
+        $this->request = $request;
+        
     }
 
     public function render()
     {
-        if (Helper::has_role('cashier')) {
-            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
-        } else if (Helper::has_role('credit-controller')) {
-            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
-        } else {
-            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
-        }
+        $data = $this->getData();
         return view('livewire.pages.sale.components.sales.sales', compact('data'));
     }
 }

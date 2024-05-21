@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaginateController;
 use App\Livewire\Pages\Dashboard\Dashboard;
 use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
@@ -12,6 +13,8 @@ use App\Livewire\Pages\Report\Sale\Sale;
 use App\Livewire\Pages\Report\Warehouse\General as WarehouseGeneral;
 use App\Livewire\Pages\Report\Warehouse\Warehouse;
 use App\Livewire\Pages\Sale\Distributions;
+use App\Livewire\Pages\Sale\Invoice;
+use App\Livewire\Pages\Setting\Client\ClientList;
 use App\Livewire\Pages\Setting\Permission\Permissions;
 use App\Livewire\Pages\Setting\Product\Products;
 use App\Livewire\Pages\Setting\ProductCategory\ProductCategories;
@@ -21,7 +24,9 @@ use App\Livewire\Pages\Setting\Role\Roles;
 use App\Livewire\Pages\Setting\Uom\Uoms;
 use App\Livewire\Pages\Setting\User\Users;
 use App\Livewire\Pages\Warehouse\Warehouses;
+use App\Models\Sale as ModelsSale;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -50,6 +55,10 @@ Route::view('profile', 'profile')
 Route::middleware('auth')->group(function () {
 
     Route::prefix('settings')->group(function () {
+        // clients
+        Route::prefix('clients')->group(function () {
+            Route::get('', ClientList::class)->name('clients');
+        });
         // unit of measure
         Route::prefix('unit-of-measures')->group(function () {
             Route::get('', Uoms::class)->name('uoms');
@@ -89,6 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('products', Finishedproducts::class)->name('products');
     Route::get('manage-warehouse', Warehouses::class)->name('warehouses');
     Route::get('product-distribution', Distributions::class)->name('distributions');
+    Route::get('product-distribution/{clientId}/{date}', Invoice::class)->name('invoice');
 
     // reports
     Route::prefix('reports')->group(function () {
@@ -125,3 +135,22 @@ Route::get('logout', function () {
 })->name('logout');
 
 require __DIR__ . '/auth.php';
+
+Route::get('test', function(Request $request) {
+
+    $groupedItems = ModelsSale::get()->groupBy(['client.name', function($qs) {
+        return $qs->date;
+    }]);
+
+     // Convert grouped items to a collection and paginate it
+     $paginatedItems = (new PaginateController)->paginate($groupedItems, 10, $request);
+    //  foreach ($paginatedItems as $client => $dates) {
+    //      foreach ($dates as $date=>$values) {
+    //         foreach($values as $dt) {
+    //             return($dt);
+    //         }
+    //      }
+    //  }
+     return $paginatedItems;
+});
+

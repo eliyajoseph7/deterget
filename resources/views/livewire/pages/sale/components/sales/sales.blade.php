@@ -27,14 +27,13 @@
                                     </div>
                                     <div class="">
                                         <button wire:click="exportExcel"
-                                        class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                                </svg>
-                                                <span>Export Excel</span>
+                                            class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+                                            <span>Export Excel</span>
                                         </button>
                                     </div>
                                 </div>
@@ -86,46 +85,63 @@
                                         </thead>
                                         <tbody
                                             class="[&>*:nth-child(even)]:bg-[#F6F9FF] [&>*:nth-child(even)]:dark:bg-gray-600">
-                                            @forelse ($data as $dt)
-                                                <tr wire:key="{{ $dt->id }}"
-                                                    class="border-b border-gray-100 dark:border-gray-700">
-                                                    <th scope="row"
-                                                        class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                        {{ $loop->iteration }}</th>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->date }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->name }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                        {{ $dt->product?->unit_price }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                        {{ $dt->product?->selling_price }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->quantity }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->selling_type }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->credit_days }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->client_name }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->client_phone }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->user?->name }}</td>
-                                                    <td class="px-4 py-3 flex items-center justify-end space-x-1">
-                                                        @if ($dt->date == $today->format('Y-m-d'))
-                                                            <button title="Update"
-                                                                wire:click="$dispatch('openModal', {component: 'pages.sale.components.sales.sales-form', arguments: {id: {{ $dt->id }}}})"
-                                                                class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
-                                                                <i class="fa fa-edit"></i></button>
-
-                                                            <button title="Delete"
-                                                                wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
-                                                                class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
-                                                        @endif
-
-                                                    </td>
+                                            @forelse ($data as $client => $dates)
+                                                <tr class="">
+                                                    <td colspan="11" class="mt-5"><strong>{{ $client }}</strong></td>
                                                 </tr>
+                                                @foreach ($dates as $date => $values)
+                                                    <tr>
+                                                        <td colspan="11"><em>{{ $date }}</em></td>
+                                                        <td>
+                                                            <a href="{{ route('invoice', [$values[0]->client_id, $date]) }}"
+                                                                class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
+                                                                <i class="fa fa-file-invoice-dollar"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @foreach ($values as $dt)
+                                                        <tr wire:key="{{ $dt->id }}"
+                                                            class="border-b border-gray-100 dark:border-gray-700">
+                                                            <th scope="row"
+                                                                class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                {{ $loop->iteration }}</th>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->date }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->product?->name }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                                {{ $dt->product?->unit_price }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                                {{ $dt->product?->selling_price }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->quantity }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->selling_type }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->credit_days }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->client?->name }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->client?->phone }}</td>
+                                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                                {{ $dt->user?->name }}</td>
+                                                            <td
+                                                                class="px-4 py-3 flex items-center justify-end space-x-1">
+                                                                @if ($dt->date == $today->format('Y-m-d'))
+                                                                    <button title="Update"
+                                                                        wire:click="$dispatch('openModal', {component: 'pages.sale.components.sales.sales-form', arguments: {id: {{ $dt->id }}}})"
+                                                                        class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
+                                                                        <i class="fa fa-edit"></i></button>
+
+                                                                    <button title="Delete"
+                                                                        wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
+                                                                        class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
+                                                                @endif
+
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endforeach
                                             @empty
                                                 <tr class="bg-gray-50">
                                                     <td class="py-2" colspan="50">
@@ -139,9 +155,9 @@
                                     </table>
                                 </div>
 
-                                @include('includes.table_pages', [
+                                {{-- @include('includes.table_pages', [
                                     'data' => $data,
-                                ])
+                                ]) --}}
                             </div>
                         </div>
                     </div>

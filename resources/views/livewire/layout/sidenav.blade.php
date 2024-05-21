@@ -1,7 +1,7 @@
 <aside id="logo-sidebar"
     class="fixed top-[6.2rem] left-0 z-40 w-64 h-screen pt-4 transition-transform -translate-x-full bg-gray-50 border-r-8 border-r-gray-100/50 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-inherit dark:bg-gray-800">
+    <div class="h-[85vh] px-3 pb-4 overflow-y-auto bg-inherit dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             @if (Helper::has_role('super-user'))
                 <li>
@@ -66,7 +66,7 @@
             @if (Helper::has_permission('view-product-distributions'))
                 <li>
                     <a href="{{ route('distributions') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('distributions') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ (Route::is('distributions') || Route::is('invoice')) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
@@ -126,6 +126,17 @@
         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <p class="text-sm text-gray-400">SETTINGS</p>
 
+            @if (Helper::has_permission('view-clients'))
+                <li>
+                    <a href="{{ route('clients') }}"
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('clients') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                          </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap text-md">Clients</span>
+                    </a>
+                </li>
+            @endif
             @if (Helper::has_permission('view-unit-of-measures'))
                 <li>
                     <a href="{{ route('uoms') }}"

@@ -130,6 +130,15 @@
             Livewire.on('update_seller_id_field', (data) => {
                 $('#seller_id').val(data).trigger('change')
             });
+
+
+            Livewire.on('reset_client_id', (e) => {
+                $('#client_id').val('').trigger('change')
+            });
+
+            Livewire.on('update_client_id_field', (data) => {
+                $('#client_id').val(data).trigger('change')
+            });
         })
 
         $(document).on('change', '#seller_id', function(e) {
@@ -140,6 +149,13 @@
             });
         });
 
+        $(document).on('change', '#client_id', function(e) {
+            console.log(e.target.value);
+            @this.set('client_id', e.target.value);
+            Livewire.dispatch('set_client_id', {
+                'id': e.target.value
+            });
+        });
 
         $(document).on('change', '#selling_type', function(e) {
             if($(this).val() == 'credit') {

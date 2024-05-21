@@ -38,13 +38,22 @@ class Sale extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function scopeSearchReport($qs, $keyword)
     {
-        $qs->where('client_name', 'like', '%' . $keyword . '%')
-            ->orWhere('sales.quantity', 'like', '%' . $keyword . '%')
-            ->orWhere('client_phone', 'like', '%' . $keyword . '%')
+        $qs->orWhere('sales.quantity', 'like', '%' . $keyword . '%')
+            // ->where('client_name', 'like', '%' . $keyword . '%')
+            // ->orWhere('client_phone', 'like', '%' . $keyword . '%')
             ->orWhereHas('product', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
+            })
+            ->orWhereHas('client', function ($query) use ($keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%')
+                    ->orWhere('phone', 'like', '%' . $keyword . '%');
             });
     }
 }
