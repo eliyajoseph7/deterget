@@ -66,7 +66,7 @@
             @if (Helper::has_permission('view-product-distributions'))
                 <li>
                     <a href="{{ route('distributions') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white {{ (Route::is('distributions') || Route::is('invoice')) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ in_array(Route::currentRouteName(), ['distributions', 'invoice', 'add_sales', 'edit_sales']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">

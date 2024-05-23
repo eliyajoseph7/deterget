@@ -23,6 +23,10 @@ class Sale extends Model
             });
     }
 
+    protected $casts = [
+        'date' => 'date'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -41,6 +45,10 @@ class Sale extends Model
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function items() {
+        return $this->hasMany(SaleItem::class);
     }
 
     public function scopeSearchReport($qs, $keyword)

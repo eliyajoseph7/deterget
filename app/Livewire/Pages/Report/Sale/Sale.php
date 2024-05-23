@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Report\Sale;
 use App\Exports\Reports\Sale\SaleReport;
 use App\Models\Remain;
 use App\Models\Sale as ModelsSale;
+use App\Models\SaleItem;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,8 @@ class Sale extends Component
 
     public $filter = 'all';
 
-    public function updatedFilter() {
+    public function updatedFilter()
+    {
         $this->fetchReport();
     }
 
@@ -78,21 +80,39 @@ class Sale extends Component
         //     ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
         //     ->orderBy($this->sortBy, $this->sortDir)->get()->groupBy('name')->all();
 
-        if($this->filter == 'all') {
-            $data = ModelsSale::search($this->search)
+        if ($this->filter == 'all') {
+            // $data = ModelsSale::search($this->search)
+            //     ->join('users', 'users.id', 'sales.seller_id')
+            //     ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+            //     ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+            //     ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+            //     ->orderBy($this->sortBy, $this->sortDir)->get();
+
+
+            $data = SaleItem::search($this->search)
+                ->join('sales', 'sales.id', 'sale_items.sale_id')
                 ->join('users', 'users.id', 'sales.seller_id')
-                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
-                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+                ->select('users.name', 'sales.seller_id', 'sale_items.product_id', 'sales.date', DB::raw('SUM(sale_items.quantity) as sold'))
+                ->groupBy('sales.date', 'sale_items.product_id', 'users.name', 'sales.seller_id')->with('product')
                 ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
                 ->orderBy($this->sortBy, $this->sortDir)->get();
         } else {
-            $data = ModelsSale::search($this->search)
-                ->join('users', 'users.id', 'sales.seller_id')
-                ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
-                ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
-                ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
-                ->where('selling_type', $this->filter)
-                ->orderBy($this->sortBy, $this->sortDir)->get();
+            // $data = ModelsSale::search($this->search)
+            //     ->join('users', 'users.id', 'sales.seller_id')
+            //     ->select('users.name', 'seller_id', 'sales.product_id', 'sales.date', DB::raw('SUM(sales.quantity) as sold'))
+            //     ->groupBy('sales.date', 'sales.product_id', 'users.name', 'seller_id')->with('product')
+            //     ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+            //     ->where('selling_type', $this->filter)
+            //     ->orderBy($this->sortBy, $this->sortDir)->get();
+
+                $data = SaleItem::search($this->search)
+                    ->join('sales', 'sales.id', 'sale_items.sale_id')
+                    ->join('users', 'users.id', 'sales.seller_id')
+                    ->select('users.name', 'sales.seller_id', 'sale_items.product_id', 'sales.date', DB::raw('SUM(sale_items.quantity) as sold'))
+                    ->groupBy('sales.date', 'sale_items.product_id', 'users.name', 'sales.seller_id')->with('product')
+                    ->whereMonth('sales.date', $this->date->format('m'))->whereYear('sales.date', $this->date->format('Y'))
+                    ->where('sales.selling_type', $this->filter)
+                    ->orderBy($this->sortBy, $this->sortDir)->get();
         }
 
         $result = collect([]);

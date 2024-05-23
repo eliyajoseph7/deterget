@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->date('date')->default(DB::raw('CURRENT_DATE'));
-            $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
-            $table->double('quantity')->default(1);
-            $table->string('client_name')->nullable();
-            $table->string('client_phone')->nullable();
+            // $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
+            // $table->double('quantity')->default(1);
+            // $table->string('client_name')->nullable();
+            // $table->string('client_phone')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->String('seller_id')->nullable();
             $table->enum('selling_type', ['cash', 'credit'])->default('cash');

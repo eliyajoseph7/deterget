@@ -40,6 +40,17 @@
         {{-- @livewire('pages.sale.components.remain.remains') --}}
     @endif
 
+
+    @if (session()->has('alert'))
+        <script>
+            document.addEventListener('livewire:init', () => {
+                Toast.fire({
+                    icon: '{{ session('alert.type') }}',
+                    title: '{{ session('alert.message') }}',
+                });
+            })
+        </script>
+    @endif
     <script data-navigate-once>
         $(document).ready(function() {
             var actv = localStorage.getItem('distribution_tab');

@@ -12,6 +12,7 @@ use App\Livewire\Pages\Report\Rm\RmMovement;
 use App\Livewire\Pages\Report\Sale\Sale;
 use App\Livewire\Pages\Report\Warehouse\General as WarehouseGeneral;
 use App\Livewire\Pages\Report\Warehouse\Warehouse;
+use App\Livewire\Pages\Sale\Components\Sales\SalesFormMultiple;
 use App\Livewire\Pages\Sale\Distributions;
 use App\Livewire\Pages\Sale\Invoice;
 use App\Livewire\Pages\Setting\Client\ClientList;
@@ -97,8 +98,12 @@ Route::middleware('auth')->group(function () {
     Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
     Route::get('products', Finishedproducts::class)->name('products');
     Route::get('manage-warehouse', Warehouses::class)->name('warehouses');
-    Route::get('product-distribution', Distributions::class)->name('distributions');
-    Route::get('product-distribution/{clientId}/{date}', Invoice::class)->name('invoice');
+    Route::prefix('product-distribution')->group(function() {
+        Route::get('', Distributions::class)->name('distributions');
+        Route::get('invoice/{id}', Invoice::class)->name('invoice');
+        Route::get('sale-form', SalesFormMultiple::class)->name('add_sales');
+        Route::get('sale-form/{saleId}', SalesFormMultiple::class)->name('edit_sales');
+    });
 
     // reports
     Route::prefix('reports')->group(function () {

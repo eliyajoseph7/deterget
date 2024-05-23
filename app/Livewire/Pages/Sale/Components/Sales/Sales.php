@@ -59,21 +59,15 @@ class Sales extends Component
     public function getData() {
         
         if (Helper::has_role('cashier')) {
-            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->get()->groupBy(['client.name', function ($qs) {
-                return $qs->date;
-            }]);
+            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
         } else if (Helper::has_role('credit-controller')) {
-            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->get()->groupBy(['client.name', function ($qs) {
-                return $qs->date;
-            }]);
+            $data = Sale::where('selling_type', 'credit')->search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage);
         } else {
-            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->get()->groupBy(['client.name', function ($qs) {
-                return $qs->date;
-            }]);
+            $data = Sale::search($this->search)->orderBy($this->sortBy, $this->sortDir)->where('user_id', auth()->user()->id)->paginate($this->perPage);
         }
 
 
-        return (new PaginateController)->paginate($data, $this->perPage);
+        return $data;
         
     }
 

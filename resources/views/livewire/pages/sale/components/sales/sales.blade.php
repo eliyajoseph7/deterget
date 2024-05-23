@@ -4,12 +4,17 @@
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
                 <div class="w-full">
                     <div class="flex justify-end pb-2">
-                        <button
+                        <a href="{{ route('add_sales') }}"
+                            class="items-center space-x-0.5 text-gray-600 hover:text-gray-500 bg-gray-50 hover:bg-white shadow-sm hover:shadow-md px-2 border-2 border-gray-200 py-1 rounded-lg">
+                            <i class="fa-solid fa-plus-circle"></i>
+                            <span class="">{{ __('Record Sales') }}</span>
+                        </a>
+                        {{-- <button
                             wire:click="$dispatch('openModal', {component: 'pages.sale.components.sales.sales-form'})"
                             class="items-center space-x-0.5 text-gray-600 hover:text-gray-500 bg-gray-50 hover:bg-white shadow-sm hover:shadow-md px-2 border-2 border-gray-200 py-1 rounded-lg">
                             <i class="fa-solid fa-plus-circle"></i>
                             <span class="">{{ __('Record Sales') }}</span>
-                        </button>
+                        </button> --}}
 
                     </div>
                     <div class="flex flex-col-reverse md:flex-row md:space-x-3">
@@ -49,14 +54,12 @@
                                                     'displayName' => 'Date',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'product_id',
-                                                    'displayName' => 'Product',
+                                                    'name' => 'client_name',
+                                                    'displayName' => 'Client Name',
                                                 ])
-                                                <th scope="col" class="px-4 py-3">Unit Price</th>
-                                                <th scope="col" class="px-4 py-3">Selling Price</th>
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'quantity',
-                                                    'displayName' => 'Quantity',
+                                                    'name' => 'client_phone',
+                                                    'displayName' => 'Client Phone',
                                                 ])
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'selling_type',
@@ -67,16 +70,12 @@
                                                     'displayName' => 'Credit Days',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'client_name',
-                                                    'displayName' => 'Client Name',
-                                                ])
-                                                @include('includes.table-header-sort', [
-                                                    'name' => 'client_phone',
-                                                    'displayName' => 'Client Phone',
-                                                ])
-                                                @include('includes.table-header-sort', [
                                                     'name' => 'user_id',
                                                     'displayName' => 'Recorded By',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'invoiceno',
+                                                    'displayName' => 'Invoice No.',
                                                 ])
                                                 <th scope="col" class="px-4 py-3 w-[100px] float-end">
                                                     <span class="sr-only">Actions</span>
@@ -85,63 +84,45 @@
                                         </thead>
                                         <tbody
                                             class="[&>*:nth-child(even)]:bg-[#F6F9FF] [&>*:nth-child(even)]:dark:bg-gray-600">
-                                            @forelse ($data as $client => $dates)
-                                                <tr class="">
-                                                    <td colspan="11" class="mt-5"><strong>{{ $client }}</strong></td>
-                                                </tr>
-                                                @foreach ($dates as $date => $values)
-                                                    <tr>
-                                                        <td colspan="11"><em>{{ $date }}</em></td>
-                                                        <td>
-                                                            <a href="{{ route('invoice', [$values[0]->client_id, $date]) }}"
+
+                                            @forelse ($data as $dt)
+                                                <tr wire:key="{{ $dt->id }}"
+                                                    class="border-b border-gray-100 dark:border-gray-700">
+                                                    <th scope="row"
+                                                        class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                        {{ $loop->iteration }}</th>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->date->format('M d, Y') }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->client?->name }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->client?->phone }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->selling_type }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->credit_days }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->user?->name }}</td>
+                                                        <td class="px-4 py-3 whitespace-nowrap">
+                                                            {{ $dt->invoiceno }}</td>
+                                                    <td class="px-4 py-3 flex items-center justify-end space-x-1">
+                                                        @if ($dt->date->format('Y-m-d') == $today->format('Y-m-d'))
+                                                            <a title="Update" href="{{ route('edit_sales', $dt->id) }}"
                                                                 class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
-                                                                <i class="fa fa-file-invoice-dollar"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @foreach ($values as $dt)
-                                                        <tr wire:key="{{ $dt->id }}"
-                                                            class="border-b border-gray-100 dark:border-gray-700">
-                                                            <th scope="row"
-                                                                class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                {{ $loop->iteration }}</th>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->date }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->product?->name }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                                {{ $dt->product?->unit_price }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap text-right">
-                                                                {{ $dt->product?->selling_price }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->quantity }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->selling_type }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->credit_days }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->client?->name }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->client?->phone }}</td>
-                                                            <td class="px-4 py-3 whitespace-nowrap">
-                                                                {{ $dt->user?->name }}</td>
-                                                            <td
-                                                                class="px-4 py-3 flex items-center justify-end space-x-1">
-                                                                @if ($dt->date == $today->format('Y-m-d'))
-                                                                    <button title="Update"
-                                                                        wire:click="$dispatch('openModal', {component: 'pages.sale.components.sales.sales-form', arguments: {id: {{ $dt->id }}}})"
-                                                                        class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
-                                                                        <i class="fa fa-edit"></i></button>
+                                                                <i class="fa fa-edit"></i></a>
 
-                                                                    <button title="Delete"
-                                                                        wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
-                                                                        class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
-                                                                @endif
+                                                            <button title="Delete"
+                                                                wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
+                                                                class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
+                                                        @endif
+                                                                    <a href="{{ route('invoice', $dt->id) }}"
+                                                                        class="px-1 text-red-400 hover:text-red-500 bg-gray-300 hover:bg-red-100  rounded">
+                                                                        <i class="fa fa-file-invoice-dollar"></i>
+                                                                    </a>
 
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endforeach
+                                                    </td>
+                                                </tr>
+
                                             @empty
                                                 <tr class="bg-gray-50">
                                                     <td class="py-2" colspan="50">

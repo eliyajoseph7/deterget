@@ -57,10 +57,15 @@ class SalesForm extends ModalComponent
         $this->client_id = $id;
     }
 
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
+    }
+
     public function addSale()
     {
         $this->validate();
-        if($this->selling_type == 'credit') {
+        if ($this->selling_type == 'credit') {
             $this->validate([
                 'credit_days' => 'required'
             ]);
@@ -68,7 +73,7 @@ class SalesForm extends ModalComponent
 
         // $dispatched = WarehouseDispatch::where('product_id', $this->product_id)->where('assigned', $this->seller_id)
         //     ->where('date', now()->format('Y-m-d'))->sum('quantity');
-            
+
 
         // if ($dispatched > 0) {
         //     if ($dispatched > $this->quantity) {
@@ -127,7 +132,7 @@ class SalesForm extends ModalComponent
     public function updateSale()
     {
         $this->validate();
-        if($this->selling_type == 'credit') {
+        if ($this->selling_type == 'credit') {
             $this->validate([
                 'credit_days' => 'required'
             ]);
@@ -163,15 +168,16 @@ class SalesForm extends ModalComponent
         $this->dispatch('show_success', 'Record updated successfully!');
     }
 
-    public function generateInvoiceNo($count = 1) {
+    public function generateInvoiceNo($count = 1)
+    {
         $invoiceno = str_pad($count, 4, '0', STR_PAD_LEFT); // Generates a random 4-digit number
 
 
         $prev = Sale::where('invoiceno', $invoiceno)->where('client_id', $this->client_id)
-        ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), '=', now()->format('Y-m-d'))->first();
-        if(!$prev) {
+            ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), '=', now()->format('Y-m-d'))->first();
+        if (!$prev) {
             $check = Sale::where('invoiceno', $invoiceno);
-            if($check->exists()) {
+            if ($check->exists()) {
                 return $this->generateInvoiceNo($count++);
             }
         }
