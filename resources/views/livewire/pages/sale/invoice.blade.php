@@ -16,7 +16,7 @@
     <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
         <div class="sm:w-11/12 lg:w-3/4 mx-auto">
             <!-- Card -->
-            <div class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
+            <div id="invoiceDiv" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
                 <!-- Grid -->
                 <div class="flex justify-between">
                     <div>
@@ -47,7 +47,8 @@
                 <div class="mt-8 grid sm:grid-cols-2 gap-3">
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Bill to:</h3>
-                        <h3 class="text-md font-semibold text-gray-800 dark:text-neutral-200">{{ $sale?->client->name }}</h3>
+                        <h3 class="text-md font-semibold text-gray-800 dark:text-neutral-200">{{ $sale?->client->name }}
+                        </h3>
                         <address class="mt-2 not-italic text-gray-500 dark:text-neutral-500">
                             {{ $sale?->client->phone }}<br>
                         </address>
@@ -60,7 +61,8 @@
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Invoice date:
                                 </dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">{{ $sale?->date->format('d/m/Y') }}
+                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                                    {{ $sale?->date->format('d/m/Y') }}
                                 </dd>
                             </dl>
                             {{-- <dl class="grid sm:grid-cols-5 gap-x-3">
@@ -160,10 +162,10 @@
                 <div class="mt-8 sm:mt-12">
                     <h4 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Thank you!</h4>
                     {{-- <p class="text-gray-500 dark:text-neutral-500">If you have any questions concerning this invoice, use the following contact information:</p>
-          <div class="mt-2">
-            <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">example@site.com</p>
-            <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">+1 (062) 109-9222</p>
-          </div> --}}
+                <div class="mt-2">
+                    <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">example@site.com</p>
+                    <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">+1 (062) 109-9222</p>
+                </div> --}}
                 </div>
 
                 <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© {{ now()->format('Y') }} Reven.</p>
@@ -172,8 +174,8 @@
 
             <!-- Buttons -->
             <div class="mt-6 flex justify-end gap-x-3">
-                <a class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-                    href="#">
+                {{-- <a class="py-2 px-3 cursor-pointer inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+                     wire:click="downloadPdf">
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -182,9 +184,9 @@
                         <line x1="12" x2="12" y1="15" y2="3" />
                     </svg>
                     Invoice PDF
-                </a>
-                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                    href="#">
+                </a> --}}
+                <a class="py-2 px-3 cursor-pointer inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                      onclick="printInvoice('invoiceDiv')">
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -199,4 +201,21 @@
         </div>
     </div>
     <!-- End Invoice -->
+
+    <script>
+        function printInvoice(divId) {
+            var printContents = document.getElementById(divId).innerHTML;
+            var originalContents = document.body.innerHTML;
+        
+            document.body.innerHTML = printContents;
+        
+            window.print();
+        
+            document.body.innerHTML = originalContents;
+        
+            // Optional: If you're using a framework or Livewire, you may need to reinitialize some parts of your page
+            location.reload();  // Reload the page to reset the content and any dynamic features
+        }
+        </script>
+        
 </div>
