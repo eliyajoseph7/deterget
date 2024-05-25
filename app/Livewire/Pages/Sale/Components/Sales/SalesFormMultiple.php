@@ -163,6 +163,7 @@ class SalesFormMultiple extends Component
     public function generateInvoiceNo($count = 1)
     {
         $invoiceno = str_pad($count, 4, '0', STR_PAD_LEFT); // Generates a random 4-digit number
+        $invoiceno = 'INV-'.$invoiceno;
 
 
     //     $prev = Sale::where('invoiceno', $invoiceno)->where('client_id', $this->client_id)

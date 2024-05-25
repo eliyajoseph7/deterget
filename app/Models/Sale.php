@@ -64,4 +64,10 @@ class Sale extends Model
                     ->orWhere('phone', 'like', '%' . $keyword . '%');
             });
     }
+
+    // protected $appends = ['amount'];
+    
+    // public function getAmountAttribute() {
+    //     return SaleItem::where('sale_id', $this->id)->sum('price');
+    // }
 }
