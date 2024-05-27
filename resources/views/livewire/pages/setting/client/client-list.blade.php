@@ -46,6 +46,26 @@
                                                     'name' => 'phone',
                                                     'displayName' => 'Phone',
                                                 ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'tinNumber',
+                                                    'displayName' => 'Tin Number',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'vrNumber',
+                                                    'displayName' => 'VRN',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'bankAccount',
+                                                    'displayName' => 'Account Number',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'bankAccount',
+                                                    'displayName' => 'Bank Name',
+                                                ])
+                                                @include('includes.table-header-sort', [
+                                                    'name' => 'tinNumber',
+                                                    'displayName' => 'Address',
+                                                ])
                                                 <th scope="col" class="px-4 py-3 w-[100px] float-end">
                                                     <span class="sr-only">Actions</span>
                                                 </th>
@@ -63,6 +83,16 @@
                                                         {{ $dt->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->phone }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->tinNumber }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->vrNumber }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->bankAccount }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->bankName }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->address }}</td>
                                                     <td class="px-4 py-3 flex items-center justify-end space-x-1">
                                                         <button title="Update"
                                                             wire:click="$dispatch('openModal', {component: 'pages.setting.client.client-form', arguments: {id: {{ $dt->id }}}})"

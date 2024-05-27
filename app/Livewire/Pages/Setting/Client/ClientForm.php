@@ -16,6 +16,15 @@ class ClientForm extends ModalComponent
     public $name;
     #[Rule('required')]
     public $phone;
+    #[Rule('required')]
+    public $tinNumber;
+
+    public $vrNumber;
+    public $bankAccount;
+    public $bankName;
+
+    #[Rule('required')]
+    public $address;
 
 
     protected $listeners = [
@@ -30,6 +39,11 @@ class ClientForm extends ModalComponent
         $client = new Client;
         $client->name = $this->name;
         $client->phone = $this->phone;
+        $client->tinNumber = $this->tinNumber;
+        $client->vrNumber = $this->vrNumber;
+        $client->bankAccount = $this->bankAccount;
+        $client->bankName = $this->bankName;
+        $client->address = $this->address;
         $client->save();
 
         $this->resetForm();
@@ -45,6 +59,10 @@ class ClientForm extends ModalComponent
         $this->id = $id;
         $this->name = $qs->name;
         $this->phone = $qs->phone;
+        $this->vrNumber = $qs->vrNumber;
+        $this->bankAccount = $qs->bankAccount;
+        $this->bankName = $qs->bankName;
+        $this->address = $qs->address;
     }
 
     public function updateClient()
@@ -54,6 +72,11 @@ class ClientForm extends ModalComponent
         $qs = Client::find($this->id);
         $qs->name = $this->name;
         $qs->phone = $this->phone;
+        $qs->tinNumber = $this->tinNumber;
+        $qs->vrNumber = $this->vrNumber;
+        $qs->bankAccount = $this->bankAccount;
+        $qs->bankName = $this->bankName;
+        $qs->address = $this->address;
 
         $qs->save();
 

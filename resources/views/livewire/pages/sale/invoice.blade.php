@@ -22,7 +22,7 @@
                     <div>
                         <img src="{{ asset('assets/images/reven.png') }}" class="w-32">
 
-                        <h1 class="mt-2 text-lg md:text-xl font-semibold text-blue-600 dark:text-white">Medics (T) Ltd.
+                        <h1 class="mt-2 text-lg md:text-xl font-semibold text-blue-600 dark:text-white">J&N Medics (T) Ltd.
                         </h1>
                     </div>
                     <!-- Col -->
@@ -51,6 +51,8 @@
                         </h3>
                         <address class="mt-2 not-italic text-gray-500 dark:text-neutral-500">
                             {{ $sale?->client->phone }}<br>
+                            {{ $sale?->client->tinNumber }}<br>
+                            {{ $sale?->client->vrNumber }}<br>
                         </address>
                     </div>
                     <!-- Col -->

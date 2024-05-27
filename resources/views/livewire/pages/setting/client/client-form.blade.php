@@ -54,6 +54,102 @@
                     </div>
                 </div>
             </div>
+            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+                <div class="">
+                    <label for="tinNumber" class="block text-sm font-medium leading-6 text-gray-900">Tin Number <span
+                            class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="tinNumber" wire:model.live="tinNumber"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('tinNumber')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+                <div class="">
+                    <label for="vrNumber" class="block text-sm font-medium leading-6 text-gray-900">VR Number <span
+                            class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="vrNumber" wire:model.live="vrNumber"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('vrNumber')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+                <div class="">
+                    <label for="bankAccount" class="block text-sm font-medium leading-6 text-gray-900">Bank Account<span
+                            class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="bankAccount" wire:model.live="bankAccount"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('bankAccount')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+                <div class="">
+                    <label for="bankName" class="block text-sm font-medium leading-6 text-gray-900">Bank Name <span
+                            class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="bankName" wire:model.live="bankName"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('bankName')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+                <div class="">
+                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address <span
+                            class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="address" wire:model.live="address"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('address')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <button type="submit" class="bg-red-500 hover:bg-red-600 col-span-full p-2 rounded-lg text-white">
                 <div wire:loading>
