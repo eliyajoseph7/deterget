@@ -2,7 +2,7 @@
     <x-slot name="header">
         @include('includes.breadcrumb', [
             'main' => '',
-            'menu' => 'Reconciliation',
+            'menu' => 'Cash Reconciliation',
         ])
     </x-slot>
     <div class="min-h-[80vh] dark:bg-gray-800 overflow-hidden sm:rounded-lg items-center w-full relative">
@@ -34,7 +34,9 @@
                 @if ($reconciled)
                 @else
                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-md flex space-x-3"
-                    wire:click="$dispatch('mark_reconciliation_done')">
+                    {{-- wire:click="$dispatch('mark_reconciliation_done')" --}}
+                    id="mark_done"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -45,4 +47,32 @@
             </div>
         </div>
     </div>
+
+    <script data-navigate-once>
+        document.addEventListener('livewire:init', () => {
+            // add
+            Livewire.on('show_success', (message) => {
+                Toast.fire({
+                    icon: 'success',
+                    title: message,
+                });
+            });
+            Livewire.on('show_error', (message) => {
+                ToastErr.fire({
+                    icon: 'error',
+                    title: message,
+                });
+            });
+
+        })
+
+        $('#mark_done').on('click', function() {
+            var sale = $('#cash_sale').text().replaceAll(',', '')
+            var transaction = $('#cash_transaction').text().replaceAll(',', '')
+            Livewire.dispatch('mark_reconciliation', {
+                'total_sale': sale,
+                'total_transaction': transaction
+            })
+        })
+    </script>
 </div>

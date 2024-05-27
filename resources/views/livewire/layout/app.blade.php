@@ -133,6 +133,18 @@
         timerProgressBar: true,
     });
 
+    const ToastErr = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'red',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
         $('.select2').select2({
             minimumResultsForSearch: 6,

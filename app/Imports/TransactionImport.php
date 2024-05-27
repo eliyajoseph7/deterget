@@ -32,11 +32,13 @@ class TransactionImport implements ToModel, WithUpserts, WithHeadingRow
                 'date' => $date,
                 'invoiceno' => $row['invoiceno'],
                 'amount' => $row['amount'],
+                'paymode' => $row['paymode'],
             ]);
         } else {
             $qs->date = $date;
             $qs->invoiceno = $row['invoiceno'];
-            $qs->amount = $row['amount'];
+            $qs->paymode = $row['paymode'];
+            $qs->amount += $row['amount'];
 
             $qs->save();
         }

@@ -16,11 +16,18 @@ class Reconciliation extends Component
     public function reconciled() {
         $this->reconciled = true;
         $this->loading = false;
+        $this->dispatch('show_success', 'Reconciled successfully');
     }
 
-    #[On('mark_reconciliation_done')]
-    public function markDone() {
+    #[On('mark_reconciliation')]
+    public function markDone($total_sale, $total_transaction) {
         $this->loading = true;
+        if($total_sale != $total_transaction) {
+            $this->loading = false;
+            $this->dispatch('show_error', 'Transactions does not balance!');
+        } else {
+            $this->dispatch('mark_reconciliation_done');
+        }
     }
 
     public function mount() {

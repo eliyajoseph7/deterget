@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->date('date')->default(DB::raw('CURRENT_DATE'));
             $table->string('invoiceno');
+            $table->string('paymode')->nullable();
             $table->double('amount');
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

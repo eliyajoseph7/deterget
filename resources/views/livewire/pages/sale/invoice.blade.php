@@ -51,8 +51,8 @@
                         </h3>
                         <address class="mt-2 not-italic text-gray-500 dark:text-neutral-500">
                             {{ $sale?->client->phone }}<br>
-                            {{ $sale?->client->tin_number }}<br>
-                            {{ $sale?->client->vr_number }}<br>
+                            TIN Number: {{ $sale?->client->tin_number }}<br>
+                            VR Number: {{ $sale?->client->vr_number }}<br>
                         </address>
                     </div>
                     <!-- Col -->

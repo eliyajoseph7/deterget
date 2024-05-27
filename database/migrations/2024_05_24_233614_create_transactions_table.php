@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('invoiceno');
             $table->double('amount');
+            $table->string('paymode')->nullable();
             $table->timestamps();
         });
     }

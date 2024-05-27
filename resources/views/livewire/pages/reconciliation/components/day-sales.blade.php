@@ -37,7 +37,7 @@
                 @endforelse
                 <tr class="">
                     <td colspan="4" class="px-4 py-2 font-bold">Total</td>
-                    <td class="px-4 py-2 font-bold">{{ number_format($data->sum('amount'), 2) }}</td>
+                    <td class="px-4 py-2 font-bold" id="cash_sale">{{ number_format($data->sum('amount'), 2) }}</td>
                 </tr>
             </tbody>
         </table>

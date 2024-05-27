@@ -13,6 +13,7 @@ class Transaction extends Model
         'date',
         'invoiceno',
         'amount',
+        'paymode',
     ];
 
     protected $casts = [

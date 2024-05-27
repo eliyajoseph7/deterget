@@ -13,6 +13,7 @@ class Reconciliation extends Model
         'date',
         'invoiceno',
         'amount',
-        'user_id'
+        'user_id',
+        'paymode'
     ];
 }

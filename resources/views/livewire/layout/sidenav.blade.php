@@ -78,17 +78,37 @@
                     </a>
                 </li>
             @endif
-            <li>
-                <a href="{{ route('reconciliation') }}"
-                    class="flex items-center p-2 rounded-lg dark:text-white {{ in_array(Route::currentRouteName(), ['reconciliation']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap text-md">Reconciliation</span>
-                </a>
-            </li>
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <p class="text-sm text-gray-400">REPORTS</p>
+                <li>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['cash_reconciliation', 'credit_reconciliation']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
+                        aria-controls="dropdown-recon" data-collapse-toggle="dropdown-recon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Reconciliation</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-recon"
+                        class="{{ in_array(Route::currentRouteName(), ['cash_reconciliation', 'credit_reconciliation']) ? '' : 'hidden' }} py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('cash_reconciliation') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('cash_reconciliation') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Cash</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('credit_reconciliation') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('credit_reconciliation') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Credit</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </ul>
         @if (Helper::has_role('super-user'))
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
@@ -97,8 +117,8 @@
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
                         </svg>
@@ -106,8 +126,8 @@
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Reports</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
                     <ul id="dropdown-example"

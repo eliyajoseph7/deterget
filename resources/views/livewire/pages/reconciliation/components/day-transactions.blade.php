@@ -11,6 +11,7 @@
                     <th scope="col" class="px-4 py-3">Client</th>
                     <th scope="col" class="px-4 py-3">Invoice No.</th>
                     <th scope="col" class="px-4 py-3">Amount</th>
+                    <th scope="col" class="px-4 py-3">Pay Mode</th>
                     
                 </tr>
             </thead>
@@ -30,6 +31,8 @@
                             {{ $dt->invoiceno }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ number_format($dt->amount , 2)}}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                {{ $dt->paymode }}</td>
                     </tr>
                 @empty
                     <tr class="bg-gray-50">
@@ -41,7 +44,8 @@
                 @endforelse
                 <tr class="">
                     <td colspan="4" class="px-4 py-2 font-bold">Total</td>
-                    <td class="px-4 py-2 font-bold">{{ number_format($data->sum('amount'), 2) }}</td>
+                    <td class="px-4 py-2 font-bold" id="cash_transaction">{{ number_format($data->sum('amount'), 2) }}</td>
+                    <td colspan="" class="px-4 py-2 font-bold"></td>
                 </tr>
 
             </tbody>

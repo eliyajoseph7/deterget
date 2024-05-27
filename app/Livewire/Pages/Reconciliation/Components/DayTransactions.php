@@ -14,12 +14,14 @@ class DayTransactions extends Component
 
     #[On('mark_reconciliation_done')]
     public function markReconciliationDone() {
+        
         $this->getData();
         foreach($this->data as $dt) {
             Reconciliation::create([
                 'date'=> now(),
                 'invoiceno' => $dt->invoiceno,
                 'amount' => $dt->amount,
+                'paymode' => $dt->paymode,
                 'user_id' => auth()->user()->id
             ]);
         }
@@ -32,8 +34,8 @@ class DayTransactions extends Component
         $data = Transaction::join('sales', 'sales.invoiceno', 'transactions.invoiceno')
             ->join('clients', 'clients.id', 'sales.client_id')
             ->where('sales.selling_type', 'cash')
-            ->select('transactions.date', 'clients.name', 'transactions.invoiceno', DB::raw('SUM(transactions.amount) as amount'))
-            ->groupBy('transactions.date', 'clients.name', 'transactions.invoiceno')
+            ->select('transactions.date', 'clients.name', 'transactions.invoiceno', 'paymode', DB::raw('SUM(transactions.amount) as amount'))
+            ->groupBy('transactions.date', 'clients.name', 'transactions.invoiceno', 'paymode')
             ->where(DB::raw("(DATE_FORMAT(transactions.created_at,'%Y-%m-%d'))"), now()->format('Y-m-d'))->get();
 
         $this->data = $data;
