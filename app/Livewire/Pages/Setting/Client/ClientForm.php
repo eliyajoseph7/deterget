@@ -17,11 +17,11 @@ class ClientForm extends ModalComponent
     #[Rule('required')]
     public $phone;
     #[Rule('required')]
-    public $tinNumber;
+    public $tin_number;
 
-    public $vrNumber;
-    public $bankAccount;
-    public $bankName;
+    public $vr_number;
+    public $bank_account;
+    public $bank_name;
 
     #[Rule('required')]
     public $address;
@@ -39,10 +39,10 @@ class ClientForm extends ModalComponent
         $client = new Client;
         $client->name = $this->name;
         $client->phone = $this->phone;
-        $client->tinNumber = $this->tinNumber;
-        $client->vrNumber = $this->vrNumber;
-        $client->bankAccount = $this->bankAccount;
-        $client->bankName = $this->bankName;
+        $client->tin_number = $this->tin_number;
+        $client->vr_number = $this->vr_number;
+        $client->bank_account = $this->bank_account;
+        $client->bank_name = $this->bank_name;
         $client->address = $this->address;
         $client->save();
 
@@ -59,9 +59,9 @@ class ClientForm extends ModalComponent
         $this->id = $id;
         $this->name = $qs->name;
         $this->phone = $qs->phone;
-        $this->vrNumber = $qs->vrNumber;
-        $this->bankAccount = $qs->bankAccount;
-        $this->bankName = $qs->bankName;
+        $this->vr_number = $qs->vr_number;
+        $this->bank_account = $qs->bank_account;
+        $this->bank_name = $qs->bank_name;
         $this->address = $qs->address;
     }
 
@@ -72,10 +72,10 @@ class ClientForm extends ModalComponent
         $qs = Client::find($this->id);
         $qs->name = $this->name;
         $qs->phone = $this->phone;
-        $qs->tinNumber = $this->tinNumber;
-        $qs->vrNumber = $this->vrNumber;
-        $qs->bankAccount = $this->bankAccount;
-        $qs->bankName = $this->bankName;
+        $qs->tin_number = $this->tin_number;
+        $qs->vr_number = $this->vr_number;
+        $qs->bank_account = $this->bank_account;
+        $qs->bank_name = $this->bank_name;
         $qs->address = $this->address;
 
         $qs->save();

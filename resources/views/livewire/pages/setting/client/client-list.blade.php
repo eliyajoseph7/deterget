@@ -47,23 +47,23 @@
                                                     'displayName' => 'Phone',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'tinNumber',
+                                                    'name' => 'tin_number',
                                                     'displayName' => 'Tin Number',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'vrNumber',
+                                                    'name' => 'vr_number',
                                                     'displayName' => 'VRN',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'bankAccount',
+                                                    'name' => 'bank_account',
                                                     'displayName' => 'Account Number',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'bankAccount',
+                                                    'name' => 'bank_account',
                                                     'displayName' => 'Bank Name',
                                                 ])
                                                 @include('includes.table-header-sort', [
-                                                    'name' => 'tinNumber',
+                                                    'name' => 'tin_number',
                                                     'displayName' => 'Address',
                                                 ])
                                                 <th scope="col" class="px-4 py-3 w-[100px] float-end">
@@ -84,13 +84,13 @@
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->phone }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->tinNumber }}</td>
+                                                        {{ $dt->tin_number }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->vrNumber }}</td>
+                                                        {{ $dt->vr_number }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->bankAccount }}</td>
+                                                        {{ $dt->bank_account }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->bankName }}</td>
+                                                        {{ $dt->bank_name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->address }}</td>
                                                     <td class="px-4 py-3 flex items-center justify-end space-x-1">

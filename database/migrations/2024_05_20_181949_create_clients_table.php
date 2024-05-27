@@ -15,11 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('tinNumber');
-            $table->string('vrNumber');
-            $table->string('bankAccount');
-            $table->string('bankName');
-            $table->string('address');
             $table->timestamps();
         });
     }

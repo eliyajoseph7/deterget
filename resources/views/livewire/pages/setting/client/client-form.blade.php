@@ -54,76 +54,69 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+            <div class="grid grid-flow-col grid-cols-2 gap-2 w-full col-span-full">
                 <div class="">
-                    <label for="tinNumber" class="block text-sm font-medium leading-6 text-gray-900">Tin Number <span
+                    <label for="tin_number" class="block text-sm font-medium leading-6 text-gray-900">Tin Number <span
                             class="text-red-500">*</span></label>
                     <div class="mt-2">
                         <div
                             class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="tel" id="tinNumber" wire:model.live="tinNumber"
+                            <input type="tel" id="tin_number" wire:model.live="tin_number"
                                 class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                 placeholder="1XXXXXXXXX">
                         </div>
                         <div class="text-red-500 text-sm">
-                            @error('tinNumber')
+                            @error('tin_number')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <label for="vr_number" class="block text-sm font-medium leading-6 text-gray-900">VR Number</label>
+                    <div class="mt-2">
+                        <div
+                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                            <input type="tel" id="vr_number" wire:model.live="vr_number"
+                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                placeholder="1XXXXXXXXX">
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('vr_number')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
+            <div class="grid grid-flow-col grid-cols-2 gap-2 w-full col-span-full">
                 <div class="">
-                    <label for="vrNumber" class="block text-sm font-medium leading-6 text-gray-900">VR Number <span
-                            class="text-red-500">*</span></label>
+                    <label for="bank_account" class="block text-sm font-medium leading-6 text-gray-900">Bank Account</label>
                     <div class="mt-2">
                         <div
                             class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="tel" id="vrNumber" wire:model.live="vrNumber"
+                            <input type="tel" id="bank_account" wire:model.live="bank_account"
                                 class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                 placeholder="1XXXXXXXXX">
                         </div>
                         <div class="text-red-500 text-sm">
-                            @error('vrNumber')
+                            @error('bank_account')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
                 <div class="">
-                    <label for="bankAccount" class="block text-sm font-medium leading-6 text-gray-900">Bank Account<span
-                            class="text-red-500">*</span></label>
+                    <label for="bank_name" class="block text-sm font-medium leading-6 text-gray-900">Bank Name</label>
                     <div class="mt-2">
                         <div
                             class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="tel" id="bankAccount" wire:model.live="bankAccount"
+                            <input type="tel" id="bank_name" wire:model.live="bank_name"
                                 class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                 placeholder="1XXXXXXXXX">
                         </div>
                         <div class="text-red-500 text-sm">
-                            @error('bankAccount')
-                                <span class="error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-flow-col grid-cols-1 gap-2 w-full col-span-full">
-                <div class="">
-                    <label for="bankName" class="block text-sm font-medium leading-6 text-gray-900">Bank Name <span
-                            class="text-red-500">*</span></label>
-                    <div class="mt-2">
-                        <div
-                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="tel" id="bankName" wire:model.live="bankName"
-                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                placeholder="1XXXXXXXXX">
-                        </div>
-                        <div class="text-red-500 text-sm">
-                            @error('bankName')
+                            @error('bank_name')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
