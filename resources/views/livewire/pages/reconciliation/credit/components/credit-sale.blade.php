@@ -4,7 +4,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 dark:bg-gray-700">
             <thead class="text-xs text-gray-700 dark:text-gray-100 bg-gray-100 dark:bg-gray-800">
                 <tr>
-                    <th scope="col" class="px-4 py-3 w-[50px]">S/No.</th>
+                    <th scope="col" class="px-4 py-3 w-[20px]">S/No.</th>
                     <th scope="col" class="px-4 py-3">Date</th>
                     <th scope="col" class="px-4 py-3">Client</th>
                     <th scope="col" class="px-4 py-3">Invoice No.</th>
