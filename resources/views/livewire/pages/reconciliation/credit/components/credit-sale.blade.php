@@ -20,7 +20,7 @@
                             {{ $loop->iteration }}</th>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ $dt->date->format('Y-m-d') }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
+                        <td class="px-4 py-3 whitesp ace-nowrap">
                             {{ $dt->name }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ $dt->invoiceno }}</td>
