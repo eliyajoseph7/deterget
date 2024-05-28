@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Livewire\Pages\Reconciliation\Reconciliation;
+use App\Models\Reconciliation;
 use App\Models\Transaction;
 use DateTime;
 use Maatwebsite\Excel\Concerns\ToModel;
