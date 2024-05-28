@@ -32,7 +32,11 @@ class Helper
         if (in_array('super-admin', auth()->user()?->roles()->pluck('slug')->toArray()) || in_array('super-user', auth()->user()?->roles()->pluck('slug')->toArray())) {
             return true;
         } else {
-            if (in_array($permission, auth()->user()?->roles()?->permissions()->pluck('slug')->toArray())) {
+            // in_array($permission, auth()->user()?->permissions()->pluck('slug')->toArray())
+            if (in_array($permission, auth()->user()?->roles()->with('permissions')->get()
+                ->pluck('permissions.*.slug')
+                ->flatten()
+                ->unique()->toArray())) {
                 return true;
             } else {
                 return false;
