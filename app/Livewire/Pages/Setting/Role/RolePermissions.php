@@ -35,7 +35,11 @@ class RolePermissions extends Component
             foreach($roles as $role) {
                 $permissions = $role->permissions()->pluck('id');
                 foreach($permissions as $permission) {
-                    $user->permissions()->attach($permission);
+                    try {
+                        $user->permissions()->attach($permission);
+                    } catch (\Throwable $th) {
+                        continue;
+                    }
                 }
             }
         }
