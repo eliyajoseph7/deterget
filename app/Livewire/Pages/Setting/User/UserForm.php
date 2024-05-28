@@ -91,6 +91,9 @@ class UserForm extends ModalComponent
         $user->name = $this->name;
         $user->email = $this->email;
         $user->phone = $this->phone;
+        if($this->password) {
+            $user->password = Hash::make($this->password);
+        }
 
         $user->save();
 

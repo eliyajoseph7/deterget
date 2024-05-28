@@ -33,10 +33,7 @@ class Helper
             return true;
         } else {
             // in_array($permission, auth()->user()?->permissions()->pluck('slug')->toArray())
-            if (in_array($permission, auth()->user()?->roles()->with('permissions')->get()
-                ->pluck('permissions.*.slug')
-                ->flatten()
-                ->unique()->toArray())) {
+            if (in_array($permission,  auth()->user()?->roles->pluck('permissions')->flatten()->pluck('slug')->unique()->toArray())) {
                 return true;
             } else {
                 return false;

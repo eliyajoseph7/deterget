@@ -78,7 +78,7 @@
                     </a>
                 </li>
             @endif
-            @if (Helper::has_role('view-reconciliations'))
+            @if (Helper::has_permission('view-reconciliations'))
                 <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <p class="text-sm text-gray-400">RECONCILIATION</p>
                     <li>
@@ -99,13 +99,13 @@
                         </button>
                         <ul id="dropdown-recon"
                             class="{{ in_array(Route::currentRouteName(), ['cash_reconciliation', 'credit_reconciliation']) ? '' : 'hidden' }} py-2 space-y-2">
-                            @if (Helper::has_role('view-cash-reconciliation'))
+                            @if (Helper::has_permission('view-cash-reconciliation'))
                                 <li>
                                     <a href="{{ route('cash_reconciliation') }}"
                                         class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('cash_reconciliation') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Cash</a>
                                 </li>
                             @endif
-                            @if (Helper::has_role('view-credit-reconciliation'))
+                            @if (Helper::has_permission('view-credit-reconciliation'))
                                 <li>
                                     <a href="{{ route('credit_reconciliation') }}"
                                         class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('credit_reconciliation') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Credit</a>
