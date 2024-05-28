@@ -12,7 +12,9 @@
                         <th scope="col" class="px-4 py-3">Amount</th>
                         <th scope="col" class="px-4 py-3">Pay Mode</th>
                         <th scope="col" class="px-4 py-3">Remained</th>
-                        <th scope="col" class="px-4 py-3">Reconcile</th>
+                        @if (Helper::has_role('reconcile-credit'))
+                            <th scope="col" class="px-4 py-3">Reconcile</th>
+                        @endif
 
                     </tr>
                 </thead>
@@ -34,21 +36,24 @@
                                 {{ $dt->paymode }}</td>
                             <td class="px-4 py-3 whitespace-nowrap">
                                 {{ number_format($dt->balance, 2) }}</td>
-                            <td class="px-4 py-3 whitespace-nowrap" wire:ignore>
-                                <div class="flex space-x-2 items-center">
-                                    @if ($dt->balance == 0)
-                                        <input name="invoice"
-                                            class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                            type="checkbox" value="{{ $dt->invoiceno }}" id="{{ $dt->id }}">
-                                    @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-red-500 cursor-pointer">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                        </svg>
-                                    @endif
-                                </div>
-                            </td>
+                            @if (Helper::has_role('reconcile-credit'))
+                                <td class="px-4 py-3 whitespace-nowrap" wire:ignore>
+                                    <div class="flex space-x-2 items-center">
+                                        @if ($dt->balance == 0)
+                                            <input name="invoice"
+                                                class="w-5 h-5 cursor-pointer text-blue-600 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                type="checkbox" value="{{ $dt->invoiceno }}" id="{{ $dt->id }}">
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor"
+                                                class="size-6 hover:text-red-500 cursor-pointer">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                        @endif
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr class="bg-gray-50">
