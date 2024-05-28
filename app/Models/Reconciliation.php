@@ -16,4 +16,9 @@ class Reconciliation extends Model
         'user_id',
         'paymode'
     ];
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'invoiceno', 'invoiceno');
+    }
 }

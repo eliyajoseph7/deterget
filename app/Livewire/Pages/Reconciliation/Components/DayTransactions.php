@@ -31,7 +31,7 @@ class DayTransactions extends Component
 
     #[On('data_imported')]
     public function getData() {
-        $data = Transaction::join('sales', 'sales.invoiceno', 'transactions.invoiceno')
+        $data = Transaction::doesntHave('reconciliation')->join('sales', 'sales.invoiceno', 'transactions.invoiceno')
             ->join('clients', 'clients.id', 'sales.client_id')
             ->where('sales.selling_type', 'cash')
             ->select('transactions.date', 'clients.name', 'transactions.invoiceno', 'paymode', DB::raw('SUM(transactions.amount) as amount'))

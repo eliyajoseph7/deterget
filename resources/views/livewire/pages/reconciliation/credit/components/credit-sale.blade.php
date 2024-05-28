@@ -1,5 +1,5 @@
 <div>
-    <div class="overflow-x-auto bg-white shadow-sm rounded-md hidden">
+    <div class="overflow-x-auto bg-white shadow-sm rounded-md">
         <div class="py-2 px-1 font-bold text-lg text-sky-900">Sales</div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 dark:bg-gray-700">
             <thead class="text-xs text-gray-700 dark:text-gray-100 bg-gray-100 dark:bg-gray-800">
@@ -36,7 +36,8 @@
                     </tr>
                 @endforelse
                 <tr class="">
-                    <td colspan="4" class="px-4 py-2 font-bold">Total</td>
+                    <td colspan="3" class="px-4 py-2 font-bold">Total</td>
+                    <td colspan="" class="px-4 py-2 font-bold text-right">TSHs.</td>
                     <td class="px-4 py-2 font-bold" id="cash_sale">{{ number_format($data->sum('amount'), 2) }}</td>
                 </tr>
             </tbody>

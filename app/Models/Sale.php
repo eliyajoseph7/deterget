@@ -51,6 +51,14 @@ class Sale extends Model
         return $this->hasMany(SaleItem::class);
     }
 
+    public function transactions() {
+        return $this->hasOne(Transaction::class, 'invoiceno', 'invoiceno');
+    }
+
+    public function reconciliation() {
+        return $this->hasOne(Reconciliation::class, 'invoiceno', 'invoiceno');
+    }
+
     public function scopeSearchReport($qs, $keyword)
     {
         $qs->orWhere('sales.quantity', 'like', '%' . $keyword . '%')

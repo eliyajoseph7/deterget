@@ -10,7 +10,7 @@ class DaySales extends Component
 {
     public function render()
     {
-        $data = Sale::where(DB::raw("(DATE_FORMAT(sales.created_at,'%Y-%m-%d'))"), now()->format('Y-m-d'))
+        $data = Sale::doesntHave('reconciliation')->where(DB::raw("(DATE_FORMAT(sales.created_at,'%Y-%m-%d'))"), now()->format('Y-m-d'))
             ->join('sale_items', 'sale_items.sale_id', 'sales.id')
             ->join('clients', 'clients.id', 'sales.client_id')
             ->where('sales.selling_type', 'cash')

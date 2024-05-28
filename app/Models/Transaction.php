@@ -19,8 +19,21 @@ class Transaction extends Model
     protected $casts = [
         'date' => 'date'
     ];
+    
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'invoiceno', 'invoiceno');
+    }
 
-    public function sale() {
-        return $this->belongsTo(Sale::class, 'invoiceno');
+    public function reconciliation()
+    {
+        return $this->belongsTo(Reconciliation::class, 'invoiceno', 'invoiceno');
+    }
+
+    protected $appends = ['balance'];
+
+    public function getBalanceAttribute() {
+        $balance = $this->sale->items->sum('price') - $this->amount;
+        return $balance;
     }
 }

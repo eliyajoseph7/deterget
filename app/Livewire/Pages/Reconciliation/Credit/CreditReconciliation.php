@@ -12,11 +12,12 @@ class CreditReconciliation extends Component
     public $reconciled = false;
     public $loading = false;
 
-    #[On('reconciled')]
+    #[On('credit_reconciled')]
     public function reconciled() {
         $this->reconciled = true;
         $this->loading = false;
         $this->dispatch('show_success', 'Reconciled successfully');
+        $this->render();
     }
 
     #[On('mark_reconciliation')]

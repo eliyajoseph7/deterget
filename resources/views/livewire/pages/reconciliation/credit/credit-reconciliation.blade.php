@@ -26,13 +26,15 @@
                     <span>Import</span>
                 </button>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
+            <div class="grid md:grid-cols-3 gap-4">
                 @livewire('pages.reconciliation.credit.components.credit-sale')
-                @livewire('pages.reconciliation.credit.components.credit-transaction')
+                <div class="col-span-2">
+                    @livewire('pages.reconciliation.credit.components.credit-transaction')
+                </div>
             </div>
             <div class="py-5 float-end">
-                @if ($reconciled)
-                @else
+                {{-- @if ($reconciled)
+                @else --}}
                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-md flex space-x-3"
                     {{-- wire:click="$dispatch('mark_reconciliation_done')" --}}
                     id="mark_done"
@@ -43,8 +45,30 @@
                                 d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                         </svg>
                         Mark as done</button>
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
     </div>
+    <script data-navigate-once>
+        document.addEventListener('livewire:init', () => {
+            // add
+            Livewire.on('show_success', (message) => {
+                Toast.fire({
+                    icon: 'success',
+                    title: message,
+                });
+            });
+            Livewire.on('show_error', (message) => {
+                ToastErr.fire({
+                    icon: 'error',
+                    title: message,
+                });
+            });
+
+        })
+
+        $('#mark_done').on('click', function() {
+            Livewire.dispatch('submit_reconciliation')
+        })
+    </script>
 </div>

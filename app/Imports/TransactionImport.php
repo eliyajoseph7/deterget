@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Livewire\Pages\Reconciliation\Reconciliation;
 use App\Models\Transaction;
 use DateTime;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -25,22 +26,30 @@ class TransactionImport implements ToModel, WithUpserts, WithHeadingRow
     public function model(array $row)
     {
 
-        $date = Date::excelToDateTimeObject($row['date'])->format('Y-m-d');
-        $qs = Transaction::where('invoiceno', $row['invoiceno'])->first();
-        if (!$qs) {
-            $qs = Transaction::create([
-                'date' => $date,
-                'invoiceno' => $row['invoiceno'],
-                'amount' => $row['amount'],
-                'paymode' => $row['paymode'],
-            ]);
-        } else {
-            $qs->date = $date;
-            $qs->invoiceno = $row['invoiceno'];
-            $qs->paymode = $row['paymode'];
-            $qs->amount += $row['amount'];
-
-            $qs->save();
+        $done = Reconciliation::where('invoiceno', $row['invoiceno'])->first();
+        if(!$done) {
+            $date = Date::excelToDateTimeObject($row['date'])->format('Y-m-d');
+            $qs = Transaction::where('invoiceno', $row['invoiceno'])->first();
+            $transDate = $qs?->date;
+            if (!$qs) {
+                $qs = Transaction::create([
+                    'date' => $date,
+                    'invoiceno' => $row['invoiceno'],
+                    'amount' => $row['amount'],
+                    'paymode' => $row['paymode'],
+                ]);
+            } else {
+                $qs->date = $date;
+                $qs->invoiceno = $row['invoiceno'];
+                $qs->paymode = $row['paymode'];
+                if($date != $transDate->format('Y-m-d')) {
+                    $qs->amount += $row['amount'];
+                } else {
+                    $qs->amount = $row['amount'];
+                }
+    
+                $qs->save();
+            }
         }
 
         return;

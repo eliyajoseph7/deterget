@@ -79,7 +79,7 @@
                 </li>
             @endif
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                <p class="text-sm text-gray-400">REPORTS</p>
+                <p class="text-sm text-gray-400">RECONCILIATION</p>
                 <li>
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['cash_reconciliation', 'credit_reconciliation']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
