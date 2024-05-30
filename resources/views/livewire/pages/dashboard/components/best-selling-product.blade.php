@@ -1,7 +1,7 @@
 <div>
     <div class="bg-white shadow-md rounded-lg hover:-translate-y-1 duration-700 ease-in-out">
         <div class="h-[50vh]">
-            <div class="h-[10%] px-4 py-2 bg-white text-lg rounded-t-lg">Best Selling Products</div>
+            <div class="h-[10%] py-4 px-2 font-bold text-lg text-sky-900">Best Selling Products</div>
             <div class="bestSellingProduct h-[90%]"></div>
         </div>
     </div>

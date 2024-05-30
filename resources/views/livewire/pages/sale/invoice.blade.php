@@ -16,14 +16,29 @@
     <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
         <div class="sm:w-11/12 lg:w-3/4 mx-auto">
             <!-- Card -->
-            <div id="invoiceDiv" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
+            <div id="invoiceDiv" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800 relative">
+                <div class="absolute top-0 left-0">
+                    <img src="{{ asset('assets/images/invoice/img1.png') }}" class="w-52">
+                </div>
+                <div class="absolute top-0 right-0 z-10 flex space-x-4">
+                    <div class="mt-4 text-sm leading-tight text-gray-700">
+                        <div class="">Address: P.O Box 15084</div>
+                        <div class="">Dar es Salaam, Tanzania</div>
+                        <div class="">Tell: +255 764 946 680</div>
+                    </div>
+                    <img src="{{ asset('assets/images/invoice/img2.png') }}" class="w-14">
+                </div>
+                <div class="absolute bottom-0 left-0 z-10 flex space-x-4 items-center text-gray-700">
+                    <img src="{{ asset('assets/images/invoice/img2.png') }}" class="w-8">
+                    <div class="">J & N MEDICS(T) LTD</div>
+                </div>
                 <!-- Grid -->
-                <div class="flex justify-between">
+                <div class="flex justify-between mt-20 border-t border-gray-200">
                     <div>
-                        <img src="{{ asset('assets/images/reven.png') }}" class="w-32">
+                        {{-- <img src="{{ asset('assets/images/reven.png') }}" class="w-32">
 
                         <h1 class="mt-2 text-lg md:text-xl font-semibold text-blue-600 dark:text-white">J&N Medics (T) Ltd.
-                        </h1>
+                        </h1> --}}
                     </div>
                     <!-- Col -->
 
@@ -32,12 +47,12 @@
                         </h2>
                         <span class="mt-1 block text-gray-500 dark:text-neutral-500">{{ $sale?->invoiceno }}</span>
 
-                        <address class="mt-4 not-italic text-gray-800 dark:text-neutral-200">
+                        {{-- <address class="mt-4 not-italic text-gray-800 dark:text-neutral-200">
                             Kinondoni<br>
                             Dar es Salaam<br>
                             Wazo Posta<br>
                             Tanzania<br>
-                        </address>
+                        </address> --}}
                     </div>
                     <!-- Col -->
                 </div>

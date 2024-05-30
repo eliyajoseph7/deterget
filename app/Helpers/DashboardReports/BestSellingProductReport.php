@@ -12,6 +12,10 @@ class BestSellingProductReport {
         $chart = Sale::join('products', 'products.id', 'sales.product_id')->select('products.name as name', DB::raw('COUNT(sales.id) as y') )
                     ->groupBy('products.name')->orderByDesc('y')->limit(6)->get();
 
+        if($chart) {
+            $chart[0]['sliced'] = true;
+            $chart[0]['selected'] = true;
+        }
         $series[] = [
             'name' => 'Best Selling Products',
             'colorByPoint' => true,

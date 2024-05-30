@@ -11,6 +11,8 @@
     <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-2 px-2 bg-gray-200/30 py-2 rounded-lg">
         @livewire('pages.dashboard.components.best-selling-product')
         @livewire('pages.dashboard.components.sales-trends')
+        @livewire('pages.dashboard.components.best-clients')
+        @livewire('pages.dashboard.components.trouble-clients')
     </div>
     {{-- <div class="grid grid-cols-3 gap-4 mb-4">
         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
