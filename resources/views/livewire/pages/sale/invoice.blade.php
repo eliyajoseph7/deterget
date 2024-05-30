@@ -185,7 +185,7 @@
                 </div> --}}
                 </div>
 
-                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© {{ now()->format('Y') }} Reven.</p>
+                <p class="mb-8 mt-5 text-sm text-gray-500 dark:text-neutral-500">© {{ now()->format('Y') }} Reven.</p>
             </div>
             <!-- End Card -->
 
