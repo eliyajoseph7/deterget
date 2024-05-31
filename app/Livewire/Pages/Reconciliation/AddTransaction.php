@@ -29,6 +29,7 @@ class AddTransaction extends ModalComponent
     public function addTransaction() {
         $this->validate();
         $qs = Transaction::where('invoiceno', $this->invoiceno)->first();
+        $paid = Payment::where('invoiceno', $this->invoiceno)->sum('amount');
             $transDate = $qs?->date;
             if (!$qs) {
                 $qs = Transaction::create([
@@ -41,11 +42,11 @@ class AddTransaction extends ModalComponent
                 $qs->date = $this->date;
                 $qs->invoiceno = $this->invoiceno;
                 $qs->paymode = $this->paymode;
-                if($this->date != $transDate->format('Y-m-d')) {
-                    $qs->amount += $this->amount;
-                } else {
-                    $qs->amount = $this->amount;
-                }
+                // if($this->date == $transDate->format('Y-m-d')) {
+                    $qs->amount = $paid + $this->amount;
+                // } else {
+                //     $qs->amount = $this->amount;
+                // }
     
                 $qs->save();
             }
