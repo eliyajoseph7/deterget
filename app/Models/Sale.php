@@ -51,15 +51,18 @@ class Sale extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function items() {
+    public function items()
+    {
         return $this->hasMany(SaleItem::class);
     }
 
-    public function transactions() {
+    public function transactions()
+    {
         return $this->hasOne(Transaction::class, 'invoiceno', 'invoiceno');
     }
 
-    public function reconciliation() {
+    public function reconciliation()
+    {
         return $this->hasOne(Reconciliation::class, 'invoiceno', 'invoiceno');
     }
 
@@ -78,24 +81,26 @@ class Sale extends Model
     }
 
     // protected $appends = ['amount'];
-    
+
     // public function getAmountAttribute() {
     //     return SaleItem::where('sale_id', $this->id)->sum('price');
     // }
 
     protected $appends = ['due_date', 'balance', 'overdue'];
 
-    public function getDueDateAttribute() {
-        return $this->date->addDays($this->credit_days);
-        
+    public function getDueDateAttribute()
+    {
+        return $this->date?->addDays($this->credit_days);
     }
 
-    public function getBalanceAttribute() {
+    public function getBalanceAttribute()
+    {
         $balance = $this->items->sum('price') - $this->transactions?->amount ?? 0;
         return $balance;
     }
 
-    public function getOverdueAttribute() {
+    public function getOverdueAttribute()
+    {
         return now() > $this->getDueDateAttribute();
     }
 }
