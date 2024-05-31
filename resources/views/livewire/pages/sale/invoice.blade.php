@@ -24,7 +24,7 @@
                     <div class="mt-4 text-sm leading-tight text-gray-700">
                         <div class="">Address: P.O Box 15084</div>
                         <div class="">Dar es Salaam, Tanzania</div>
-                        <div class="">Tell: +255 764 946 680</div>
+                        <div class="">Tell: +255 696 445 552</div>
                     </div>
                     <img src="{{ asset('assets/images/invoice/img2.png') }}" class="w-14">
                 </div>
