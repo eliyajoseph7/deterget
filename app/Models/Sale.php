@@ -14,8 +14,10 @@ class Sale extends Model
 
     public function scopeSearch($qs, $keyword)
     {
-        $qs->where('client_name', 'like', '%' . $keyword . '%')
-            ->orWhere('sales.quantity', 'like', '%' . $keyword . '%')
+        $qs->whereHas('client', function ($query) use ($keyword) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        })
+            ->orWhere('sales.invoiceno', 'like', '%' . $keyword . '%')
             ->orWhere('client_phone', 'like', '%' . $keyword . '%')
             ->orWhereHas('product', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');

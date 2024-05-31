@@ -7,9 +7,16 @@ use Livewire\Component;
 
 class Debtors extends Component
 {
+    public $search = '';
+
+    public function updatedSearch()
+    {
+        $this->render();
+    }
+
     public function render()
     {
-        $data = Sale::doesntHave('reconciliation')->with('transactions')
+        $data = Sale::search($this->search)->doesntHave('reconciliation')->with('transactions')
         ->join('clients', 'sales.client_id', 'clients.id')
         ->select('clients.name as client', 'sales.*')->get()
         ->groupBy('client');
