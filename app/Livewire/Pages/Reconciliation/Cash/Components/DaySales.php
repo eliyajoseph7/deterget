@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Pages\Reconciliation\Components;
+namespace App\Livewire\Pages\Reconciliation\Cash\Components;
 
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +17,6 @@ class DaySales extends Component
             ->select('date', 'clients.name', 'invoiceno', DB::raw('SUM(sale_items.price) as amount'))
             ->groupBy('date', 'clients.name', 'invoiceno')
             ->get();
-        return view('livewire.pages.reconciliation.components.day-sales', compact('data'));
+        return view('livewire.pages.reconciliation.cash.components.day-sales', compact('data'));
     }
 }

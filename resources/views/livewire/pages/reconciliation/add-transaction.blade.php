@@ -9,15 +9,15 @@
 
     <form wire:submit.prevent="addTransaction">
         <div class="p-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="col-span-full">
+            <div class="col-span-full my-1">
                 <div class="col-span-full mt-3">
                     <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date Paid<span
                             class="text-red-500">*</span></label>
-                    <div class="mt-2">
+                    <div class="">
                         <div class="flex">
                             <input type="date" id="date" wire:model.live="date"
-                                class="block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full mb-5 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5"
-                                id="default_size">
+                                class="block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full mb-2 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5"
+                                id="date">
                         </div>
                         <div class="text-red-500 text-sm">
                             @error('date')
@@ -26,17 +26,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-full">
+                <div class="col-span-full my-1">
                     <label for="invoiceno" class="block text-sm font-medium leading-6 text-gray-900">Invoice No.<span
                             class="text-red-500">*</span></label>
-                    <div class="mt-2">
+                    <div class="">
                         <div class="flex" wire:ignore>
-                            <select type="text" id="sale_invoice"
-                            class="select2 w-screen block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 mb-5 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5">
+                            <select type="text" id="invoiceno"
+                            class="select2 w-screen block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 mb-2 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5">
                             <option value="">Select..</option>
                             @foreach ($invoices as $invoice)
                                 <option value="{{ $invoice->invoiceno }}">
-                                    {{ $invoice->invoiceno }}</option>
+                                    {{ $invoice->invoiceno . ' - ' . $invoice->client?->name }}</option>
                             @endforeach
                         </select>
                         </div>
@@ -47,17 +47,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-full">
+                <div class="col-span-full mt-3">
                     <label for="amount" class="block text-sm font-medium leading-6 text-gray-900">Amount Paid<span
                             class="text-red-500">*</span></label>
-                    <div class="mt-2">
+                    <div class="">
                         <div class="flex">
                             <input type="number" step="0.01" id="amount" wire:model.live="amount"
-                                class="block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full mb-5 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5"
+                                class="block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full mb-2 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5"
                                 id="default_size">
                         </div>
                         <div class="text-red-500 text-sm">
                             @error('amount')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-full my-1">
+                    <label for="paymode" class="block text-sm font-medium leading-6 text-gray-900">Payment Mode<span
+                            class="text-red-500">*</span></label>
+                    <div class="">
+                        <div class="flex">
+                            <select type="text" id="paymode" wire:model="paymode"
+                            class="w-screen block rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 mb-2 text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-2.5">
+                            <option value="">Select..</option>
+                            @foreach ($paymodes as $paymode)
+                                <option value="{{ $paymode }}">
+                                    {{ $paymode }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                        <div class="text-red-500 text-sm">
+                            @error('paymode')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>

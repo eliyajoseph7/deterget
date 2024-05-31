@@ -10,6 +10,8 @@ class Sale extends Model
 {
     use HasFactory;
 
+    public static $paymodes = ['Cash', 'Bank', 'Lipa Namba'];
+
     public function scopeSearch($qs, $keyword)
     {
         $qs->where('client_name', 'like', '%' . $keyword . '%')

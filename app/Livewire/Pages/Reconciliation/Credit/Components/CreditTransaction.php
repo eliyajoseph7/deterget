@@ -36,7 +36,8 @@ class CreditTransaction extends Component
             ->where('sales.selling_type', 'credit')
             ->select('transactions.date', 'clients.name', 'transactions.invoiceno', 'paymode', DB::raw('SUM(transactions.amount) as amount'))
             ->groupBy('transactions.date', 'clients.name', 'transactions.invoiceno', 'paymode')
-            ->where(DB::raw("(DATE_FORMAT(transactions.created_at,'%Y-%m-%d'))"), now()->format('Y-m-d'))->get();
+            ->where(DB::raw("(DATE_FORMAT(transactions.date,'%Y-%m-%d'))"), now()->format('Y-m-d'))
+            ->get();
 
         $this->data = $data;
     }

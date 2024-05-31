@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Livewire\Pages\Reconciliation;
+namespace App\Livewire\Pages\Reconciliation\Cash;
 
 use App\Models\Reconciliation as ModelsReconciliation;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -30,6 +31,14 @@ class Reconciliation extends Component
         }
     }
 
+    #[On('delete_transaction')]
+    public function delete($invoiceno) {
+        // dd($invoiceno);
+        Transaction::where('invoiceno', $invoiceno)->delete();
+        $this->dispatch('show_success', 'Deleted successfully');
+        $this->dispatch('data_imported');
+    }
+
     public function mount() {
         $check = ModelsReconciliation::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), now()->format('Y-m-d'));
         if($check->exists()) {
@@ -39,6 +48,6 @@ class Reconciliation extends Component
 
     public function render()
     {
-        return view('livewire.pages.reconciliation.reconciliation');
+        return view('livewire.pages.reconciliation.cash.reconciliation');
     }
 }

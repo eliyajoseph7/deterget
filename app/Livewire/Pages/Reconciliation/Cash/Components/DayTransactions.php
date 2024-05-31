@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Pages\Reconciliation\Components;
+namespace App\Livewire\Pages\Reconciliation\Cash\Components;
 
 use App\Models\Reconciliation;
 use App\Models\Transaction;
@@ -47,6 +47,6 @@ class DayTransactions extends Component
 
     public function render()
     {
-        return view('livewire.pages.reconciliation.components.day-transactions');
+        return view('livewire.pages.reconciliation.cash.components.day-transactions');
     }
 }
