@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Payment;
 use App\Models\Reconciliation;
 use App\Models\Transaction;
 use DateTime;
@@ -50,6 +51,15 @@ class TransactionImport implements ToModel, WithUpserts, WithHeadingRow
     
                 $qs->save();
             }
+
+            // insert into payments table for history purposes
+            Payment::create([
+                'date' => $date,
+                'invoiceno' => $row['invoiceno'],
+                'amount' => $row['amount'],
+                'paymode' => $row['paymode'],
+                'user_id' => auth()->user()->id,
+            ]);
         }
 
         return;

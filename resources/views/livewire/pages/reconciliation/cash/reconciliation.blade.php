@@ -28,7 +28,7 @@
                             <span>Add Transaction</span>
                         </button>
                     </div>
-                    <div class="flex items-center justify-end d p-4 dark:bg-gray-700">
+                    {{-- <div class="flex items-center justify-end d p-4 dark:bg-gray-700">
                         <button wire:click="$dispatch('openModal', { component: 'pages.reconciliation.import' })"
                             class="flex text-sm items-center text-green-500 bg-gray-50 hover:text-green-700 rounded-lg px-2.5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -39,7 +39,7 @@
 
                             <span>Import</span>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             @endif
             <div class="grid md:grid-cols-2 gap-4">

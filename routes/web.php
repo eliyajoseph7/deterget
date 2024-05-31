@@ -6,6 +6,7 @@ use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
 use App\Livewire\Pages\Reconciliation\Cash\Reconciliation as CashReconciliation;
 use App\Livewire\Pages\Reconciliation\Credit\CreditReconciliation;
+use App\Livewire\Pages\Reconciliation\Debit\Debtors;
 use App\Livewire\Pages\Report\Fg\Fg;
 use App\Livewire\Pages\Report\Fg\General as FgGeneral;
 use App\Livewire\Pages\Report\Rm\General;
@@ -131,6 +132,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('reconciliation')->group(function() {
         Route::get('cash', CashReconciliation::class)->name('cash_reconciliation');
         Route::get('credit', CreditReconciliation::class)->name('credit_reconciliation');
+        Route::get('debtors', Debtors::class)->name('debtors');
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Reconciliation\Cash;
 
+use App\Models\Payment;
 use App\Models\Reconciliation as ModelsReconciliation;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,7 @@ class Reconciliation extends Component
     public function delete($invoiceno) {
         // dd($invoiceno);
         Transaction::where('invoiceno', $invoiceno)->delete();
+        Payment::where('invoiceno', $invoiceno)->delete();
         $this->dispatch('show_success', 'Deleted successfully');
         $this->dispatch('data_imported');
     }

@@ -80,4 +80,20 @@ class Sale extends Model
     // public function getAmountAttribute() {
     //     return SaleItem::where('sale_id', $this->id)->sum('price');
     // }
+
+    protected $appends = ['due_date', 'balance', 'overdue'];
+
+    public function getDueDateAttribute() {
+        return $this->date->addDays($this->credit_days);
+        
+    }
+
+    public function getBalanceAttribute() {
+        $balance = $this->items->sum('price') - $this->transactions?->amount ?? 0;
+        return $balance;
+    }
+
+    public function getOverdueAttribute() {
+        return now() > $this->getDueDateAttribute();
+    }
 }

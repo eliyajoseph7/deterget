@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Reconciliation;
 
+use App\Models\Payment;
 use App\Models\Sale;
 use App\Models\Transaction;
 use Livewire\Attributes\On;
@@ -48,6 +49,16 @@ class AddTransaction extends ModalComponent
     
                 $qs->save();
             }
+
+            // insert into payments table for history purposes
+            Payment::create([
+                'date' => $this->date,
+                'invoiceno' => $this->invoiceno,
+                'amount' => $this->amount,
+                'paymode' => $this->paymode,
+                'user_id' => auth()->user()->id,
+            ]);
+
             $this->reset();
             $this->closeModal();
             $this->dispatch('data_added');

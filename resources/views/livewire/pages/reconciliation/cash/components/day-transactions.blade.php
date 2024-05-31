@@ -10,7 +10,7 @@
                     <th scope="col" class="px-4 py-3">Invoice No.</th>
                     <th scope="col" class="px-4 py-3">Amount</th>
                     <th scope="col" class="px-4 py-3">Pay Mode</th>
-                    <th></th>
+                    {{-- <th></th> --}}
                 </tr>
             </thead>
             <tbody class="[&>*:nth-child(even)]:bg-[#F6F9FF] [&>*:nth-child(even)]:dark:bg-gray-600">
@@ -29,10 +29,10 @@
                             {{ number_format($dt->amount, 2) }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ $dt->paymode }}</td>
-                        <td>
+                        {{-- <td>
                             <button title="Delete" wire:click="$dispatch('confirm_delete', '{{ $dt->invoiceno }}')"
                                 class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
-                        </td>
+                        </td> --}}
                     </tr>
                 @empty
                     <tr class="bg-gray-50">

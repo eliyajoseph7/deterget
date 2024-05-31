@@ -15,7 +15,7 @@
                         @if (Helper::has_role('reconcile-credit'))
                             <th scope="col" class="px-4 py-3">Reconcile</th>
                         @endif
-                        <th></th>
+                        {{-- <th></th> --}}
 
                     </tr>
                 </thead>
@@ -54,10 +54,10 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <button title="Delete" wire:click.prevent="$dispatch('confirm_delete', '{{ $dt->invoiceno }}')"
                                         class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
-                                </td>
+                                </td> --}}
                             @endif
                         </tr>
                     @empty
