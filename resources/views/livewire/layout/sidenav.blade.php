@@ -114,18 +114,16 @@
                         </ul>
                     </li>
                     @if (Helper::has_permission('view-credit-reconciliation'))
-                        <li>
-                            <a href="{{ route('debtors') }}"
-                                class="flex items-center p-2 rounded-lg dark:text-white font-normal {{ Route::is('debtors') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-
-                                <span class="ms-3">Debtors</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="{{ route('debtors') }}"
+                            class="flex items-center p-2 rounded-lg dark:text-white font-normal {{ Route::is('debtors') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                              </svg>
+                              
+                            <span class="ms-3">Debtors</span>
+                        </a>
+                    </li>
                     @endif
                 </ul>
             @endif
@@ -135,10 +133,10 @@
                 <p class="text-sm text-gray-400">REPORTS</p>
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700 {{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report', 'payments']) ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : '' }}"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
                         </svg>
@@ -151,7 +149,7 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example"
-                        class="{{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report']) ? '' : 'hidden' }} py-2 space-y-2">
+                        class="{{ in_array(Route::currentRouteName(), ['rm_report', 'rm_report_by_date', 'rm_detailed_report', 'fg_report', 'fg_report_by_date', 'warehouse_report', 'warehouse_report_by_date', 'sale_report', 'rm_detailed_report', 'payments']) ? '' : 'hidden' }} py-2 space-y-2">
                         <li>
                             <a href="{{ route('rm_report') }}"
                                 class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('rm_report') || Route::is('rm_report_by_date') || Route::is('rm_detailed_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Raw
@@ -169,6 +167,10 @@
                         <li>
                             <a href="{{ route('sale_report') }}"
                                 class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('sale_report') || Route::is('detailed_sale_report') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Sales</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('payments') }}"
+                                class="flex font-normal items-center w-full p-2 transition duration-75 rounded-lg pl-11 group dark:text-white dark:hover:bg-gray-700 {{ Route::is('payments') ? 'bg-gray-100 text-blue-700 font-bold hover:bg-blue-500' : 'font-normal text-gray-900 hover:bg-gray-100' }}">Payments</a>
                         </li>
                     </ul>
                 </li>

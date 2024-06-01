@@ -9,6 +9,7 @@ use App\Livewire\Pages\Reconciliation\Credit\CreditReconciliation;
 use App\Livewire\Pages\Reconciliation\Debit\Debtors;
 use App\Livewire\Pages\Report\Fg\Fg;
 use App\Livewire\Pages\Report\Fg\General as FgGeneral;
+use App\Livewire\Pages\Report\Payment\Payments;
 use App\Livewire\Pages\Report\Rm\General;
 use App\Livewire\Pages\Report\Rm\Rm;
 use App\Livewire\Pages\Report\Rm\RmMovement;
@@ -126,6 +127,9 @@ Route::middleware('auth')->group(function () {
         Route::prefix('sales')->group(function () {
             Route::get('general', Sale::class)->name('sale_report');
         });
+        Route::prefix('invoices')->group(function () {
+            Route::get('payments', Payments::class)->name('payments');
+        });
     });
 
     // reconciliation
@@ -151,21 +155,13 @@ Route::get('logout', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('test', function(Request $request) {
+// Route::get('test', function() {
 
-    $groupedItems = ModelsSale::get()->groupBy(['client.name', function($qs) {
-        return $qs->date;
-    }]);
+//     $data = ModelsSale::join('clients', 'sales.client_id', 'clients.id')
+//     ->join('payments', 'sales.invoiceno', 'payments.invoiceno')
+//     ->select('clients.name as client', 'payments.*')->get()
+//     ->groupBy('payments.invoiceno');
 
-     // Convert grouped items to a collection and paginate it
-     $paginatedItems = (new PaginateController)->paginate($groupedItems, 10, $request);
-    //  foreach ($paginatedItems as $client => $dates) {
-    //      foreach ($dates as $date=>$values) {
-    //         foreach($values as $dt) {
-    //             return($dt);
-    //         }
-    //      }
-    //  }
-     return $paginatedItems;
-});
+//     return $data;
+// });
 
