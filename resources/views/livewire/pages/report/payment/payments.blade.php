@@ -55,7 +55,7 @@
                                             @forelse ($data as $key=>$dt)
                                                 <tr>
                                                     <td colspan="8" class="p-2 font-bold bg-blue-100 text-gray-700">
-                                                        {{ $key }} - {{ $dt[0]->client }}</td>
+                                                        {{ $key }} - {{ $dt[0]->client }} -> {{ $dt[0]->phone }}</td>
                                                 </tr>
                                                 @php
                                                     $total = 0;

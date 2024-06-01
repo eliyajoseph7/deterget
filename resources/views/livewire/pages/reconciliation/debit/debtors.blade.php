@@ -48,7 +48,7 @@
                                                 <th scope="col" class="px-4 py-3 normal-case">Invoice Amount</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Amount Paid</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Amount Remained</th>
-                                                <th scope="col" class="px-4 py-3 normal-case">Credit Days</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Remain Days</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Due Date</th>
                                             </tr>
                                         </thead>
@@ -57,7 +57,7 @@
                                             @forelse ($data as $key=>$dt)
                                                 <tr>
                                                     <td colspan="8" class="p-2 font-bold bg-blue-100 text-gray-700">
-                                                        {{ $key }}</td>
+                                                        {{ $key }} -> {{ $dt[0]->phone }}</td>
                                                 </tr>
                                                 @foreach ($dt as $dt)
                                                     <tr wire:key=""
@@ -76,7 +76,7 @@
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt->balance }}</td>
                                                         <td class="px-4 py-3 whitespace-nowrap">
-                                                            {{ $dt->credit_days }}</td>
+                                                            {{ $dt->days_remain }}</td>
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             <span class="px-3 py-1 rounded-md {{ $dt->overdue ? 'bg-red-50 text-red-500' : 'bg-gray-100' }}">
                                                                 {{ $dt->due_date->format('M d, Y') }}</td>

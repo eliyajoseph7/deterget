@@ -19,7 +19,7 @@ class Payments extends Component
         $data = Sale::search($this->search)
         ->join('clients', 'sales.client_id', 'clients.id')
         ->join('payments', 'sales.invoiceno', 'payments.invoiceno')
-        ->select('clients.name as client', 'payments.*')->get()
+        ->select('clients.name as client', 'clients.phone', 'payments.*')->get()
         ->groupBy('invoiceno');
         // dd($data);
         return view('livewire.pages.report.payment.payments', compact('data'));

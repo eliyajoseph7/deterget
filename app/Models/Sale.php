@@ -86,7 +86,7 @@ class Sale extends Model
     //     return SaleItem::where('sale_id', $this->id)->sum('price');
     // }
 
-    protected $appends = ['due_date', 'balance', 'overdue'];
+    protected $appends = ['due_date', 'balance', 'overdue', 'days_remain'];
 
     public function getDueDateAttribute()
     {
@@ -102,5 +102,15 @@ class Sale extends Model
     public function getOverdueAttribute()
     {
         return now() > $this->getDueDateAttribute();
+    }
+
+    public function getDaysRemainAttribute()
+    {
+        $diff = date_diff(today(), $this->getDueDateAttribute())->days;
+        if($this->getOverdueAttribute()) {
+            $diff = -1 * $diff;
+        }
+
+        return $diff;
     }
 }

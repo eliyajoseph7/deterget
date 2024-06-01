@@ -69,6 +69,7 @@ class AddTransaction extends ModalComponent
     public function mount()
     {
         $this->dispatch('initialize_scripts');
+        $this->date = now()->format('Y-m-d');
     }
 
     public function render()
