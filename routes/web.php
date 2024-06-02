@@ -3,6 +3,8 @@
 use App\Http\Controllers\PaginateController;
 use App\Livewire\Pages\Dashboard\Dashboard;
 use App\Livewire\Pages\Finishedproduct\Products as Finishedproducts;
+use App\Livewire\Pages\Rawmaterial\Components\Dispatch\MaterialDispatchMultiple;
+use App\Livewire\Pages\Rawmaterial\Components\Receive\MaterialReceiveMultiple;
 use App\Livewire\Pages\Rawmaterial\RawMaterials;
 use App\Livewire\Pages\Reconciliation\Cash\Reconciliation as CashReconciliation;
 use App\Livewire\Pages\Reconciliation\Credit\CreditReconciliation;
@@ -99,7 +101,12 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::get('raw-materials', RawMaterials::class)->name('raw_materials');
+    Route::prefix('raw-materials')->group(function() {
+        Route::get('', RawMaterials::class)->name('raw_materials');
+        Route::get('receive-multiple', MaterialReceiveMultiple::class)->name('multiple_materials_receive');
+        Route::get('dispatch-multiple', MaterialDispatchMultiple::class)->name('multiple_materials_dispatch');
+
+    });
     Route::get('products', Finishedproducts::class)->name('products');
     Route::get('manage-warehouse', Warehouses::class)->name('warehouses');
     Route::prefix('product-distribution')->group(function() {

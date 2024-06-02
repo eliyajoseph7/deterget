@@ -1,10 +1,16 @@
 <div>
+    <div class="relative">
     <x-slot name="header">
         @include('includes.breadcrumb', [
             'main' => 'Settings',
             'menu' => 'Roles / Role Permissions',
         ])
     </x-slot>
+    <div class="fixed top-40 right-8 z-50">
+        <a href="{{ route('roles') }}" class="bg-red-500 px-2 py-0.5 text-white rounded-md"
+            title="close">x</a>
+    </div>
+</div>
     <div class="bg-blue-100 pb-1 rounded-md">
 
         <form class="w-full pb-0 bg-white rounded-lg border-t-gray-200 border-t-2"

@@ -7,7 +7,7 @@
     </x-slot>
 
 
-    <div class="border-b border-gray-200 dark:border-gray-700">
+    <div class="border-b border-gray-200/50 mb-2 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
             <li class="me-2">
                 <a wire:click="$dispatch('switch_product_tab', {'name':'receive'})" name="receive"

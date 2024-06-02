@@ -6,7 +6,7 @@
                     <div class="flex justify-end pb-2">
                         <button
                             wire:click="$dispatch('openModal', {component: 'pages.finishedproduct.components.dispatch.dispatch-form'})"
-                            class="items-center space-x-0.5 text-gray-600 hover:text-gray-500 bg-gray-50 hover:bg-white shadow-sm hover:shadow-md px-2 border-2 border-gray-200 py-1 rounded-lg">
+                            class="items-center space-x-0.5 text-gray-600 hover:text-gray-500 bg-gray-50 hover:bg-white shadow-sm hover:shadow-md px-2 border-2 border-gray-100 py-1 rounded-lg">
                             <i class="fa-solid fa-plus-circle"></i>
                             <span class="">{{ __('Dispatch Product') }}</span>
                         </button>

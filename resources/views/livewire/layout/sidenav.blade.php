@@ -22,7 +22,7 @@
             @if (Helper::has_permission('view-rm'))
                 <li>
                     <a href="{{ route('raw_materials') }}"
-                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('raw_materials') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 rounded-lg dark:text-white {{ Route::is('raw_materials') || Route::is('multiple_materials_receive') || Route::is('multiple_materials_dispatch') ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' : 'font-normal text-gray-900 hover:bg-gray-100' }} dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-4 h-4 text-inherit transition duration-75 dark:text-gray-400 group-hover:text-inherit dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">

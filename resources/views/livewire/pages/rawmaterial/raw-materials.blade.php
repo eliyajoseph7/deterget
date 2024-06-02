@@ -7,7 +7,7 @@
     </x-slot>
 
 
-    <div class="border-b border-gray-200 dark:border-gray-700">
+    <div class="border-b border-gray-200/50 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
             <li class="me-2">
                 <a wire:click="$dispatch('switch_material_tab', {'name':'receive'})" name="receive"
@@ -36,11 +36,21 @@
     </div>
 
     @if ($actvtab == 'receive')
-        @livewire('pages.rawmaterial.components.receive')
+        @livewire('pages.rawmaterial.components.receive.receive')
     @else
-        @livewire('pages.rawmaterial.components.dispatch')
+        @livewire('pages.rawmaterial.components.dispatch.dispatch')
     @endif
 
+    @if (session()->has('alert'))
+        <script>
+            document.addEventListener('livewire:init', () => {
+                Toast.fire({
+                    icon: '{{ session('alert.type') }}',
+                    title: '{{ session('alert.message') }}',
+                });
+            })
+        </script>
+    @endif
     <script data-navigate-once>
         $(document).ready(function() {
             var actv = localStorage.getItem('material_tab');
@@ -87,7 +97,7 @@
                         } else {
                             Livewire.dispatch('delete_material_receive', {
                                 'id': id
-                            }); 
+                            });
                         }
                     }
                 });
