@@ -6,16 +6,19 @@ use App\Models\Sale;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class SalesTrend {
-    
-    
-    public static function getSalesTrend() {
+class SalesTrend
+{
+
+
+    public static function getSalesTrend()
+    {
         $categories = [];
         $values = [];
 
-        for($i = 6; $i >= 0; $i--) {
+        for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i)->startOfDay();
-            $sale = Sale::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $date->format('Y-m-d'))->sum('price');
+            $sale = Sale::join('sale_items', 'sale_items.sale_id', 'sales.id')
+                ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), $date->format('Y-m-d'))->sum('price');
 
             array_push($categories, $i == 0 ? 'Today' : $date->format('D'));
             array_push($values, ($sale));
@@ -30,5 +33,4 @@ class SalesTrend {
         ];
         return $data;
     }
-
 }
