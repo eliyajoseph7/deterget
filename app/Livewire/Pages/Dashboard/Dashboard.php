@@ -8,6 +8,7 @@ use App\Models\DispatchProduct;
 use App\Models\ReceiveMaterial;
 use App\Models\ReceiveProduct;
 use App\Models\Sale;
+use App\Models\SaleItem;
 use App\Models\WarehouseTnx;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -31,7 +32,7 @@ class Dashboard extends Component
     }
     public function render()
     {
-        $totalSale = Sale::where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), now()->format('Y-m-d'))->sum('price');
+        $totalSale = Sale::join('sale_items', 'sale_items.sale_id', 'sales.id')->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), now()->format('Y-m-d'))->sum('price');
         $receivedMat = ReceiveMaterial::where('date', '>=', now()->subDays(7))->count();
         $dispatchedMat = DispatchMaterial::where('date', '>=', now()->subDays(7))->count();
         $receivedProd = ReceiveProduct::where('date', '>=', now()->subDays(7))->count();
