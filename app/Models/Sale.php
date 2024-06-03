@@ -18,7 +18,6 @@ class Sale extends Model
             $query->where('name', 'like', '%' . $keyword . '%');
         })
             ->orWhere('sales.invoiceno', 'like', '%' . $keyword . '%')
-            ->orWhere('client_phone', 'like', '%' . $keyword . '%')
             ->orWhereHas('product', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             })
