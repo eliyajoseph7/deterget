@@ -106,11 +106,14 @@ class Sale extends Model
 
     public function getDaysRemainAttribute()
     {
-        $diff = date_diff(today(), $this->getDueDateAttribute())->days ?? 0;
-        if($this->getOverdueAttribute()) {
-            $diff = -1 * $diff;
+        if($this->getDueDateAttribute()) {
+            $diff = date_diff(today(), $this->getDueDateAttribute())->days;
+            if($this->getOverdueAttribute()) {
+                $diff = -1 * $diff;
+            }
+    
+            return $diff;
         }
-
-        return $diff;
+        return '';
     }
 }
