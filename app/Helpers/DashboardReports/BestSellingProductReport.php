@@ -5,14 +5,17 @@ namespace App\Helpers\DashboardReports;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 
-class BestSellingProductReport {
-    
-    public static function getBestSellingProducts() {
+class BestSellingProductReport
+{
 
-        $chart = Sale::join('products', 'products.id', 'sales.product_id')->select('products.name as name', DB::raw('COUNT(sales.id) as y') )
-                    ->groupBy('products.name')->orderByDesc('y')->limit(6)->get();
+    public static function getBestSellingProducts()
+    {
 
-        if($chart->count() > 0) {
+        $chart = Sale::join('sale_items', 'sale_items.sale_id', 'sales.id')
+            ->join('products', 'products.id', 'sale_items.product_id')->select('products.name as name', DB::raw('COUNT(sale_items.id) as y'))
+            ->groupBy('products.name')->orderByDesc('y')->limit(6)->get();
+
+        if ($chart->count() > 0) {
             $chart[0]['sliced'] = true;
             $chart[0]['selected'] = true;
         }
@@ -23,5 +26,4 @@ class BestSellingProductReport {
         ];
         return $series;
     }
-
 }
