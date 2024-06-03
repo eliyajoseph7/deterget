@@ -18,9 +18,6 @@ class Sale extends Model
             $query->where('name', 'like', '%' . $keyword . '%');
         })
             ->orWhere('sales.invoiceno', 'like', '%' . $keyword . '%')
-            ->orWhereHas('product', function ($query) use ($keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%');
-            })
             ->orWhereHas('seller', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             });
@@ -40,10 +37,6 @@ class Sale extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
 
     public function client()
     {
