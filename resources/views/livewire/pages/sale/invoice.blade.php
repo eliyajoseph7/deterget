@@ -16,7 +16,8 @@
     <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
         <div class="sm:w-11/12 lg:w-3/4 mx-auto">
             <!-- Card -->
-            <div id="invoiceDiv" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800 relative">
+            <div id="invoiceDiv"
+                class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800 relative">
                 <div class="absolute top-0 left-0">
                     <img src="{{ asset('assets/images/invoice/img1.png') }}" class="w-52">
                 </div>
@@ -83,9 +84,9 @@
                                 </dd>
                             </dl>
                             {{-- <dl class="grid sm:grid-cols-5 gap-x-3">
-                <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Due date:</dt>
-                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">03/11/2018</dd>
-              </dl> --}}
+                                <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Due date:</dt>
+                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">03/11/2018</dd>
+                            </dl> --}}
                         </div>
                         <!-- End Grid -->
                     </div>
@@ -116,7 +117,8 @@
                                     <h5
                                         class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         Item</h5>
-                                    <p class="font-medium text-gray-800 dark:text-neutral-200">{{ $dt->product?->name }}
+                                    <p class="font-medium text-gray-800 dark:text-neutral-200">
+                                        {{ $dt->product?->name }}
                                     </p>
                                 </div>
                                 <div>
@@ -130,14 +132,14 @@
                                         class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         Price</h5>
                                     <p class="text-gray-800 dark:text-neutral-200">
-                                        {{ number_format($dt->product?->selling_price, 2) }}</p>
+                                        {{ number_format($dt->selling_price, 2) }}</p>
                                 </div>
                                 <div>
                                     <h5
                                         class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         Amount (Tsh.)</h5>
                                     <p class="sm:text-end text-gray-800 dark:text-neutral-200">
-                                        {{ number_format($dt->quantity * $dt->product?->selling_price, 2) }}</p>
+                                        {{ number_format($dt->quantity * $dt->selling_price, 2) }}</p>
                                 </div>
                             </div>
                             <div class="sm:hidden border-b border-gray-200 dark:border-neutral-700"></div>
@@ -203,7 +205,7 @@
                     Invoice PDF
                 </a> --}}
                 <a class="py-2 px-3 cursor-pointer inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                      onclick="printInvoice('invoiceDiv')">
+                    onclick="printInvoice('invoiceDiv')">
                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -223,16 +225,16 @@
         function printInvoice(divId) {
             var printContents = document.getElementById(divId).innerHTML;
             var originalContents = document.body.innerHTML;
-        
+
             document.body.innerHTML = printContents;
-        
+
             window.print();
-        
+
             document.body.innerHTML = originalContents;
-        
+
             // Optional: If you're using a framework or Livewire, you may need to reinitialize some parts of your page
-            location.reload();  // Reload the page to reset the content and any dynamic features
+            location.reload(); // Reload the page to reset the content and any dynamic features
         }
-        </script>
-        
+    </script>
+
 </div>

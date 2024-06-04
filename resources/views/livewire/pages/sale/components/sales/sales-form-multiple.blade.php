@@ -105,8 +105,8 @@
                 </div>
                 <div class="col-span-full grid grid-cols-5 gap-2">
                     @foreach ($items as $index => $item)
-                        <div class="col-span-4 grid grid-cols-2 gap-2">
-                            <div class="">
+                        <div class="col-span-4 grid grid-cols-5 gap-2">
+                            <div class="col-span-2">
                                 @unless ($loop->iteration != 1)
                                     <label for="sale_product_id"
                                         class="block text-sm font-medium leading-6 text-gray-900">Product<span
@@ -115,7 +115,7 @@
                                 <div class="mt-2">
                                     <div wire:igno re
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                                        <select type="text" id="items.{{ $index }}.product_id" wire:model.lazy="items.{{ $index }}.product_id"
+                                        <select type="text" index="{{ $index }}" id="items.{{ $index }}.product_id" wire:model.lazy="items.{{ $index }}.product_id"
                                             class="block product select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                             <option value="">Select..</option>
                                             @foreach ($products as $product)
@@ -127,6 +127,26 @@
                                     </div>
                                     <div class="text-red-500 text-sm">
                                         @error('items.' . $index . '.product_id')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-2">
+                                @unless ($loop->iteration != 1)
+                                    <label for="selling_price" class="block text-sm font-medium leading-6 text-gray-900">Selling Price
+                                        <span class="text-red-500">*</span></label>
+                                @endunless
+                                <div class="mt-2">
+                                    <div
+                                        class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
+                                        <input type="number" step="0.01" id="selling_price"
+                                            wire:model.live="items.{{ $index }}.selling_price"
+                                            class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                            placeholder="Enter selling price">
+                                    </div>
+                                    <div class="text-red-500 text-sm">
+                                        @error('items.' . $index . '.selling_price')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -221,6 +241,10 @@
             //when ever the value of changes this will update your PHP variable 
             var id = $(this).attr('id');
             @this.set($(this).attr('id'), $(this).val());
+            Livewire.dispatch('fetch_price', {
+                'id': $(this).val(),
+                'index': $(this).attr('index')
+            })
         });
 
 

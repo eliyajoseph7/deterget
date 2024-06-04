@@ -38,10 +38,10 @@ class Invoice extends Component
         $this->sale = Sale::with(['items'])->find($id);
 
         // foreach($this->sale->items as $sl) {
-        //     $this->subtotal += $sl->quantity * $sl->product->selling_price;
+        //     $this->subtotal += $sl->quantity * $sl->selling_price;
         // }
         $this->subtotal = $this->sale->items->sum(function($item) {
-            return $item->quantity * $item->product->selling_price;
+            return $item->quantity * $item->selling_price;
         });
         $this->vat = 0.18 * $this->subtotal;
         $this->total = $this->subtotal + $this->vat;

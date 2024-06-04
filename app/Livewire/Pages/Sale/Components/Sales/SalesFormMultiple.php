@@ -45,11 +45,12 @@ class SalesFormMultiple extends Component
     //     $this->seller_id = $id;
     // }
 
-    // #[On('set_client_id')]
-    // public function setClientId($id)
-    // {
-    //     $this->client_id = $id;
-    // }
+    #[On('fetch_price')]
+    public function fetchProductPrice($id, $index)
+    {
+        $product = Product::find($id);
+        $this->items[$index]['price'] = $product->selling_price;
+    }
 
     public function addField()
     {
@@ -62,7 +63,8 @@ class SalesFormMultiple extends Component
 
         $this->items[] = [
             'product_id' => null,
-            'quantity' => []
+            'quantity' => null,
+            'selling_price' => null,
         ];
     }
     public function removeField($index)
@@ -99,8 +101,8 @@ class SalesFormMultiple extends Component
 
         // sales items
         foreach ($this->items as $key => $item) {
-            $product = Product::find($item['product_id']);
-            $item['price'] = $item['quantity'] * $product->selling_price;
+            // $product = Product::find($item['product_id']);
+            $item['price'] = $item['quantity'] * $item['selling_price'];
             $item['sale_id'] = $sale->id;
 
             SaleItem::create($item);
@@ -143,8 +145,8 @@ class SalesFormMultiple extends Component
         SaleItem::where('sale_id', $this->id)?->delete();
         // sales items
         foreach ($this->items as $key => $item) {
-            $product = Product::find($item['product_id']);
-            $item['price'] = $item['quantity'] * $product->selling_price;
+            // $product = Product::find($item['product_id']);
+            $item['price'] = $item['quantity'] * $item['selling_price'];
             $item['sale_id'] = $sale->id;
 
             SaleItem::create($item);
@@ -163,18 +165,18 @@ class SalesFormMultiple extends Component
     public function generateInvoiceNo($count = 1)
     {
         $invoiceno = str_pad($count, 4, '0', STR_PAD_LEFT); // Generates a random 4-digit number
-        $invoiceno = 'INV-'.$invoiceno;
+        $invoiceno = 'INV-' . $invoiceno;
 
 
-    //     $prev = Sale::where('invoiceno', $invoiceno)->where('client_id', $this->client_id)
-    //     ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), '=', now()->format('Y-m-d'))->first();
-    // if (!$prev) {
-            $check = Sale::where('invoiceno', $invoiceno);
-            if ($check->exists()) {
-                // Log::error($invoiceno);
-                $count = $count + 1;
-                return $this->generateInvoiceNo($count);
-            }
+        //     $prev = Sale::where('invoiceno', $invoiceno)->where('client_id', $this->client_id)
+        //     ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), '=', now()->format('Y-m-d'))->first();
+        // if (!$prev) {
+        $check = Sale::where('invoiceno', $invoiceno);
+        if ($check->exists()) {
+            // Log::error($invoiceno);
+            $count = $count + 1;
+            return $this->generateInvoiceNo($count);
+        }
         // }
 
 
@@ -198,7 +200,8 @@ class SalesFormMultiple extends Component
             foreach ($item->items as $index => $value) {
                 $this->items[] = [
                     'product_id' => $value->product_id,
-                    'quantity' => $value->quantity
+                    'quantity' => $value->quantity,
+                    'selling_price' => $value->selling_price
                 ];
 
                 $this->dispatch('set_product_field', [$index, $value->product_id]);
@@ -206,7 +209,8 @@ class SalesFormMultiple extends Component
         } else {
             $this->items[] = [
                 'product_id' => null,
-                'quantity' => null
+                'quantity' => null,
+                'selling_price' => null,
             ];
         }
     }
