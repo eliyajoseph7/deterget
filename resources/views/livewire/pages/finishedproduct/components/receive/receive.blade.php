@@ -79,7 +79,7 @@
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->date }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->name .' '.$dt->product?->quantity.' '.$dt->product?->uom->name }}</td>
+                                                        {{ $dt->product?->product_name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->unit_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap text-right hidden">

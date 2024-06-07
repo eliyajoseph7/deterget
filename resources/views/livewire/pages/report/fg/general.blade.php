@@ -52,7 +52,7 @@
                                                         class="px-4 py-3 w-[50px] font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                         {{ $loop->iteration }}</th>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->name }}</td>
+                                                        {{ $dt->product?->product_name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->category?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">

@@ -34,4 +34,10 @@ class Product extends Model
     {
         return $this->belongsTo(Uom::class);
     }
+
+    protected $appends = ['product_name'];
+
+    public function getProductNameAttribute() {
+        return $this->category->name . ' ' . $this->name . ' ' . $this->quantity . ' ' . $this->uom->name;
+    }
 }

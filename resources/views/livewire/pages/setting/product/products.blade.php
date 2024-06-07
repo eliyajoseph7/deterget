@@ -44,7 +44,7 @@
                                                 ])
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'quantity',
-                                                    'displayName' => 'Quantity',
+                                                    'displayName' => 'Packaging',
                                                 ])
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'unit_price',
@@ -58,10 +58,10 @@
                                                     'name' => 'category_id',
                                                     'displayName' => 'Category',
                                                 ])
-                                                @include('includes.table-header-sort', [
+                                                {{-- @include('includes.table-header-sort', [
                                                     'name' => 'uom_id',
                                                     'displayName' => 'Unit of Measure',
-                                                ])
+                                                ]) --}}
                                                 @include('includes.table-header-sort', [
                                                     'name' => 'user_id',
                                                     'displayName' => 'Created By',
@@ -82,15 +82,15 @@
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->quantity }}</td>
+                                                        {{ $dt->quantity . ' ' . $dt->uom?->name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap text-center">
                                                         {{ $dt->unit_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap text-center">
                                                         {{ $dt->selling_price }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->category?->name }}</td>
-                                                    <td class="px-4 py-3 whitespace-nowrap text-center">
-                                                        {{ $dt->uom?->name }}</td>
+                                                    {{-- <td class="px-4 py-3 whitespace-nowrap text-center">
+                                                        {{ $dt->uom?->name }}</td> --}}
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->user?->name }}</td>
                                                     <td class="px-4 py-3 flex items-center justify-end space-x-1">

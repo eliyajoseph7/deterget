@@ -25,7 +25,7 @@
                             class="block select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                             <option value="">Select..</option>
                             @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->name . ' ' . $product->quantity . ' ' . $product->uom->name }}</option>
+                                <option value="{{ $product->id }}">{{ $product?->product_name }}</option>
                             @endforeach
                         </select>
                     </div>

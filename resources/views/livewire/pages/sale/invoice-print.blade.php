@@ -106,7 +106,7 @@
                                             class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                             Item</h5>
                                         <p class="font-medium text-gray-800 dark:text-neutral-200">
-                                            {{ $dt->product?->name }}
+                                            {{ $dt->product?->product_name }}
                                         </p>
                                     </div>
                                     <div>

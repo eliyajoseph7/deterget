@@ -12,6 +12,7 @@ use App\Livewire\Pages\Reconciliation\Debit\Debtors;
 use App\Livewire\Pages\Report\Fg\Fg;
 use App\Livewire\Pages\Report\Fg\General as FgGeneral;
 use App\Livewire\Pages\Report\Payment\Payments;
+use App\Livewire\Pages\Report\Payment\PaymentsReport;
 use App\Livewire\Pages\Report\Rm\General;
 use App\Livewire\Pages\Report\Rm\Rm;
 use App\Livewire\Pages\Report\Rm\RmMovement;
@@ -135,7 +136,7 @@ Route::middleware('auth')->group(function () {
             Route::get('general', Sale::class)->name('sale_report');
         });
         Route::prefix('invoices')->group(function () {
-            Route::get('payments', Payments::class)->name('payments');
+            Route::get('payments', PaymentsReport::class)->name('payments');
         });
     });
 

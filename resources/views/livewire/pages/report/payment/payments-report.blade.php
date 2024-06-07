@@ -24,6 +24,13 @@
                                         </div>
                                     </div>
                                     <div class="flex">
+                                        <select wire:model.live="filter"
+                                            class="block sele ct2 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                                            <option value="all">All</option>
+                                            <option value="Bank">Bank</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Lipa Namba">Lipa Namba</option>
+                                        </select>
                                         {{-- <button wire:click="exportExcel"
                                         class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -44,7 +51,8 @@
                                             <tr>
                                                 <th scope="col" class="px-4 py-3 w-[50px]">S/No.</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Date</th>
-                                                <th scope="col" class="px-4 py-3 normal-case w-[100px]">Amount Paid</th>
+                                                <th scope="col" class="px-4 py-3 normal-case w-[100px]">Amount Paid
+                                                </th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Pay Mode</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Recorded By</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Recorded At</th>
@@ -55,7 +63,8 @@
                                             @forelse ($data as $key=>$dt)
                                                 <tr>
                                                     <td colspan="8" class="p-2 font-bold bg-blue-100 text-gray-700">
-                                                        {{ $key }} - {{ $dt[0]->client }} -> {{ $dt[0]->phone }}</td>
+                                                        {{ $key }} - {{ $dt[0]->client }} ->
+                                                        {{ $dt[0]->phone }}</td>
                                                 </tr>
                                                 @php
                                                     $total = 0;
@@ -85,9 +94,11 @@
 
                                                     </tr>
                                                 @endforeach
-                                                <tr class="border-b border-gray-100 dark:border-gray-700 font-bold text-lg bg-gray-200">
+                                                <tr
+                                                    class="border-b border-gray-100 dark:border-gray-700 font-bold text-lg bg-gray-200">
                                                     <td colspan="2" class="px-4">Total</td>
-                                                    <td colspan="" class="px-4 text-right">{{ number_format($total, 2) }}</td>
+                                                    <td colspan="" class="px-4 text-right">
+                                                        {{ number_format($total, 2) }}</td>
                                                     <td colspan="3"></td>
                                                 </tr>
                                             @empty

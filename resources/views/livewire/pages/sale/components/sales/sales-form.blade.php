@@ -49,7 +49,7 @@
                             <option value="">Select..</option>
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">
-                                    {{ $product->name . ' ' . $product->quantity . ' ' . $product->uom->name }}</option>
+                                    {{ $product?->product_name }}</option>
                             @endforeach
                         </select>
                     </div>

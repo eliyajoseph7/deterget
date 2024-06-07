@@ -90,7 +90,7 @@
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt->date }}</td>
                                                     {{-- <td class="px-4 py-3 whitespace-nowrap">
-                                                        {{ $dt->product?->name }}</td>
+                                                        {{ $dt->product?->product_name }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->product?->category?->name }}</td> --}}
                                                     <td class="px-4 py-3 whitespace-nowrap">
