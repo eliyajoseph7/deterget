@@ -69,7 +69,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-span-3">
+                            {{-- <div class="col-span-3">
                                 <label for="invoice"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invoice
                                     <span class="text-red-500">*</span></label>
@@ -82,7 +82,7 @@
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div>
                             @if ($loop->iteration != 1)
@@ -101,8 +101,24 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="mb-2 grid grid-cols-5">
+                    <div class="col-span-4">
+                        <label for="invoice"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Invoice
+                            <span class="text-red-500">*</span></label>
+                        <input wire:model.lazy="invoice"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            id="invoice" type="file" />
+
+                        <div class="text-red-500 text-sm">
+                            @error('invoice')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="">
+            <div class="flex justify-end">
                 <button type="submit"
                     class="block bg-blue-500 hover:bg-blue-600 col-span-full px-14 py-2 rounded-lg text-white">
                     <div wire:loading>

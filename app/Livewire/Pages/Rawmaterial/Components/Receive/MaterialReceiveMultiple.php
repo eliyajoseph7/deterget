@@ -16,6 +16,7 @@ class MaterialReceiveMultiple extends Component
 
     public $action = 'add';
     public $id;
+    public $invoice;
     public $fields = [];
 
 
@@ -30,7 +31,7 @@ class MaterialReceiveMultiple extends Component
         $this->fields[] = [
             'quantity' => null,
             'date' => null,
-            'invoice' => null,
+            // 'invoice' => null,
             'raw_material_id' => null,
         ];
     }
@@ -52,10 +53,11 @@ class MaterialReceiveMultiple extends Component
         ]);
 
         $this->validate([
-            'fields.*.invoice' => 'required|mimes:pdf'
+            'invoice' => 'required|mimes:pdf'
         ]);
 
         foreach($this->fields as $field) {
+            $field['invoice'] = $this->invoice;
             // save in material tnx table
             $tnx = new MaterialTnx;
             $tnx->date = $field['date'];
@@ -114,7 +116,7 @@ class MaterialReceiveMultiple extends Component
         $this->fields[] = [
             'quantity' => null,
             'date' => null,
-            'invoice' => null,
+            // 'invoice' => null,
             'raw_material_id' => null,
         ];
 

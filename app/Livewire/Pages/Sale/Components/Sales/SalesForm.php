@@ -174,7 +174,7 @@ class SalesForm extends ModalComponent
 
 
         $prev = Sale::where('invoiceno', $invoiceno)->where('client_id', $this->client_id)
-            ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m-%d'))"), '=', now()->format('Y-m-d'))->first();
+            ->whereDate('date', now()->format('Y-m-d'))->first();
         if (!$prev) {
             $check = Sale::where('invoiceno', $invoiceno);
             if ($check->exists()) {

@@ -28,6 +28,7 @@ class SalesFormMultiple extends Component
     #[Rule('required', as: 'Client')]
     public $client_id;
     public $credit_days;
+    public $invoiceno;
 
     protected $listeners = [
         'update_sale_distribution' => 'editSale'
@@ -78,6 +79,7 @@ class SalesFormMultiple extends Component
         $this->validate();
         $this->validate([
             'items.*.*' => ['required'],
+            'invoiceno' => ['unique:sales,invoiceno'],
         ], [
             'items.*.*.required' => 'This field is required.',
         ]);
@@ -95,7 +97,7 @@ class SalesFormMultiple extends Component
         $sale->client_id = $this->client_id;
         $sale->seller_id = $this->seller_id;
         $sale->user_id = auth()->user()->id;
-        $sale->invoiceno = $this->generateInvoiceNo();
+        $sale->invoiceno = $this->invoiceno ? $this->invoiceno : $this->generateInvoiceNo();
 
         $sale->save();
 
