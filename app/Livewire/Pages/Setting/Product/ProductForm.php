@@ -23,6 +23,8 @@ class ProductForm extends ModalComponent
     public $uom_id;
     #[Rule('required')]
     public $quantity;
+    #[Rule('required')]
+    public $total_pieces;
 
     #[Rule('required', as: 'Category')]
     public $category_id;
@@ -41,6 +43,7 @@ class ProductForm extends ModalComponent
         $product->quantity = $this->quantity;
         $product->unit_price = $this->unit_price;
         $product->selling_price = $this->selling_price;
+        $product->total_pieces = $this->total_pieces;
         $product->category_id = $this->category_id;
         $product->uom_id = $this->uom_id;
         $product->user_id = auth()->user()->id;
@@ -61,6 +64,7 @@ class ProductForm extends ModalComponent
         $this->quantity = $qs->quantity;
         $this->unit_price = $qs->unit_price;
         $this->selling_price = $qs->selling_price;
+        $this->total_pieces = $qs->total_pieces;
         $this->category_id = $qs->category_id;
         $this->uom_id = $qs->uom_id;
         // $this->dispatch('update_active_product_row', $id);
@@ -75,6 +79,7 @@ class ProductForm extends ModalComponent
         $qs->quantity = $this->quantity;
         $qs->unit_price = $this->unit_price;
         $qs->selling_price = $this->selling_price;
+        $qs->total_pieces = $this->total_pieces;
         $qs->category_id = $this->category_id;
         $qs->uom_id = $this->uom_id;
 
