@@ -14,7 +14,7 @@
             </div>
         @endif
         <div class=" border-t-2 border-gray-100 rounded-lg px-4 py-3 z-50">
-            @if (Helper::has_role('import-transactions'))
+            @if (Helper::has_permission('import-transactions'))
                 <div class="flex justify-end items-center">
                     <div class="flex items-center justify-end d p-4 dark:bg-gray-700">
                         <button
