@@ -37,6 +37,7 @@ class DispatchForm extends ModalComponent
     public function setProductId($id)
     {
         $this->product_id = $id;
+        $this->pieces = Product::find($id)->total_pieces ?? 1;
     }
 
     #[On('set_assigned')]
