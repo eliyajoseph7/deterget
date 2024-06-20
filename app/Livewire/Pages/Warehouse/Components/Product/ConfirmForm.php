@@ -35,6 +35,7 @@ class ConfirmForm extends ModalComponent
         if($this->warehouse_received == 'yes') {
             $tnx = new WarehouseTnx;
             $tnx->quantity = $qs->quantity;
+            $tnx->pieces = $qs->pieces;
             $tnx->action = 'in';
             $tnx->product_id = $qs->product_id;
             $tnx->user_id = auth()->user()->id;

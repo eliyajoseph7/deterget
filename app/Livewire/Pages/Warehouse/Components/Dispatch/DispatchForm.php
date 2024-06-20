@@ -26,6 +26,8 @@ class DispatchForm extends ModalComponent
 
     #[Rule('required', as: 'Product')]
     public $product_id;
+    #[Rule('required', as: 'number of pieces')]
+    public $pieces;
 
     protected $listeners = [
         'update_warehouse_dispatch' => 'editWarehouseDispatch'
@@ -53,6 +55,7 @@ class DispatchForm extends ModalComponent
         $tnx = new WarehouseTnx;
         // $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
+        $tnx->pieces = -$this->pieces;
         $tnx->action = 'out';
         $tnx->product_id = $this->product_id;
         $tnx->user_id = auth()->user()->id;
@@ -61,6 +64,7 @@ class DispatchForm extends ModalComponent
         $warehouse_dispatch = new WarehouseDispatch;
         // $warehouse_dispatch->date = $this->date;
         $warehouse_dispatch->quantity = $this->quantity;
+        $warehouse_dispatch->pieces = $this->pieces;
         $warehouse_dispatch->product_id = $this->product_id;
         $warehouse_dispatch->warehouse_tnx_id = $tnx->id;
         $warehouse_dispatch->assigned = $this->assigned;
@@ -88,6 +92,7 @@ class DispatchForm extends ModalComponent
         $qs = WarehouseDispatch::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
+        $this->pieces = $qs->pieces;
         // $this->date = $qs->date;
         $this->product_id = $qs->product_id;
         $this->assigned = $qs->assigned;
@@ -102,6 +107,7 @@ class DispatchForm extends ModalComponent
 
         $qs = WarehouseDispatch::find($this->id);
         $qs->quantity = $this->quantity;
+        $qs->pieces = $this->pieces;
         // $qs->date = $this->date;
         $qs->product_id = $this->product_id;
 
@@ -109,6 +115,7 @@ class DispatchForm extends ModalComponent
         if ($tnx) {
             // $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
+            $tnx->pieces = -$this->pieces;
             $tnx->action = 'out';
             $tnx->product_id = $this->product_id;
             $tnx->save();

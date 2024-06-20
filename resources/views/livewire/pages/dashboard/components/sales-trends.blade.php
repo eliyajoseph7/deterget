@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-white shadow-md rounded-lg hover:-translate-y-1 duration-700 ease-in-out">
+    <div class="bg-white shadow-md rounded-lg hover:-translate-y-0.5 duration-700 ease-in-out">
         <div class="h-[50vh]">
             <div class="h-[10%] py-4 px-2 font-bold text-lg text-sky-900">Sales Trend for Last 7 Days</div>
             <div class="salesTrend h-[90%]"></div>

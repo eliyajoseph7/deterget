@@ -23,6 +23,8 @@ class DispatchForm extends ModalComponent
 
     #[Rule('required', as: 'Product')]
     public $product_id;
+    #[Rule('required', as: 'number of pieces')]
+    public $pieces;
 
     protected $listeners = [
         'update_dispatch_product' => 'editDispatchProduct'
@@ -32,6 +34,7 @@ class DispatchForm extends ModalComponent
     public function setProductId($id)
     {
         $this->product_id = $id;
+        $this->pieces = Product::find($id)->total_pieces ?? 1;
     }
 
 
@@ -44,6 +47,7 @@ class DispatchForm extends ModalComponent
         $tnx = new ProductTnx;
         $tnx->date = $this->date;
         $tnx->quantity = -$this->quantity;
+        $tnx->pieces = -$this->pieces;
         $tnx->action = 'out';
         $tnx->product_id = $this->product_id;
         $tnx->user_id = auth()->user()->id;
@@ -52,6 +56,7 @@ class DispatchForm extends ModalComponent
         $dispatch_product = new DispatchProduct;
         $dispatch_product->date = $this->date;
         $dispatch_product->quantity = $this->quantity;
+        $dispatch_product->pieces = $this->pieces;
         $dispatch_product->product_id = $this->product_id;
         $dispatch_product->product_tnx_id = $tnx->id;
         $dispatch_product->user_id = auth()->user()->id;
@@ -79,6 +84,7 @@ class DispatchForm extends ModalComponent
         $qs = DispatchProduct::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
+        $this->pieces = $qs->pieces;
         $this->date = $qs->date;
         $this->product_id = $qs->product_id;
         $this->dispatch('update_product_id_field', $qs->product_id);
@@ -91,6 +97,7 @@ class DispatchForm extends ModalComponent
 
         $qs = DispatchProduct::find($this->id);
         $qs->quantity = $this->quantity;
+        $qs->pieces = $this->pieces;
         $qs->date = $this->date;
         $qs->product_id = $this->product_id;
 
@@ -98,6 +105,7 @@ class DispatchForm extends ModalComponent
         if ($tnx) {
             $tnx->date = $this->date;
             $tnx->quantity = -$this->quantity;
+            $tnx->pieces = -$this->pieces;
             $tnx->product_id = $this->product_id;
             $tnx->action = 'out';
             $tnx->save();

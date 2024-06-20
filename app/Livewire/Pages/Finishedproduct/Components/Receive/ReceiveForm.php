@@ -23,14 +23,18 @@ class ReceiveForm extends ModalComponent
     #[Rule('required', as: 'Product')]
     public $product_id;
 
+    #[Rule('required', as: 'number of pieces')]
+    public $pieces;
+
     protected $listeners = [
         'update_receive_product' => 'editReceiveProduct'
     ];
 
     #[On('set_product_id')]
-    public function setRawProductId($id)
+    public function setProductId($id)
     {
         $this->product_id = $id;
+        $this->pieces = Product::find($id)->total_pieces ?? 1;
     }
 
 
@@ -43,6 +47,7 @@ class ReceiveForm extends ModalComponent
         $tnx->date = $this->date;
         $tnx->quantity = $this->quantity;
         $tnx->product_id = $this->product_id;
+        $tnx->pieces = $this->pieces;
         $tnx->action = 'in';
         $tnx->user_id = auth()->user()->id;
         $tnx->save();
@@ -50,6 +55,7 @@ class ReceiveForm extends ModalComponent
         $receive_product = new ReceiveProduct;
         $receive_product->date = $this->date;
         $receive_product->quantity = $this->quantity;
+        $receive_product->pieces = $this->pieces;
         $receive_product->product_id = $this->product_id;
         $receive_product->product_tnx_id = $tnx->id;
         $receive_product->user_id = auth()->user()->id;
@@ -77,6 +83,7 @@ class ReceiveForm extends ModalComponent
         $qs = ReceiveProduct::find($id);
         $this->id = $id;
         $this->quantity = $qs->quantity;
+        $this->pieces = $qs->pieces;
         $this->date = $qs->date;
         $this->product_id = $qs->product_id;
         $this->dispatch('update_product_id_field', $qs->product_id);
@@ -89,6 +96,7 @@ class ReceiveForm extends ModalComponent
 
         $qs = ReceiveProduct::find($this->id);
         $qs->quantity = $this->quantity;
+        $qs->pieces = $this->pieces;
         $qs->date = $this->date;
         $qs->product_id = $this->product_id;
 
@@ -96,6 +104,7 @@ class ReceiveForm extends ModalComponent
         if ($tnx) {
             $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
+            $tnx->pieces = $this->pieces;
             $tnx->product_id = $this->product_id;
             $tnx->action = 'in';
             $tnx->save();
@@ -103,6 +112,7 @@ class ReceiveForm extends ModalComponent
             $tnx = new ProductTnx;
             $tnx->date = $this->date;
             $tnx->quantity = $this->quantity;
+            $tnx->pieces = $this->pieces;
             $tnx->action = 'in';
             $tnx->product_id = $this->product_id;
             $tnx->user_id = auth()->user()->id;

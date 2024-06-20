@@ -1,7 +1,7 @@
-<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-5 bg-gray-200/20 py-3 px-2 rounded-md">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-5 bg-gray-200/20 py-0.5 px-2 rounded-md">
     <a href="{{ route('sale_report') }}">
         <div
-            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-3 duration-700 ease-in-out">
+            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-0.5 duration-700 ease-in-out">
             <div class="flex justify-between px-2 py-2">
                 <div class="font-bold">Sales</div>
                 <div class="bg-gray-100 px-2">Today</div>
@@ -14,7 +14,7 @@
     </a>
     <a href="{{ route('raw_materials') }}">
         <div
-            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-3 duration-700 ease-in-out">
+            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-0.5 duration-700 ease-in-out">
             <div class="flex justify-between px-2 py-2">
                 <div class="font-bold">Raw Materials (Count)</div>
                 <div class="bg-gray-100 px-2">Last 7 days</div>
@@ -33,7 +33,7 @@
     </a>
     <a href="{{ route('products') }}">
         <div
-            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-3 duration-700 ease-in-out">
+            class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-0.5 duration-700 ease-in-out">
             <div class="flex justify-between px-2 py-2">
                 <div class="font-bold">Finished Goods (Count)</div>
                 <div class="bg-gray-100 px-2">Last 7 days</div>
@@ -51,7 +51,7 @@
         </div>
     </a>
     <div
-        class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-3 duration-700 ease-in-out">
+        class=" bg-white dark:bg-gray-800 rounded-lg min-h-40 shadow-sm hover:shadow-lg hover:-translate-y-0.5 duration-700 ease-in-out">
         <div class="flex justify-between px-2 py-2">
             <div class="font-bold">Running out of Stock</div>
             <div class="bg-gray-100 px-2">(Warehouse)</div>
