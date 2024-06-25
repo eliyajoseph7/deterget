@@ -45,6 +45,7 @@ class ConfirmForm extends ModalComponent
             $report = new WarehouseReport;
             $report->received = $qs->quantity;
             $report->product_id = $qs->product_id;
+            $report->pieces = $qs->pieces;
             $report->warehouse_tnx_id = $tnx->id;
             $report->user_id = auth()->user()->id;
             $report->save();

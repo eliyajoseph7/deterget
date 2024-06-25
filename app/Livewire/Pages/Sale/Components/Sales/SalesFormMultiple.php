@@ -50,7 +50,9 @@ class SalesFormMultiple extends Component
     public function fetchProductPrice($id, $index)
     {
         $product = Product::find($id);
-        $this->items[$index]['price'] = $product->selling_price;
+        // dd($product);
+        $this->items[$index]['selling_price'] = $product->selling_price;
+        $this->items[$index]['pieces'] = $product->total_pieces;
     }
 
     public function addField()
@@ -66,6 +68,7 @@ class SalesFormMultiple extends Component
             'product_id' => null,
             'quantity' => null,
             'selling_price' => null,
+            'pieces' => null,
         ];
     }
     public function removeField($index)
@@ -203,7 +206,8 @@ class SalesFormMultiple extends Component
                 $this->items[] = [
                     'product_id' => $value->product_id,
                     'quantity' => $value->quantity,
-                    'selling_price' => $value->selling_price
+                    'selling_price' => $value->selling_price,
+                    'pieces' => $value->pieces
                 ];
 
                 $this->dispatch('set_product_field', [$index, $value->product_id]);
@@ -213,6 +217,7 @@ class SalesFormMultiple extends Component
                 'product_id' => null,
                 'quantity' => null,
                 'selling_price' => null,
+                'pieces' => null,
             ];
         }
     }

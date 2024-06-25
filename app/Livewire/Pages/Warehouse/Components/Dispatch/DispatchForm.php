@@ -77,6 +77,7 @@ class DispatchForm extends ModalComponent
         $report = new WarehouseReport;
         $report->dispatched = $this->quantity;
         $report->product_id = $this->product_id;
+        $report->pieces = $this->pieces;
         $report->warehouse_tnx_id = $tnx->id;
         $report->user_id = auth()->user()->id;
         $report->save();
@@ -130,6 +131,7 @@ class DispatchForm extends ModalComponent
         if($report) {
             $report->dispatched = $this->quantity;
             $report->product_id = $this->product_id;
+            $report->pieces = $this->pieces;
             $report->warehouse_tnx_id = $tnx->id;
             $report->save();
         }
