@@ -124,7 +124,7 @@
                 <div class="col-span-full grid grid-cols-5 gap-2">
                     @foreach ($items as $index => $item)
                         <div class="col-span-4 grid grid-cols-4 gap-2">
-                            <div class="col-sp an-2">
+                            <div class="">
                                 @unless ($loop->iteration != 1)
                                     <label for="sale_product_id"
                                         class="block text-sm font-medium leading-6 text-gray-900">Product<span
@@ -136,7 +136,7 @@
                                         <select type="text" index="{{ $index }}"
                                             id="items.{{ $index }}.product_id"
                                             wire:model.lazy="items.{{ $index }}.product_id"
-                                            class="block product select2 w-screen border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                                            class="block product select2 w-full max-w-md border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                             <option value="">Select..</option>
                                             @foreach ($products as $product)
                                                 <option value="{{ $product->id }}">
@@ -144,6 +144,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
+
                                     </div>
                                     <div class="text-red-500 text-sm">
                                         @error('items.' . $index . '.product_id')
@@ -175,8 +176,8 @@
                             </div>
                             <div class="">
                                 @unless ($loop->iteration != 1)
-                                    <label for="pieces"
-                                        class="block text-sm font-medium leading-6 text-gray-900">Total Pieces
+                                    <label for="pieces" class="block text-sm font-medium leading-6 text-gray-900">Total
+                                        Pieces
                                         <span class="text-red-500">*</span></label>
                                 @endunless
                                 <div class="mt-2">

@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleItem;
+use App\Models\SaleLog;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -158,6 +159,11 @@ class SalesFormMultiple extends Component
         }
 
         $this->reset();
+
+        SaleLog::create([
+            'date' => today(),
+            'user_id' => auth()->user()->id
+        ]);
 
         session()->flash('alert', [
             'type' => 'success',

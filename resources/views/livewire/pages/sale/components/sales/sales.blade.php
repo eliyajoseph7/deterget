@@ -103,10 +103,10 @@
                                                         {{ $dt->credit_days }}</td>
                                                     <td class="px-4 py-3 whitespace-nowrap">
                                                         {{ $dt->user?->name }}</td>
-                                                        <td class="px-4 py-3 whitespace-nowrap">
-                                                            {{ $dt->invoiceno }}</td>
+                                                    <td class="px-4 py-3 whitespace-nowrap">
+                                                        {{ $dt->invoiceno }}</td>
                                                     <td class="px-4 py-3 flex items-center justify-end space-x-1">
-                                                        @if ($dt->date->format('Y-m-d') == $today->format('Y-m-d'))
+                                                        @if ($dt->date->format('Y-m-d') == $today->format('Y-m-d') || Helper::has_role('super_user'))
                                                             <a title="Update" href="{{ route('edit_sales', $dt->id) }}"
                                                                 class="px-1 bg-gray-300 hover:bg-blue-700 text-white rounded">
                                                                 <i class="fa fa-edit"></i></a>
@@ -115,10 +115,10 @@
                                                                 wire:click="$dispatch('confirm_delete', {{ $dt->id }})"
                                                                 class="px-2.5 bg-gray-300 hover:bg-red-500 text-white rounded">x</button>
                                                         @endif
-                                                                    <a href="{{ route('invoice', $dt->id) }}"
-                                                                        class="px-1 text-red-400 hover:text-red-500 bg-gray-300 hover:bg-red-100  rounded">
-                                                                        <i class="fa fa-file-invoice-dollar"></i>
-                                                                    </a>
+                                                        <a href="{{ route('invoice', $dt->id) }}"
+                                                            class="px-1 text-red-400 hover:text-red-500 bg-gray-300 hover:bg-red-100  rounded">
+                                                            <i class="fa fa-file-invoice-dollar"></i>
+                                                        </a>
 
                                                     </td>
                                                 </tr>
@@ -136,9 +136,9 @@
                                     </table>
                                 </div>
 
-                                {{-- @include('includes.table_pages', [
+                                @include('includes.table_pages', [
                                     'data' => $data,
-                                ]) --}}
+                                ])
                             </div>
                         </div>
                     </div>

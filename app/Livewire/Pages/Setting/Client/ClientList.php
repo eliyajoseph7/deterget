@@ -2,10 +2,14 @@
 
 namespace App\Livewire\Pages\Setting\Client;
 
+use App\Exports\Clients\ClientExport;
 use App\Models\Client;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+
 
 class ClientList extends Component
 {
@@ -25,6 +29,10 @@ class ClientList extends Component
     public function reload()
     {
         $this->render();
+    }
+    public function exportExcel()
+    {
+        return Excel::download(new ClientExport, 'clients.xlsx');
     }
 
     #[On('delete_client')]
