@@ -15,7 +15,7 @@ class ClientList extends Component
 {
     use WithPagination;
     public $search = '';
-    public $perPage = 10;
+    public $perPage = 50;
     public $sortBy = 'created_at';
     public $sortDir = 'DESC';
 
