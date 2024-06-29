@@ -31,6 +31,11 @@ class SalesFormMultiple extends Component
     public $credit_days;
     public $invoiceno;
 
+    #[Rule('required')]
+    public $contact_person;
+    #[Rule('required')]
+    public $contact_phone;
+
     protected $listeners = [
         'update_sale_distribution' => 'editSale'
     ];
@@ -99,6 +104,8 @@ class SalesFormMultiple extends Component
         $sale->selling_type = $this->selling_type;
         $sale->credit_days = $this->credit_days;
         $sale->client_id = $this->client_id;
+        $sale->contact_person = $this->contact_person;
+        $sale->contact_phone = $this->contact_phone;
         $sale->seller_id = $this->seller_id;
         $sale->user_id = auth()->user()->id;
         $sale->invoiceno = $this->invoiceno ? $this->invoiceno : $this->generateInvoiceNo();
@@ -144,6 +151,9 @@ class SalesFormMultiple extends Component
         $sale->selling_type = $this->selling_type;
         $sale->credit_days = $this->credit_days;
         $sale->client_id = $this->client_id;
+        $sale->contact_person = $this->contact_person;
+        $sale->contact_phone = $this->contact_phone;
+        // $sale->invoiceno = $this->invoiceno;
         $sale->seller_id = $this->seller_id;
 
         $sale->save();
@@ -203,7 +213,10 @@ class SalesFormMultiple extends Component
             $item = Sale::with(['items'])->find($saleId);
             $this->selling_type = $item->selling_type;
             $this->client_id = $item->client_id;
+            $this->contact_person = $item->contact_person;
+            $this->contact_phone = $item->contact_phone;
             $this->credit_days = $item->credit_days;
+            $this->invoiceno = $item->invoiceno;
             $this->seller_id = $item->seller_id;
 
             $this->dispatch('set_seller_select_field', $item->seller_id);

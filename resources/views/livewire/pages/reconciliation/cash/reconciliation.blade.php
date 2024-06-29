@@ -107,7 +107,9 @@
 
         $('#mark_done').on('click', function() {
             var sale = $('#cash_sale').text().replaceAll(',', '')
+            // console.log(sale);
             var transaction = $('#cash_transaction').text().replaceAll(',', '')
+            // console.log(transaction);
             Livewire.dispatch('mark_reconciliation', {
                 'total_sale': sale,
                 'total_transaction': transaction

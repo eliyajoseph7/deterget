@@ -9,6 +9,7 @@
                     <th scope="col" class="px-4 py-3">Client</th>
                     <th scope="col" class="px-4 py-3">Invoice No.</th>
                     <th scope="col" class="px-4 py-3">Amount</th>
+                    <th scope="col" class="px-4 py-3">Amount (VAT)</th>
 
                 </tr>
             </thead>
@@ -26,6 +27,8 @@
                             {{ $dt->invoiceno }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ number_format($dt->amount, 2) }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap">
+                            {{ number_format($dt->amount * 0.18, 2) }}</td>
                     </tr>
                 @empty
                     <tr class="bg-gray-50">
@@ -36,8 +39,9 @@
                     </tr>
                 @endforelse
                 <tr class="">
-                    <td colspan="4" class="px-4 py-2 font-bold">Total</td>
-                    <td class="px-4 py-2 font-bold" id="cash_sale">{{ number_format($data->sum('amount'), 2) }}</td>
+                    <td colspan="4" class="px-4 py-2 font-bold">Total + VAT</td>
+                    <td class="px-4 py-2 font-bold">Tsh.</td>
+                    <td class="px-4 py-2 font-bold text-right" id="cash_sale"> {{ number_format(($data->sum('amount') + (0.18 * $data->sum('amount'))), 2) }}</td>
                 </tr>
             </tbody>
         </table>
