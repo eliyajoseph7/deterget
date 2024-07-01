@@ -33,7 +33,7 @@ class Transaction extends Model
     protected $appends = ['balance'];
 
     public function getBalanceAttribute() {
-        $balance = $this->sale->items->sum('price') - $this->amount;
+        $balance = ($this->sale->items->sum('price') + (0.18 * $this->sale->items->sum('price'))) - $this->amount;
         return $balance;
     }
 }

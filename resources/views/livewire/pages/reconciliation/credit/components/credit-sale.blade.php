@@ -24,8 +24,8 @@
                             {{ $dt->name }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ $dt->invoiceno }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            {{ number_format($dt->amount, 2) }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-right">
+                            {{ number_format(($dt->amount + (0.18 * $dt->amount)), 2) }}</td>
                     </tr>
                 @empty
                     <tr class="bg-gray-50">
@@ -38,7 +38,7 @@
                 <tr class="">
                     <td colspan="3" class="px-4 py-2 font-bold">Total (+ VAT)</td>
                     <td colspan="" class="px-4 py-2 font-bold text-right">TSHs.</td>
-                    <td class="px-4 py-2 font-bold" id="cash_sale">{{ number_format(($data->sum('amount') + (0.18 * $data->sum('amount'))), 2) }}</td>
+                    <td class="px-4 py-2 font-bold text-right" id="cash_sale">{{ number_format(($data->sum('amount') + (0.18 * $data->sum('amount'))), 2) }}</td>
                 </tr>
             </tbody>
         </table>
