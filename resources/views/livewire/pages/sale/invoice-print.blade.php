@@ -168,6 +168,7 @@
                     <!-- End Flex -->
 
                     <div class="mt-8 sm:mt-12">
+                        <h4 class="text-sm font-normal mb-1 text-gray-800 dark:text-neutral-200">Goods once sold can not be returned!</h4>
                         <h4 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Thank you!</h4>
                         {{-- <p class="text-gray-500 dark:text-neutral-500">If you have any questions concerning this invoice, use the following contact information:</p>
                 <div class="mt-2">
@@ -176,7 +177,7 @@
                 </div> --}}
                     </div>
 
-                    <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© {{ now()->format('Y') }} Reven.</p>
+                    <p class="mt-4 text-sm text-gray-500 dark:text-neutral-500">© {{ now()->format('Y') }} Reven.</p>
                 </div>
                 <!-- End Card -->
             </div>
