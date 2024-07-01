@@ -36,7 +36,7 @@
                 @endforelse
                 <tr class="">
                     <td colspan="3" class="px-4 py-2 font-bold">Total + VAT</td>
-                    <td class="px-4 py-2 font-bold">Tsh.</td>
+                    <td class="px-4 py-2 font-bold text-right">Tsh.</td>
                     <td class="px-4 py-2 font-bold text-right" id="cash_sale"> {{ number_format(($data->sum('amount') + (0.18 * $data->sum('amount'))), 2) }}</td>
                 </tr>
             </tbody>
