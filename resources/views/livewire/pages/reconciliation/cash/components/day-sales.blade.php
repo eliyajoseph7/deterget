@@ -23,7 +23,7 @@
                             {{ $dt->name }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">
                             {{ $dt->invoiceno }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
+                        <td class="px-4 py-3 whitespace-nowrap text-right">
                             {{ number_format(($dt->amount + (0.18 * $dt->amount)), 2) }}</td>
                     </tr>
                 @empty
