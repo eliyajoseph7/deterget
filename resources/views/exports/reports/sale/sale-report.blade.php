@@ -1,14 +1,14 @@
 <table>
     <thead class="text-xs text-gray-700 dark:text-gray-100 uppercase bg-gray-100 dark:bg-gray-800">
         <tr>
-            <th colspan="7" rowspan="2"
+            <th colspan="8" rowspan="2"
                 style="text-transform: uppercase; text-align: center; font-size: 16; font-weight: bold;">Detailed Sale
                 Report {{ $date->format('F Y') }}</th>
         </tr>
     </thead>
     <tbody class="">
         <tr>
-            <th colspan="7"></th>
+            <th colspan="8"></th>
         </tr>
         <tr>
             <th style="font-weight: 500;">S/No.</th>
