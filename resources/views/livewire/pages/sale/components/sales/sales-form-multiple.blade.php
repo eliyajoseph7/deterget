@@ -61,42 +61,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-3">
-
-                    <label for="contact_person" class="block text-sm font-medium leading-6 text-gray-900">Contact Person <span class="text-red-500">*</span>
-                    </label>
-                    <div class="mt-2">
-                        <div
-                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="text" step="0.01" id="contact_person" wire:model.live="contact_person"
-                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                placeholder="Enter name">
-                        </div>
-                        <div class="text-red-500 text-sm">
-                            @error('contact_person')
-                                <span class="error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-3">
-
-                    <label for="contact_phone" class="block text-sm font-medium leading-6 text-gray-900">Contact Phone <span class="text-red-500">*</span>
-                    </label>
-                    <div class="mt-2">
-                        <div
-                            class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-full">
-                            <input type="tel" step="0.01" id="contact_phone" wire:model.live="contact_phone"
-                                class="block w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                placeholder="0712345678">
-                        </div>
-                        <div class="text-red-500 text-sm">
-                            @error('contact_phone')
-                                <span class="error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
                 <div class="col-span-3 mb-1">
                     <label for="selling_type" class="block text-sm font-medium leading-6 text-gray-900">Selling
                         Type<span class="text-red-500">*</span></label></label>
@@ -160,7 +124,7 @@
                 <div class="col-span-full grid grid-cols-5 gap-2">
                     @foreach ($items as $index => $item)
                         <div class="col-span-4 grid grid-cols-4 gap-2">
-                            <div class="">
+                            <div class="col-span-2">
                                 @unless ($loop->iteration != 1)
                                     <label for="sale_product_id"
                                         class="block text-sm font-medium leading-6 text-gray-900">Product<span
@@ -172,7 +136,7 @@
                                         <select type="text" index="{{ $index }}"
                                             id="items.{{ $index }}.product_id"
                                             wire:model.lazy="items.{{ $index }}.product_id"
-                                            class="block product select2 w-full max-w-md border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                                            class="block product select2 w-full max-w-full border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                             <option value="">Select..</option>
                                             @foreach ($products as $product)
                                                 <option value="{{ $product->id }}">
@@ -189,7 +153,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="col-span-2">
                                 @unless ($loop->iteration != 1)
                                     <label for="selling_price"
                                         class="block text-sm font-medium leading-6 text-gray-900">Selling Price
@@ -210,7 +174,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="col-span-2">
                                 @unless ($loop->iteration != 1)
                                     <label for="pieces" class="block text-sm font-medium leading-6 text-gray-900">Total
                                         Pieces
@@ -231,7 +195,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="col-span-2">
                                 @unless ($loop->iteration != 1)
                                     <label for="quantity"
                                         class="block text-sm font-medium leading-6 text-gray-900">Quantity
