@@ -115,6 +115,13 @@ class Sale extends Component
                     ->orderBy($this->sortBy, $this->sortDir)->get();
         }
 
+        $data->transform(function($qs) {
+            $price = ($qs->product->selling_price * $qs->sold);
+            $vat = 0.18 * $price;
+            $qs->price = $price + $vat;
+            return $qs;
+        });
+
         $result = collect([]);
 
         foreach ($data as $dt) {
@@ -125,6 +132,7 @@ class Sale extends Component
                 "product" => $dt->product,
                 "date" => $dt->date,
                 "sold" => $dt->sold,
+                "price" => $dt->price,
                 "remain" => $remain
             ]);
         }

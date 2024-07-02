@@ -5,7 +5,7 @@
             'menu' => 'Detailed Sales Transactions',
         ])
     </x-slot>
-    
+
     <div>
         <div class="py-0">
             <div class="max-w-full mx-auto sm:px-6 lg:px-0">
@@ -54,20 +54,20 @@
                                         </div>
                                     </div>
                                     <div class="flex">
-                                        <select wire:model.live="filter" class="block sele ct2 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                                        <select wire:model.live="filter"
+                                            class="block sele ct2 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                             <option value="all">All</option>
                                             <option value="cash">Cash</option>
                                             <option value="credit">Credit</option>
                                         </select>
                                         <button wire:click="exportExcel"
-                                        class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                                </svg>
-                                                <span>Export Excel</span>
+                                            class="flex space-x-1 items-center text-green-500 bg-gray-50 hover:bg-grey-100 hover:text-green-700 px-3 py-0.5 rounded-md">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+                                            <span>Export Excel</span>
                                         </button>
                                     </div>
                                 </div>
@@ -89,6 +89,7 @@
                                                 <th scope="col" class="px-4 py-3 normal-case">Selling Price</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Category</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Sold</th>
+                                                <th scope="col" class="px-4 py-3 normal-case">Price(+ VAT)</th>
                                                 <th scope="col" class="px-4 py-3 normal-case">Quantity Remained</th>
                                             </tr>
                                         </thead>
@@ -96,7 +97,8 @@
                                             class="[&>*:nth-child(even)]:bg-[#F6F9FF] [&>*:nth-child(even)]:dark:bg-gray-600">
                                             @forelse ($data as $key=>$dt)
                                                 <tr>
-                                                    <td colspan="7" class="p-2 font-bold bg-blue-100 text-gray-700">{{ $key }}</td>
+                                                    <td colspan="8" class="p-2 font-bold bg-blue-100 text-gray-700">
+                                                        {{ $key }}</td>
                                                 </tr>
                                                 @foreach ($dt as $dt)
                                                     <tr wire:key=""
@@ -114,6 +116,8 @@
                                                             {{ $dt['product']?->category?->name }}</td>
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt['sold'] }}</td>
+                                                        <td class="px-4 py-3 whitespace-nowrap text-right">
+                                                            {{ number_format($dt['price'], 2) }}</td>
                                                         <td class="px-4 py-3 whitespace-nowrap">
                                                             {{ $dt['remain'] }}</td>
                                                     </tr>
